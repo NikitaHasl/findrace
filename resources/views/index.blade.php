@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -14,8 +14,12 @@
     <nav class="nav">
         <a href="{{route('index')}}"><i class="nav__logo fas fa-running"></i></a>
         <div class="nav__auth">
-            <button class="nav__button"><a href="{{route('login')}}">Войти</a></button>
-            <button class="nav__button"><a href="{{route('register')}}">Регистрация</a></button>
+            @auth
+                <button class="nav__button"><a href="{{route('logout')}}">Выйти</a></button>
+            @else
+                <button class="nav__button"><a href="{{route('login')}}">Войти</a></button>
+                <button class="nav__button"><a href="{{route('register')}}">Регистрация</a></button>
+            @endauth
         </div>
     </nav>
     <main class="container">
