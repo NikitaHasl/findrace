@@ -1,0 +1,32 @@
+.nav {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #fff;
+    padding: 1rem;
+    &__logo {
+        color: $orange;
+        font-size: 2rem;
+    }
+  &__button {
+    background-color: $orange;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .3s;
+      a {
+          text-decoration: none;
+          color: #fff;
+      }
+      &:first-child {
+          margin-right: 1rem;
+      }
+    &:hover {
+      background-color: darken($orange, 2);
+    }
+  }
+}

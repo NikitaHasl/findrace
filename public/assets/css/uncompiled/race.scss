@@ -1,0 +1,92 @@
+.race {
+    display: flex;
+    flex-direction: column;
+    &__signUp {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__header {
+        width: 70%;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px 10px 0px 0px;
+    }
+    &__form {
+        flex: 1;
+        margin-left: 2rem;
+        button {
+            background-color: $orange;
+            border: none;
+            font-weight: bold;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+            display: block;
+            width: 10rem;
+            &:nth-child(2) {
+                background-color: $grey;
+                margin-top: 1rem;
+                &:hover {
+                    background-color: darken($grey, 2);
+                }
+            }
+            &:hover {
+                background-color: darken($orange, 2)
+            }
+
+        }
+    }
+    &__description {
+        margin-top: 2rem;
+    }
+    &__title {
+        color: $orange;
+        font-weight: 500;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    &__address {
+        margin-bottom: 1rem;
+    }
+    &__length {
+        margin-left: 9rem;
+    }
+    &__subTitle {
+        font-width: 500;
+        font-size: 1.5rem;
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+    }
+    &__text {
+        width: 33rem;
+        line-height: 30px;
+        font-size: 1.1rem;
+    }
+    &__distanceBlock {
+        margin-top: 2rem;
+        p {
+            font-width: 500;
+            font-size: 1.5rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+        }
+    }
+    &__distance {
+        width: 33rem;
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.2rem;
+        border-bottom: 3px solid white;
+        padding: 1rem 0;
+        i {
+            color: $orange;
+        }
+        &:last-child {
+            border-bottom: none;
+            margin-bottom: 5rem;
+        }
+
+    }
+}
