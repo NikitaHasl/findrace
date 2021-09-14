@@ -33,3 +33,6 @@ Route::get('/register', function() {
 })->name('register');
 
 Route::get('/account', [AccountController::class, 'index'])->name('account');
+
+Route::get('/subscribe/{id}', [AccountController::class, 'subscribe'])->where('id', '\d+')->name('subscribe');
+
