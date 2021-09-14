@@ -14,14 +14,14 @@ class CreateRegistrationsForRaceTable extends Migration
     public function up()
     {
         Schema::create('registrations_for_race', function (Blueprint $table) {
-            $table->foreignId('race')
+            $table->foreignId('race_id')
                 ->constrained();
-            $table->foreignId('user')
+            $table->foreignId('user_id')
                 ->constrained();
-            $table->foreignId('status_of_race')
+            $table->foreignId('status_of_race_id')
                 ->constrained('statuses_of_race');
             $table->timestamps();
-            $table->primary(['race', 'user']);
+            $table->primary(['race_id', 'user_id']);
         });
     }
 

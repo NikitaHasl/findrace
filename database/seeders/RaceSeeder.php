@@ -25,8 +25,8 @@ class RaceSeeder extends Seeder
         for ($i = 1; $i <= 10; $i++) {
             $data [] = [
                 'title' => $faker->realText(10),
-                'city' => $faker->numberBetween(1, 20),
-                'type_of_race' => $faker->numberBetween(1,4),
+                'city_id' => $faker->numberBetween(1, 20),
+                'type_of_race_id' => $faker->numberBetween(1,4),
                 'date' => $faker->dateTime(),
                 'distance' => $faker->randomNumber(5),
                 'description' => $faker->realText(70),

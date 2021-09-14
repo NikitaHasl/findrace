@@ -24,7 +24,7 @@ class CitySeeder extends Seeder
         $faker = Factory::create('RU_ru');
         for ($i = 1; $i <= 20; $i++) {
             $data[] = [
-                'country' => ceil($i / 2),
+                'country_id' => $faker->numberBetween(1, 10),
                 'city' => $faker->unique()->city(),
                 'created_at' => now(),
                 'updated_at' => now(),
