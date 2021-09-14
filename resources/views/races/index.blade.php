@@ -84,8 +84,8 @@
                             </div>
                         </div>
                         <div class="feed__block">
-                            <p class="feed_date">{{ $race->date->toFormattedDateString() }}</p>
-                            <p class="feed__distance">{{ $race->distance }}&nbsp;м</p>
+                            <p class="feed_date">{{ $race->date->isoFormat('LL') }}</p>
+                            <p class="feed__distance">{{ round($race->distance / 1000) }}&nbsp;км</p>
                         </div>
                     </div>
                 </a>
