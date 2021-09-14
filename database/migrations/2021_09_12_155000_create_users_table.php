@@ -20,10 +20,11 @@ class CreateUsersTable extends Migration
             $table->string('email', 128)->unique();
             $table->foreignId('gender_id')
                 ->nullable()
-                ->constrained()
+                ->constrained('genders')
                 ->onUpdate('cascade');
-            $table->foreignId('role_id')->default(1)
-                ->constrained()
+            $table->foreignId('role_id')
+                ->default(1)
+                ->constrained('roles')
                 ->onUpdate('cascade');
             $table->date('birthday')->nullable();
             $table->timestamp('email_verified_at')->nullable();

@@ -15,9 +15,9 @@ class CreateRegistrationsForRaceTable extends Migration
     {
         Schema::create('registrations_for_race', function (Blueprint $table) {
             $table->foreignId('race_id')
-                ->constrained();
+                ->constrained('races');
             $table->foreignId('user_id')
-                ->constrained();
+                ->constrained('users');
             $table->foreignId('status_of_race_id')
                 ->constrained('statuses_of_race');
             $table->timestamps();
