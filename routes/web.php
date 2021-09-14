@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AccountController;;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +36,3 @@ Route::get('/run', function() {
     return view('run');
 })
     ->name('run');
-
-Route::get('/account', [AccountController::class, 'index'])->name('account.index');
