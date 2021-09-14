@@ -25,8 +25,8 @@ class CreateRacesTable extends Migration
             $table->dateTime('date');
             $table->integer('distance');
             $table->string('description', 1048);
-            $table->string('start', 46);
-            $table->string('finish', 46);
+            $table->string('start', 128);
+            $table->string('finish', 128);
             $table->timestamps();
         });
     }
