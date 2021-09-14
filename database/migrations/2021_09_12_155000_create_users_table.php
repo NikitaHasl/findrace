@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
                 ->nullable()
                 ->constrained()
                 ->onUpdate('cascade');
-            $table->foreignId('role_id')
+            $table->foreignId('role_id')->default(1)
                 ->constrained()
                 ->onUpdate('cascade');
             $table->date('birthday')->nullable();
