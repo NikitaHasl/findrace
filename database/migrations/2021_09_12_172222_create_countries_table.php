@@ -15,7 +15,7 @@ class CreateCountriesTable extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('continent')
+            $table->foreignId('continent_id')
                 ->constrained()
                 ->onUpdate('cascade');
             $table->string('country', 45);

@@ -24,9 +24,9 @@ class RegistrationForRaceSeeder extends Seeder
         $faker = Factory::create('RU_ru');
         for ($i = 1; $i < 8; $i++) {
             $data[] = [
-                'race' => $faker->numberBetween(1, 10),
-                'user' => $faker->unique()->numberBetween(1, 10),
-                'status_of_race' => $faker->numberBetween(1, 3),
+                'race_id' => $faker->numberBetween(1, 10),
+                'user_id' => $faker->unique()->numberBetween(1, 10),
+                'status_of_race_id' => $faker->numberBetween(1, 3),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];

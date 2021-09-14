@@ -16,10 +16,10 @@ class CreateRacesTable extends Migration
         Schema::create('races', function (Blueprint $table) {
             $table->id();
             $table->string('title', 128);
-            $table->foreignId('city')
+            $table->foreignId('city_id')
                 ->constrained()
                 ->onUpdate('cascade');
-            $table->foreignId('type_of_race')
+            $table->foreignId('type_of_race_id')
                 ->constrained('types_of_race')
                 ->onUpdate('cascade');
             $table->dateTime('date');

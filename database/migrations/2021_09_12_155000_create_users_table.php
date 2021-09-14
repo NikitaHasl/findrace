@@ -18,11 +18,11 @@ class CreateUsersTable extends Migration
             $table->string('firstname', 128);
             $table->string('lastname', 128);
             $table->string('email', 128)->unique();
-            $table->foreignId('gender')
+            $table->foreignId('gender_id')
                 ->nullable()
                 ->constrained()
                 ->onUpdate('cascade');
-            $table->foreignId('role')
+            $table->foreignId('role_id')
                 ->constrained()
                 ->onUpdate('cascade');
             $table->date('birthday')->nullable();

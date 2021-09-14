@@ -24,7 +24,7 @@ class CountrySeeder extends Seeder
         $data = [];
         for ($i = 1; $i <= 10; $i++) {
             $data[] = [
-                'continent' => ceil($i/2),
+                'continent_id' => $faker->numberBetween(1, 5),
                 'country' => $faker->unique()->country(),
                 'created_at' => now(),
                 'updated_at' => now(),
