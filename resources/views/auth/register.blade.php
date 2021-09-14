@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('title', 'Вход')
+@section('title', 'Регистрация')
 
 @section('content')
     <div class="registration">
