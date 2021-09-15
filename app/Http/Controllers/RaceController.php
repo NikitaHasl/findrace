@@ -27,9 +27,10 @@ class RaceController extends Controller
         return view('races.show', ['race' => $race]);
     }
 
-    public function filterRace() {
+    public function filterRace(Request $request) {
         // get filters
-        $filter = $_GET;
+
+        $filter = $request->all();
 
         // get cityIDs
         $cityIDs = array_filter($filter, function($data) {
