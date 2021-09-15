@@ -9,6 +9,7 @@
     <script defer src="{{ asset('assets/js/app.js') }}"></script>
     <script src="https://kit.fontawesome.com/e4abfd569e.js" crossorigin="anonymous"></script>
     <title>@yield('title')</title>
+    @yield('head-extra')
 </head>
 <body class="preload">
     <nav class="nav">
