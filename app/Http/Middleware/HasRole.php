@@ -20,7 +20,7 @@ class HasRole
         $user = Auth::user();
 
         if($user === null) {
-            return redirect('login');
+            return redirect()->route('login');
         }
 
         if($user->role->role !== $role) {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRaceRequest;
 use App\Models\City;
 use App\Models\Race;
 use App\Models\RaceType;
@@ -28,9 +29,20 @@ class RaceController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreRaceRequest $request)
     {
-        //
+        Race::create([
+            'title' => $request->post('title'),
+            'city_id' => (int) $request->post('city'),
+            'type_of_race_id' => (int) $request->post('type'),
+            'date' => $request->post('date'),
+            'distance' => (int) $request->post('distance'),
+            'description' => $request->post('description'),
+            'start' => $request->post('start'),
+            'finish' => $request->post('finish'),
+        ]);
+
+        return redirect()->route('index');
     }
 
     public function show(Race $race)
