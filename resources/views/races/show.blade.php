@@ -7,7 +7,7 @@
         <div class="race__signUp">
             <img class="race__header" src="{{ asset('assets/images/run_background.png') }}">
             <div class="race__form">
-                <button>Записаться</button>
+                <button><a href="{{ route('subscribe', ['id' => $race->id]) }}">Записаться</a></button>
                 <button>Отложить</button>
             </div>
         </div>

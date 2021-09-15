@@ -17,7 +17,7 @@ class CreateRacesTable extends Migration
             $table->id();
             $table->string('title', 128);
             $table->foreignId('city_id')
-                ->constrained()
+                ->constrained('cities')
                 ->onUpdate('cascade');
             $table->foreignId('type_of_race_id')
                 ->constrained('types_of_race')
