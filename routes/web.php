@@ -19,10 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::resource('races', RaceController::class)
     ->except(['edit', 'update', 'destroy']);
 
-Route::get('/', [RaceController::class, 'index'])->name('index');
-
-Route::get('/filterRace/{filter?}', [RaceController::class, 'filterRace'])
-    ->name('filterRace.show');
+Route::get('/', [RaceController::class, 'index'])
+    ->name('index');
 
 Route::get('/logout', function () {
     return view('auth.logout');

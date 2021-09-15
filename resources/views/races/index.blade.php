@@ -24,7 +24,7 @@
     </nav>
     <main class="container">
         <section class="filter">
-            <form action="{{route('filterRace.show')}}" method="get">
+            <form action="{{route('index')}}" method="get">
                 <p class="filter__header">Фильтры</p>
                 <div class="filter__option">
                     <div class="filter__titleBlock">
@@ -32,18 +32,9 @@
                         <span class="filter__expand">+</span>
                     </div>
                     <div class="filter__block">
-                        <div class="filter__item">
-                            <input type="checkbox" id="moscow" name="id city1" value="1">
-                            <label for="moscow">Москва</label>
-                        </div>
-                        <div class="filter__item">
-                            <input type="checkbox" id="petersburg" name="id city2" value="2">
-                            <label for="petersburg">Санкт-Петербург</label>
-                        </div>
-                        <div class="filter__item">
-                            <input type="checkbox" id="kazan" name="id city3" value="3">
-                            <label for="kazan">Казань</label>
-                        </div>
+                        @foreach($cities as $city)
+                            <p>{{$city->city}}<input type="checkbox" name="{{$city->city}} city" value="{{$city->id}}"></p>
+                        @endforeach
                     </div>
                 </div>
                 <div class="filter__option">
@@ -59,22 +50,9 @@
                         <span class="filter__expand">+</span>
                     </div>
                     <div class="filter__block">
-                        <div class="filter__item">
-                            <input type="checkbox" id="run" name="id type1" value="1">
-                            <label for="run">Забег</label>
-                        </div>
-                        <div class="filter__item">
-                            <input type="checkbox" id="swim" name="id type2" value="2">
-                            <label for="swim">Плавание</label>
-                        </div>
-                        <div class="filter__item">
-                            <input type="checkbox" id="cycle" name="id type3" value="3">
-                            <label for="cycle">Велогонка</label>
-                        </div>
-                        <div class="filter__item">
-                            <input type="checkbox" id="triathlon" name="id type3" value="3">
-                            <label for="triathlon">Триатлон</label>
-                        </div>
+                        @foreach($types as $type)
+                            <p>{{$type->type_of_race}}<input type="checkbox" name="{{$type->type_of_race}} type" value="{{$type->id}}"></p>
+                        @endforeach
                     </div>
                 </div>
                 <div class="filter__option">
