@@ -20,6 +20,6 @@ class Race extends Model
     }
 
     public function type() {
-        return $this->belongsTo(RaceType::class);
+        return $this->belongsTo(RaceType::class, 'type_of_race_id');
     }
 }
