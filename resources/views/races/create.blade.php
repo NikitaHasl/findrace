@@ -29,7 +29,8 @@
                     <option value="{{ $type->id }}">{{ $type->type_of_race }}</option>
                 @endforeach
             </select></label>
-            <label>Дата: <input required type="datetime" name="date"></label>
+            <label>Дата: <input required type="date" name="date"></label>
+            <label>Время: <input required type="time" name="time"></label>
             <label>Дистанция: <input required type="number" name="distance"></label>
             <label>Описание: <textarea required name="description"></textarea></label>
             <label>Место начала: <input required type="text" name="start"></label>

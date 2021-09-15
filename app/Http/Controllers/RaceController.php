@@ -35,7 +35,7 @@ class RaceController extends Controller
             'title' => $request->post('title'),
             'city_id' => (int) $request->post('city'),
             'type_of_race_id' => (int) $request->post('type'),
-            'date' => $request->post('date'),
+            'date' => $request->post('date') . ' ' . $request->post('time'),
             'distance' => (int) $request->post('distance'),
             'description' => $request->post('description'),
             'start' => $request->post('start'),
