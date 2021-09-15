@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\RaceController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +31,11 @@ Route::get('/login', function() {
 Route::get('/register', function() {
     return view('auth.register');
 })->name('register');
+
+Route::get('/account', [AccountController::class, 'index'])->name('account');
+
+Route::get('/subscribe/{id}', [AccountController::class, 'subscribe'])->where('id', '\d+')->name('subscribe');
+
 
 Route::get('/search', [RaceController::class, 'search'])
     ->name('search');
