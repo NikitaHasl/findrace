@@ -24,52 +24,75 @@
     </nav>
     <main class="container">
         <section class="filter">
-            <p class="filter__header">Фильтры</p>
-            <div class="filter__option">
-                <div class="filter__titleBlock">
-                    <span class="filter__title">Город</span>
-                    <span class="filter__expand">+</span>
-                </div>
-                <div class="filter__cities">
-                    <div class="filter__cityOption">
-                        <input type="checkbox" id="moscow" name="cities">
-                        <label for="moscow">Москва</label>
+            <form action="{{route('filterRace.show')}}" method="get">
+                <p class="filter__header">Фильтры</p>
+                <div class="filter__option">
+                    <div class="filter__titleBlock">
+                        <span class="filter__title">Город</span>
+                        <span class="filter__expand">+</span>
                     </div>
-                    <div class="filter__cityOption">
-                        <input type="checkbox" id="petersburg" name="cities">
-                        <label for="petersburg">Санкт-Петербург</label>
+                    <div class="filter__block">
+                        <div class="filter__item">
+                            <input type="checkbox" id="moscow" name="id city1" value="1">
+                            <label for="moscow">Москва</label>
+                        </div>
+                        <div class="filter__item">
+                            <input type="checkbox" id="petersburg" name="id city2" value="2">
+                            <label for="petersburg">Санкт-Петербург</label>
+                        </div>
+                        <div class="filter__item">
+                            <input type="checkbox" id="kazan" name="id city3" value="3">
+                            <label for="kazan">Казань</label>
+                        </div>
                     </div>
-                    <div class="filter__cityOption">
-                        <input type="checkbox" id="kazan" name="cities">
-                        <label for="kazan">Казань</label>
+                </div>
+                <div class="filter__option">
+                    <div class="filter__titleBlock">
+                        <span class="filter__title">Дата</span>
+                        <span class="filter__expand">+</span>
+                    </div>
+                    <div class="filter__block">TEST</div>
+                </div>
+                <div class="filter__option">
+                    <div class="filter__titleBlock">
+                        <span class="filter__title">Тип забега</span>
+                        <span class="filter__expand">+</span>
+                    </div>
+                    <div class="filter__block">
+                        <div class="filter__item">
+                            <input type="checkbox" id="run" name="id type1" value="1">
+                            <label for="run">Забег</label>
+                        </div>
+                        <div class="filter__item">
+                            <input type="checkbox" id="swim" name="id type2" value="2">
+                            <label for="swim">Плавание</label>
+                        </div>
+                        <div class="filter__item">
+                            <input type="checkbox" id="cycle" name="id type3" value="3">
+                            <label for="cycle">Велогонка</label>
+                        </div>
+                        <div class="filter__item">
+                            <input type="checkbox" id="triathlon" name="id type3" value="3">
+                            <label for="triathlon">Триатлон</label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="filter__option">
-                <div class="filter__titleBlock">
-                    <span class="filter__title">Дата</span>
-                    <span class="filter__expand">+</span>
+                <div class="filter__option">
+                    <div class="filter__titleBlock">
+                        <span class="filter__title">Местность</span>
+                        <span class="filter__expand">+</span>
+                    </div>
+                    <div class="filter__block">TEST</div>
                 </div>
-            </div>
-            <div class="filter__option">
-                <div class="filter__titleBlock">
-                    <span class="filter__title">Тип забега</span>
-                    <span class="filter__expand">+</span>
+                <div class="filter__option">
+                    <div class="filter__titleBlock">
+                        <span class="filter__title">Друзья</span>
+                        <span class="filter__expand">+</span>
+                    </div>
+                    <div class="filter__block">TEST</div>
                 </div>
-            </div>
-            <div class="filter__option">
-                <div class="filter__titleBlock">
-                    <span class="filter__title">Местность</span>
-                    <span class="filter__expand">+</span>
-                </div>
-            </div>
-            <div class="filter__option">
-                <div class="filter__titleBlock">
-                    <span class="filter__title">Друзья</span>
-                    <span class="filter__expand">+</span>
-                </div>
-            </div>
-            <button class="filter__btn">Применить</button>
+                <button class="filter__btn">Применить</button>
+            </form>
         </section>
         <section class="feed">
             <p class="feed__header">Все забеги</p>
