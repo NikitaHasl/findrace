@@ -19,8 +19,16 @@
         <form action="{{ route('races.store') }}" method="post">
             @csrf
             <label>Название: <input required type="text" name="title"></label>
-            <label>Город: <input required type="number" name="city"></label>
-            <label>Тип: <input required type="number" name="type_of_race"></label>
+            <label>Город: <select required name="city">
+                @foreach($cities as $city)
+                    <option value="{{ $city->id }}">{{ $city->city }}</option>
+                @endforeach
+            </select></label>
+            <label>Тип: <select required name="type">
+                @foreach($raceTypes as $type)
+                    <option value="{{ $type->id }}">{{ $type->type_of_race }}</option>
+                @endforeach
+            </select></label>
             <label>Дата: <input required type="datetime" name="date"></label>
             <label>Дистанция: <input required type="number" name="distance"></label>
             <label>Описание: <textarea required name="description"></textarea></label>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Race;
+use App\Models\RaceType;
 use Illuminate\Http\Request;
 
 class RaceController extends Controller
@@ -14,7 +16,10 @@ class RaceController extends Controller
 
     public function create()
     {
-        return view('races.create');
+        return view('races.create', [
+            'cities' => City::all(),
+            'raceTypes' => RaceType::all(),
+        ]);
     }
 
     public function store(Request $request)
