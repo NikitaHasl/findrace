@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Race;
+use App\Models\User;
 use App\Models\Registration;
 
 class AccountController extends Controller
@@ -13,11 +14,17 @@ class AccountController extends Controller
     function index()
     {
         $user = Auth::user();
-        //доработать логи отображения race 
-        // $race = Race::select(['*']);
+        //почему-то не работает eloquent, разобраться
+        // $races = User::find($user->id)->races();
+
+        $races = Race::select(['races.*'])
+            ->join('registrations_for_race', 'race_id', '=', 'races.id')
+            ->where('user_id', '=', $user->id)
+            ->get();
+
         return view('user.account', [
             'user' => $user,
-            // 'race' => $race,
+            'races' => $races,
         ]);
     }
 
@@ -32,7 +39,7 @@ class AccountController extends Controller
         $status = $reg->save();
 
         if ($status) {
-            
+
             return redirect()->route('account')->with('success', 'Вы успешно записались на забег');
         }
         return back()->with('error', 'Что-то пошло не так!');
