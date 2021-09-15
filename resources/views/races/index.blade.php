@@ -53,6 +53,7 @@
     </section>
     <section class="feed">
         <p class="feed__header">Все забеги</p>
+        <p><a href="{{ route('races.create') }}">Создать забег</a></p>
         @foreach($races as $race)
             <a href="{{ route('races.show', ['race' => $race]) }}">
                 <div class="feed__item">
