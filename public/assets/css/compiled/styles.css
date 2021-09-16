@@ -75,15 +75,15 @@ body {
   justify-content: space-between;
   margin-bottom: 1.5rem;
 }
-.filter__cities {
+.filter__block {
   font-weight: normal;
   display: none;
   margin-bottom: 1rem;
 }
-.filter__cities label {
+.filter__block label {
   margin-left: 0.5rem;
 }
-.filter__cities--active {
+.filter__block--active {
   display: block;
 }
 .filter__btn {
@@ -91,7 +91,7 @@ body {
   cursor: pointer;
   background-color: #FA9600;
   color: white;
-  padding: 0.5rem 0;
+  padding: 0.5rem 2rem;
   border-radius: 5px;
   transition: all 0.4s;
   font-weight: 500;

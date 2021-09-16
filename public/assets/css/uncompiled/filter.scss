@@ -18,7 +18,7 @@
         justify-content: space-between;
         margin-bottom: 1.5rem;
     }
-    &__cities {
+    &__block {
         font-weight: normal;
         display: none;
         margin-bottom: 1rem;
@@ -34,7 +34,7 @@
     cursor: pointer;
     background-color: #FA9600;
     color: white;
-    padding: 0.5rem 0;
+    padding: 0.5rem 2rem;
     border-radius: 5px;
     transition: all .4s;
     font-weight: 500;

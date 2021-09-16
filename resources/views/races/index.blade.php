@@ -4,52 +4,53 @@
 
 @section('content')
     <section class="filter">
-        <p class="filter__header">Фильтры</p>
-        <div class="filter__option">
-            <div class="filter__titleBlock">
-                <span class="filter__title">Город</span>
-                <span class="filter__expand">+</span>
-            </div>
-            <div class="filter__cities">
-                <div class="filter__cityOption">
-                    <input type="checkbox" id="moscow" name="cities">
-                    <label for="moscow">Москва</label>
+        <form action="{{route('index')}}" method="get">
+            <p class="filter__header">Фильтры</p>
+            <div class="filter__option">
+                <div class="filter__titleBlock">
+                    <span class="filter__title">Город</span>
+                    <span class="filter__expand">+</span>
                 </div>
-                <div class="filter__cityOption">
-                    <input type="checkbox" id="petersburg" name="cities">
-                    <label for="petersburg">Санкт-Петербург</label>
-                </div>
-                <div class="filter__cityOption">
-                    <input type="checkbox" id="kazan" name="cities">
-                    <label for="kazan">Казань</label>
+                <div class="filter__block">
+                    @foreach($cities as $city)
+                        <p>{{$city->city}}<input type="checkbox" name="{{$city->city}} city" value="{{$city->id}}"></p>
+                    @endforeach
                 </div>
             </div>
-        </div>
-        <div class="filter__option">
-            <div class="filter__titleBlock">
-                <span class="filter__title">Дата</span>
-                <span class="filter__expand">+</span>
+            <div class="filter__option">
+                <div class="filter__titleBlock">
+                    <span class="filter__title">Дата</span>
+                    <span class="filter__expand">+</span>
+                </div>
+                <div class="filter__block">TEST</div>
             </div>
-        </div>
-        <div class="filter__option">
-            <div class="filter__titleBlock">
-                <span class="filter__title">Тип забега</span>
-                <span class="filter__expand">+</span>
+            <div class="filter__option">
+                <div class="filter__titleBlock">
+                    <span class="filter__title">Тип забега</span>
+                    <span class="filter__expand">+</span>
+                </div>
+                <div class="filter__block">
+                    @foreach($types as $type)
+                        <p>{{$type->type_of_race}}<input type="checkbox" name="{{$type->type_of_race}} type" value="{{$type->id}}"></p>
+                    @endforeach
+                </div>
             </div>
-        </div>
-        <div class="filter__option">
-            <div class="filter__titleBlock">
-                <span class="filter__title">Местность</span>
-                <span class="filter__expand">+</span>
+            <div class="filter__option">
+                <div class="filter__titleBlock">
+                    <span class="filter__title">Местность</span>
+                    <span class="filter__expand">+</span>
+                </div>
+                <div class="filter__block">TEST</div>
             </div>
-        </div>
-        <div class="filter__option">
-            <div class="filter__titleBlock">
-                <span class="filter__title">Друзья</span>
-                <span class="filter__expand">+</span>
+            <div class="filter__option">
+                <div class="filter__titleBlock">
+                    <span class="filter__title">Друзья</span>
+                    <span class="filter__expand">+</span>
+                </div>
+                <div class="filter__block">TEST</div>
             </div>
-        </div>
-        <button class="filter__btn">Применить</button>
+            <button class="filter__btn">Применить</button>
+        </form>
     </section>
     <section class="feed">
         <p class="feed__header">Все забеги</p>
