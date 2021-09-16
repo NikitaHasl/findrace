@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('races', RaceController::class)
     ->except(['edit', 'update', 'destroy']);
+
 Route::get('/', [RaceController::class, 'index'])->name('index');
 
 Route::get('/logout', function () {
@@ -35,7 +36,7 @@ Route::get('/register', function() {
 Route::get('/account', [AccountController::class, 'index'])->name('account');
 
 Route::get('/subscribe/{id}', [AccountController::class, 'subscribe'])->where('id', '\d+')->name('subscribe');
-
+Route::get('/account/unsubscribe/{race_id}', [AccountController::class, 'unsubscribe'])->where('id', '\d+')->name('unsubscribe');
 
 Route::get('/search', [RaceController::class, 'search'])
     ->name('search');

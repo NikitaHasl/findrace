@@ -26,7 +26,7 @@ class TypeOfRaceSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'type_of_race' => 'Велосипед',
+                'type_of_race' => 'Велогонка',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

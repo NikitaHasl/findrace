@@ -15,21 +15,25 @@ class CitySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('cities')->insert($this->getData());
-    }
-
-    public function getData(): array
-    {
-        $data = [];
-        $faker = Factory::create('RU_ru');
-        for ($i = 1; $i <= 20; $i++) {
-            $data[] = [
-                'country_id' => $faker->numberBetween(1, 10),
-                'city' => $faker->unique()->city(),
+        DB::table('cities')->insert([
+            [
+                'country_id' => 1,
+                'city' => 'Москва',
                 'created_at' => now(),
                 'updated_at' => now(),
-            ];
-        }
-        return $data;
+            ],
+            [
+                'country_id' => 1,
+                'city' => 'Санкт-Петербург',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'country_id' => 2,
+                'city' => 'Минск',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
     }
 }

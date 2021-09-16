@@ -6,16 +6,25 @@ window.addEventListener('DOMContentLoaded', () => {
     body.classList.remove('preload');
 })
 
-const cityOption = document.querySelector('.filter__expand');
-const citiesBlock = document.querySelector('.filter__cities');
+const filter = {
+    filterExpanders: document.querySelectorAll('.filter__expand'),
+    filterBlocks: document.querySelectorAll('.filter__block'),
 
-cityOption.addEventListener('click', event => {
-    citiesBlock.classList.toggle('filter__cities--active');
-    if (cityOption.textContent === '+') {
-        cityOption.textContent = '-';
-    } else {
-        cityOption.textContent = '+';
-    };
-})
+    addListeners() {
+        for (let i = 0; i < this.filterExpanders.length; i++) {
+            this.filterExpanders[i].addEventListener('click', event => {
+                this.filterBlocks[i].classList.toggle('filter__block--active');
+                if (this.filterExpanders[i].textContent === '+') {
+                    this.filterExpanders[i].textContent = '-';
+                } else {
+                    this.filterExpanders[i].textContent = '+';
+                }
+                event.stopPropagation();
+            })
+        }
+    }
+};
+
+filter.addListeners();
 
 
