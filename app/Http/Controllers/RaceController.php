@@ -98,6 +98,8 @@ class RaceController extends Controller
 
     public function search(Request $request)
     {
+        $cities = City::all();
+        $types = DB::table('types_of_race')->select(['id', 'type_of_race'])->get();
         $string = $request->input('string');
         $arr = explode(' ', mb_strtolower($string)); //Разбиваем строку поиска на слова.
         $words = [];
@@ -129,11 +131,12 @@ class RaceController extends Controller
          * Исключаем все повторения и объединяем в строку. Получаем запрос для поиска подстрок.
          * */
         $words = array_unique($words); //Исключаем все повторения.
-        $query = implode(" ", $words);//
+        $query = implode(" ", $words); //
         $results = Race::whereRaw(
-        // title, description, start, finish - поля, по которым нужно искать
+            // title, description, start, finish - поля, по которым нужно искать
             "MATCH(title, description, start, finish) AGAINST(? IN BOOLEAN MODE)",
-            $query)
+            $query
+        )
             ->get();
 
         return view('races.index', [
