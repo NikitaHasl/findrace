@@ -13,6 +13,13 @@
 <body class="preload">
     <nav class="nav">
         <a href="{{ route('index') }}"><i class="nav__logo fas fa-running"></i></a>
+        <div>
+            <form action="{{ route('search') }}" method="get">
+                @csrf
+                <input type="search" name="string">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
         <div class="nav__auth">
             @auth
                 <button class="nav__button"><a href="{{ route('logout') }}">Выйти</a></button>
