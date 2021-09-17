@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -23,7 +24,7 @@ class CreateUsersTable extends Migration
                 ->constrained('genders')
                 ->onUpdate('cascade');
             $table->foreignId('role_id')
-                ->default(1)
+                ->default(Role::USER_ID)
                 ->constrained('roles')
                 ->onUpdate('cascade');
             $table->date('birthday')->nullable();

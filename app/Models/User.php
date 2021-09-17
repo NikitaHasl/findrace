@@ -21,13 +21,7 @@ class User extends Authenticatable
      *
      * @var string[]
      */
-    protected $fillable = [
-        'firstname',
-        'lastname',
-        'role_id',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -48,12 +42,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /** 
+    /**
      * the regestrations that belong to user
      */
 
     public function races(): BelongsToMany
     {
         return $this->belongsToMany(Race::class, 'registrations_for_race');
+    }
+
+    public function role() {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function hasRole(string $role): bool {
+        return $this->role->role === $role;
     }
 }

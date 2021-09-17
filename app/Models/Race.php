@@ -18,4 +18,8 @@ class Race extends Model
     public function city() {
         return $this->belongsTo(City::class);
     }
+
+    public function type() {
+        return $this->belongsTo(RaceType::class, 'type_of_race_id');
+    }
 }
