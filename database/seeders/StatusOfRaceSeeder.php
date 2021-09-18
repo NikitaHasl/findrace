@@ -31,6 +31,11 @@ class StatusOfRaceSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'status' => 'Отменён',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

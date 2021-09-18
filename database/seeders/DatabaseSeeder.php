@@ -18,11 +18,11 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             CitySeeder::class,
             TypeOfRaceSeeder::class,
+            StatusOfRaceSeeder::class,
             RaceSeeder::class,
             GenderSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
-            StatusOfRaceSeeder::class,
             RegistrationForRaceSeeder::class,
         ]);
     }

@@ -26,7 +26,6 @@ class RegistrationForRaceSeeder extends Seeder
             $data[] = [
                 'race_id' => $faker->numberBetween(1, 7),
                 'user_id' => $faker->unique()->numberBetween(1, 10),
-                'status_of_race_id' => $faker->numberBetween(1, 3),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
