@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\DB;
 
 class RaceController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('hasRole:' . Role::ORGANIZER)
             ->only(['create', 'store']);
     }
@@ -27,13 +28,13 @@ class RaceController extends Controller
             $filter = $request->all();
 
             // get cityIDs
-            $cityIDs = array_filter($filter, function($data) {
+            $cityIDs = array_filter($filter, function ($data) {
                 $word = 'city';
                 return strpos($data, $word);
             }, ARRAY_FILTER_USE_KEY);
 
             // get typeIDs
-            $typeIDs = array_filter($filter, function($data) {
+            $typeIDs = array_filter($filter, function ($data) {
                 $word = 'type';
                 return strpos($data, $word);
             }, ARRAY_FILTER_USE_KEY);
@@ -129,11 +130,12 @@ class RaceController extends Controller
          * Исключаем все повторения и объединяем в строку. Получаем запрос для поиска подстрок.
          * */
         $words = array_unique($words); //Исключаем все повторения.
-        $query = implode(" ", $words);//
+        $query = implode(" ", $words); //
         $results = Race::whereRaw(
-        // title, description, start, finish - поля, по которым нужно искать
+            // title, description, start, finish - поля, по которым нужно искать
             "MATCH(title, description, start, finish) AGAINST(? IN BOOLEAN MODE)",
-            $query)
+            $query
+        )
             ->get();
 
         return view('races.index', [

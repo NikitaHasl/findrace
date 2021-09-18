@@ -1,305 +1,362 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
 * {
-  margin: 0px;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0px;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
-  background-color: #E5E5E5;
-  font-family: "ubuntu", sans-serif;
+    height: 100vh;
+    width: 100vw;
+    background-color: #E5E5E5;
+    font-family: "ubuntu", sans-serif;
 }
 
 .container {
-  width: 1100px;
-  margin: 0 auto;
+    width: 1100px;
+    margin: 0 auto;
 }
 
 .preload * {
-  transition: none !important;
+    transition: none !important;
 }
 
 .nav {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  background-color: #fff;
-  padding: 1rem;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #fff;
+    padding: 1rem;
 }
+
 .nav__logo {
-  color: #FA9600;
-  font-size: 2rem;
+    color: #FA9600;
+    font-size: 2rem;
 }
+
 .nav__button {
-  background-color: #FA9600;
-  border: none;
-  font-weight: bold;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s;
+    background-color: #FA9600;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
 }
+
 .nav__button a {
-  text-decoration: none;
-  color: #fff;
+    text-decoration: none;
+    color: #fff;
 }
+
 .nav__button:first-child {
-  margin-right: 1rem;
+    margin-right: 1rem;
 }
+
 .nav__button:hover {
-  background-color: #f09000;
+    background-color: #f09000;
 }
 
 .filter {
-  display: flex;
-  flex-direction: column;
-  width: 12rem;
+    display: flex;
+    flex-direction: column;
+    width: 12rem;
 }
+
 .filter__header {
-  color: #FA9600;
-  margin-bottom: 2rem;
-  font-weight: 500;
+    color: #FA9600;
+    margin-bottom: 2rem;
+    font-weight: 500;
 }
+
 .filter__option {
-  display: flex;
-  flex-direction: column;
-  font-size: 1rem;
-  font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    font-weight: 500;
 }
+
 .filter__titleBlock {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
 }
+
 .filter__block {
-  font-weight: normal;
-  display: none;
-  margin-bottom: 1rem;
+    font-weight: normal;
+    display: none;
+    margin-bottom: 1rem;
 }
+
 .filter__block label {
-  margin-left: 0.5rem;
+    margin-left: 0.5rem;
 }
+
 .filter__block--active {
-  display: block;
+    display: block;
 }
+
 .filter__btn {
-  border: none;
-  cursor: pointer;
-  background-color: #FA9600;
-  color: white;
-  padding: 0.5rem 2rem;
-  border-radius: 5px;
-  transition: all 0.4s;
-  font-weight: 500;
-  font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    background-color: #FA9600;
+    color: white;
+    padding: 0.5rem 2rem;
+    border-radius: 5px;
+    transition: all 0.4s;
+    font-weight: 500;
+    font-size: 1rem;
 }
+
 .filter__btn:hover {
-  background-color: #f09000;
+    background-color: #f09000;
 }
+
 .filter__expand {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 main {
-  display: flex;
-  padding-top: 2rem;
+    display: flex;
+    padding-top: 2rem;
 }
 
 .feed {
-  width: 100%;
-  margin-left: 3rem;
+    width: 100%;
+    margin-left: 3rem;
 }
+
 .feed a {
-  text-decoration: none;
+    text-decoration: none;
 }
+
 .feed__header {
-  font-weight: 700;
-  font-size: 3rem;
-  margin-bottom: 3rem;
+    font-weight: 700;
+    font-size: 3rem;
+    margin-bottom: 3rem;
 }
+
 .feed__item {
-  width: 100%;
-  border-bottom: 4px solid white;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  cursor: pointer;
-  color: black;
+    width: 100%;
+    border-bottom: 4px solid white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    color: black;
 }
+
 .feed__item:hover {
-  background-color: #FFF2DE;
-  border-bottom: 4px solid #FFF2DE;
-  border-radius: 1rem;
+    background-color: #FFF2DE;
+    border-bottom: 4px solid #FFF2DE;
+    border-radius: 1rem;
 }
+
 .feed__title {
-  color: #FA9600;
-  font-weight: 500;
-  font-size: 2rem;
-  margin-bottom: 1rem;
+    color: #FA9600;
+    font-weight: 500;
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
+
 .feed__block {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1rem;
-  margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    margin-bottom: 1rem;
 }
+
 .feed__expand {
-  color: #FA9600;
-  font-size: 2.5rem;
+    color: #FA9600;
+    font-size: 2.5rem;
 }
+
 .feed__distance {
-  margin-right: 22rem;
+    margin-right: 22rem;
 }
 
 .registration {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 .registration__header {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
+
 .registration__btn {
-  margin-top: 1rem;
-  background-color: #FA9600;
-  border: none;
-  font-weight: bold;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s;
-  color: white;
+    margin-top: 1rem;
+    background-color: #FA9600;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: white;
 }
+
 .registration__btn:hover {
-  background-color: #f09000;
+    background-color: #f09000;
 }
+
 .registration__field {
-  display: block;
+    display: block;
 }
 
 .login {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 .login__header {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
+
 .login__btn {
-  margin-top: 1rem;
-  background-color: #FA9600;
-  border: none;
-  font-weight: bold;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s;
-  color: white;
+    margin-top: 1rem;
+    background-color: #FA9600;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: white;
 }
+
 .login__btn:hover {
-  background-color: #f09000;
+    background-color: #f09000;
 }
+
 .login__field {
-  display: block;
+    display: block;
 }
 
 .race {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
+
 .race__signUp {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
+
 .race__header {
-  width: 70%;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px 10px 0px 0px;
+    width: 70%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px 10px 0px 0px;
 }
+
 .race__form {
-  flex: 1;
-  margin-left: 2rem;
+    flex: 1;
+    margin-left: 2rem;
 }
+
 .race__form button {
-  background-color: #FA9600;
-  border: none;
-  font-weight: bold;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s;
-  color: white;
-  display: block;
-  width: 10rem;
+    background-color: #FA9600;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: white;
+    display: block;
+    width: 10rem;
 }
+
 .race__form button:nth-child(2) {
-  background-color: #C4C4C4;
-  margin-top: 1rem;
+    background-color: #C4C4C4;
+    margin-top: 1rem;
 }
+
 .race__form button:nth-child(2):hover {
-  background-color: #bfbfbf;
+    background-color: #bfbfbf;
 }
+
 .race__form button:hover {
-  background-color: #f09000;
+    background-color: #f09000;
 }
+
 .race__description {
-  margin-top: 2rem;
+    margin-top: 2rem;
 }
+
 .race__title {
-  color: #FA9600;
-  font-weight: 500;
-  font-size: 2rem;
-  margin-bottom: 1rem;
+    color: #FA9600;
+    font-weight: 500;
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
+
 .race__address {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
+
 .race__length {
-  margin-left: 9rem;
+    margin-left: 9rem;
 }
+
 .race__subTitle {
-  font-width: 500;
-  font-size: 1.5rem;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
+    font-width: 500;
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
 }
+
 .race__text {
-  width: 33rem;
-  line-height: 30px;
-  font-size: 1.1rem;
+    width: 33rem;
+    line-height: 30px;
+    font-size: 1.1rem;
 }
+
 .race__distanceBlock {
-  margin-top: 2rem;
+    margin-top: 2rem;
 }
+
 .race__distanceBlock p {
-  font-width: 500;
-  font-size: 1.5rem;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
+    font-width: 500;
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
 }
+
 .race__distance {
-  width: 33rem;
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.2rem;
-  border-bottom: 3px solid white;
-  padding: 1rem 0;
+    width: 33rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    border-bottom: 3px solid white;
+    padding: 1rem 0;
 }
+
 .race__distance i {
-  color: #FA9600;
+    color: #FA9600;
 }
+
 .race__distance:last-child {
-  border-bottom: none;
-  margin-bottom: 5rem;
+    border-bottom: none;
+    margin-bottom: 5rem;
 }
+
+.nav_form {
+    border-radius: 6px;
+    height: 2em;
+    width: 19em;
+    cursor: pointer;
+}
+
 
 /*# sourceMappingURL=styles.css.map */
