@@ -15,7 +15,9 @@ class AccountController extends Controller
     function index()
     {
         $user = Auth::user();
-
+        if (!$user) {
+            return back()->with('error', 'Пожалуйста, зарегестрируйтесь или залогиньтесь!');
+        }
         //почему-то не работает eloquent, разобраться
         // $races = User::find($user->id)->races();
         $races = Race::select(['races.*'])
@@ -33,6 +35,9 @@ class AccountController extends Controller
     {
         //простая логика подписки на забег 
         $user = Auth::user();
+        if (!$user) {
+            return back()->with('error', 'Пожалуйста, зарегестрируйтесь или залогиньтесь!');
+        }
         $reg = new Registration();
         $reg->user_id = $user->id;
         $reg->race_id = $id;

@@ -5,15 +5,21 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreRaceRequest;
 use App\Models\City;
 use App\Models\Race;
-use App\Models\City;
+use App\Models\RaceType;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class RaceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('hasRole:' . Role::ORGANIZER)
+            ->only(['create', 'store']);
+    }
+
     public function index(Request $request)
     {
-        // return view('races.index', ['races' => Race::with('city')->get()]);
         $cities = City::all();
         $types = DB::table('types_of_race')->select(['id', 'type_of_race'])->get();
 
@@ -93,8 +99,6 @@ class RaceController extends Controller
 
     public function search(Request $request)
     {
-        $cities = City::all();
-        $types = DB::table('types_of_race')->select(['id', 'type_of_race'])->get();
         $string = $request->input('string');
         $arr = explode(' ', mb_strtolower($string)); //Разбиваем строку поиска на слова.
         $words = [];
@@ -133,10 +137,11 @@ class RaceController extends Controller
             $query
         )
             ->get();
+
         return view('races.index', [
             'races' => $results,
-            'cities' => $cities,
-            'types' => $types,
+            'cities' => City::all(),
+            'types' => DB::table('types_of_race')->select(['id', 'type_of_race'])->get(),
         ]);
     }
 }
