@@ -23,7 +23,6 @@
                 </div>
                 <div class="filter__block">TEST</div>
             </div>
-            <div class="filter__block">TEST</div>
         </div>
         <div class="filter__option">
             <div class="filter__titleBlock">
