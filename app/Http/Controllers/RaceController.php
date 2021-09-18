@@ -5,20 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreRaceRequest;
 use App\Models\City;
 use App\Models\Race;
-use App\Models\RaceType;
-use App\Models\Role;
+use App\Models\City;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class RaceController extends Controller
 {
-    public function __construct() {
-        $this->middleware('hasRole:' . Role::ORGANIZER)
-            ->only(['create', 'store']);
-    }
-
     public function index(Request $request)
     {
+        // return view('races.index', ['races' => Race::with('city')->get()]);
         $cities = City::all();
         $types = DB::table('types_of_race')->select(['id', 'type_of_race'])->get();
 
@@ -27,13 +22,13 @@ class RaceController extends Controller
             $filter = $request->all();
 
             // get cityIDs
-            $cityIDs = array_filter($filter, function($data) {
+            $cityIDs = array_filter($filter, function ($data) {
                 $word = 'city';
                 return strpos($data, $word);
             }, ARRAY_FILTER_USE_KEY);
 
             // get typeIDs
-            $typeIDs = array_filter($filter, function($data) {
+            $typeIDs = array_filter($filter, function ($data) {
                 $word = 'type';
                 return strpos($data, $word);
             }, ARRAY_FILTER_USE_KEY);
@@ -138,11 +133,10 @@ class RaceController extends Controller
             $query
         )
             ->get();
-
         return view('races.index', [
             'races' => $results,
-            'cities' => City::all(),
-            'types' => DB::table('types_of_race')->select(['id', 'type_of_race'])->get(),
+            'cities' => $cities,
+            'types' => $types,
         ]);
     }
 }
