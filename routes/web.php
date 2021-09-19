@@ -76,7 +76,7 @@ Route::group([
     'as' => 'account.',
     'middleware' => ['auth']
 ], function () {
-    Route::resource('user', UserController::class)->shallow();
+    Route::resource('user', UserController::class)->shallow()->except(['create', 'store', 'show']);
 });
 
 Route::get('/account/user/delete/{id}', [UserController::class, 'delete'])
