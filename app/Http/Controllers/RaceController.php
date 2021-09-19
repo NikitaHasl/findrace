@@ -17,8 +17,13 @@ class RaceController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('hasRole:' . Role::ORGANIZER)
-            ->only(['create', 'store', 'updateResult', 'addResult']);
+        $this->middleware('hasRole:' . Role::ORGANIZER)->only([
+            'create',
+            'store',
+            'updateResult',
+            'addResult',
+            'listParticipants',
+        ]);
     }
 
     public function index(Request $request)
@@ -150,12 +155,15 @@ class RaceController extends Controller
         ]);
     }
 
-    public function addResults(int $id)
+    public function addResults(Request $request, int $id)
     {
-        $race = Race::with('users')->find($id);
-        return view('races.addResults', [
-            'race' => $race,
-        ]);
+        $params = ['race' => Race::with('users')->find($id)];
+
+        if($request->has('user')) {
+            $params['user_id'] = $request->input('user');
+        }
+
+        return view('races.addResults', $params);
     }
 
     public function updateResult(Request $request, Race $race)
@@ -167,5 +175,17 @@ class RaceController extends Controller
                 'place' => $request->input('place')
             ]);
         return back();
+    }
+
+    public function listParticipants(Race $race) {
+        $participants = User::select(['users.*'])
+            ->join('registrations_for_race', 'user_id', '=', 'users.id')
+            ->where('race_id', $race->id)
+            ->get();
+
+        return view('races.listParticipants', [
+            'race' => $race,
+            'participants' => $participants,
+        ]);
     }
 }
