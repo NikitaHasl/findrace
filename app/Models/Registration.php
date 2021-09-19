@@ -16,6 +16,8 @@ class Registration extends Model
     protected $fillable = [
         'user_id',
         'race_id',
+        'finish_time',
+        'place',
     ];
 
 
