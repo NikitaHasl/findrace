@@ -109,9 +109,10 @@
 
                 <br><br><br>
 
-
-                <a href="{{ route('user.delete', ['id' => $user->id]) }}" class="delete" rel="{{ $user->id }}">Удалить профиль</a>
-
+                <form action="{{ route('user.delete', ['id' => $user->id ]) }}" method="delete" rel="{{ $user->id }}">
+                    <input class="form-control" type="submit" value="Удалить профиль">
+                </form>
+                
             </div>
         </div>
     </div>
