@@ -18,7 +18,7 @@ class CreateRegistrationsForRaceTable extends Migration
                 ->constrained('races');
             $table->foreignId('user_id')
                 ->constrained('users');
-            $table->integer('finish_time')
+            $table->time('finish_time')
                 ->nullable();
             $table->integer('place')
                 ->nullable();
