@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('races', RaceController::class)
-    ->except(['edit', 'update', 'destroy']);
+    ->except(['edit', 'destroy', 'update']);
 
 Route::get('/', [RaceController::class, 'index'])->name('index');
 
@@ -43,3 +43,9 @@ Route::get('/account/unsubscribe/{race_id}', [AccountController::class, 'unsubsc
 
 Route::get('/search', [RaceController::class, 'search'])
     ->name('search');
+
+Route::get('/addResults/{id}', [RaceController::class, 'addResults'])
+    ->where('id', '\d+')
+    ->name('addResults');
+Route::put('/addResults/{race}', [RaceController::class, 'updateResult'])
+    ->name('updateResults');

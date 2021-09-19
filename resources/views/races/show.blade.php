@@ -14,6 +14,7 @@
             <div class="alert alert-warning">{{ session()->get('error') }}</div>
             @endif
             <button><a href="{{ route('subscribe', ['id' => $race->id]) }}">Записаться</a></button>
+            <button><a href="{{ route('addResults', ['id' => $race->id]) }}">Добавить результаты</a></button>
             <!-- <button>Отложить</button> -->
         </div>
     </div>
