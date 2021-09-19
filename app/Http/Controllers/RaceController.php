@@ -175,6 +175,14 @@ class RaceController extends Controller
     }
 
     public function listParticipants(Race $race) {
-        return view('races.listParticipants', ['race' => $race]);
+        $participants = User::select(['users.*'])
+            ->join('registrations_for_race', 'user_id', '=', 'users.id')
+            ->where('race_id', $race->id)
+            ->get();
+
+        return view('races.listParticipants', [
+            'race' => $race,
+            'participants' => $participants,
+        ]);
     }
 }
