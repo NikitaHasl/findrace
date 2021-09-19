@@ -13,7 +13,6 @@
 </head>
 
 <body>
-
     <div class="container mt-5">
         <nav class="nav">
             <a href="{{ route('index') }}"><i class="nav__logo fas fa-running"></i></a>
@@ -58,7 +57,7 @@
                                 </div><span class="badge badge-secondary">3</span>
                             </div>
                         </a>
-                        <a class="list-group-item" href="{{route('account.user.index')}}">
+                        <a class="list-group-item" href="#">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div><i class="fe-icon-tag mr-1 text-muted"></i>
                                     <div class="d-inline-block font-weight-medium text-uppercase">Настройки профиля</div>
@@ -68,36 +67,68 @@
                     </nav>
                 </div>
             </div>
+            <div class="col-lg-8 pb-5">
+                <div>
+                    <h3 class="feed__title">МОИ НАСТРОЙКИ</h3>
+                </div><br><br>
+                @if(session()->has('success'))
+                <div>{{ session()->get('success') }}</div><br>
+                @endif
+
+                @if(session()->has('error'))
+                <div>{{ session()->get('error') }}</div>
+                @endif
+
+                <h4 class="feed__title">Настройки профиля</h4>
+
+                <form action="{{ route('account.user.update', ['user' => $user ]) }}" method="post">
+                    @csrf
+                    @method('put')
+                    <div class="form-group">
+                        <label for="firstname">Имя</label>
+                        <input type="text" class="form-control" id="firstname" name="firstname" value="{{ $user->firstname }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Фамилия</label>
+                        <input type="text" class="form-control" id="lastname" name="lastname" value="{{ $user->lastname }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role">Роль</label>
+                        <select required name="role_id" id="role" class="form-control">
+                            @foreach($roles as $role)
+                            <option value="{{ $role->id }}" @if($role->id == $user->role_id) selected @endif>{{ $role->role }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthday">ДР</label>
+                        <input type="date" class="form-control" id="birthday" name="birthday" value="{{ $user->birthday }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <input type="password" class="form-control" id="password" name="password" value="{{ $user->password }}">
+                    </div>
+                    <br>
+                    <input class="form-control" type="submit" value="Обновить данные">
+
+                </form>
+
+                <br><br><br>
+
+                <a href="{{route('account.user.destroy', ['user' => $user ])}}">Удалить профиль</a>
+
+
+            </div>
         </div>
     </div>
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function() {
-
-            const datatablesSimple = document.getElementById('datatablesSimple');
-            if (datatablesSimple) {
-                new simpleDatatables.DataTable(datatablesSimple);
-            }
-
-            const el = document.querySelectorAll(".delete");
-            el.forEach(function(e, k) {
-                e.addEventListener('click', function() {
-                    const rel = e.getAttribute("rel");
-                    if (confirm("Вы уверены, что хотите отменить регистрацию забега под номером " + rel + " ?")) {
-                        submit("/account/unsubscribe/" + rel).then(() => {
-                            location.reload();
-                        })
-                    }
-                });
-            })
-        });
-        async function submit(url) {
-            let response = await fetch(url, {
-                method: 'DELETE',
-            });
-            let result = await response.json();
-            return result.ok;
-        }
-    </script>
 
 </body>
 
