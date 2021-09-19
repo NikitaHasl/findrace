@@ -29,6 +29,7 @@ Route::get('/races/{race}/participants',
     [RaceController::class, 'listParticipants'])->name('listParticipants');
 
 // AUTH //
+// AUTH //
 Route::get('/logout', function () {
     return view('auth.logout');
 })->name('logout');
