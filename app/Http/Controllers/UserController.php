@@ -42,9 +42,9 @@ class UserController extends Controller
         return back()->with('error', 'Что-то пошло не так, попробуйте позже!');
     }
 
-    public function delete($id)
+    public function destroy(User $user)
     {
-        $status = User::where('id', '=', $id)->delete();
+        $status = $user->delete();
         if ($status) {
             return redirect()->route('index')->with('success', 'Аккаунт успешно удален!');
         }

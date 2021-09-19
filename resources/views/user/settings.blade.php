@@ -109,10 +109,12 @@
 
                 <br><br><br>
 
-                <form action="{{ route('user.delete', ['id' => $user->id ]) }}" method="delete" rel="{{ $user->id }}">
+                <form action="{{ route('account.user.destroy', ['user' => $user ]) }}" method="post" rel="{{ $user }}" class="delete">
+                    @csrf
+                    @method('DELETE')
                     <input class="form-control" type="submit" value="Удалить профиль">
                 </form>
-                
+
             </div>
         </div>
     </div>
@@ -129,7 +131,7 @@
                 e.addEventListener('click', function() {
                     const rel = e.getAttribute("rel");
                     if (confirm("Вы уверены, что хотите удалить ваш аккаунт ?")) {
-                        submit("/account/user/delete/" + rel).then(() => {
+                        submit("/account/user/destroy" + rel).then(() => {
                             location.reload();
                         })
                     }
