@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreRaceRequest;
 use App\Models\City;
 use App\Models\Race;
+use App\Models\RaceStatus;
 use App\Models\RaceType;
 use App\Models\Role;
 use Illuminate\Http\Request;
@@ -72,6 +73,7 @@ class RaceController extends Controller
     {
         return view('races.create', [
             'cities' => City::all(),
+            'raceStatuses' => RaceStatus::all(),
             'raceTypes' => RaceType::all(),
         ]);
     }
@@ -82,6 +84,7 @@ class RaceController extends Controller
             'title' => $request->post('title'),
             'city_id' => (int) $request->post('city'),
             'type_of_race_id' => (int) $request->post('type'),
+            'status_of_race_id' => (int) $request->post('status'),
             'date' => $request->post('date') . ' ' . $request->post('time'),
             'distance' => (int) $request->post('distance'),
             'description' => $request->post('description'),

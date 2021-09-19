@@ -29,6 +29,11 @@
                     <option value="{{ $type->id }}">{{ $type->type_of_race }}</option>
                 @endforeach
             </select></label>
+            <label>Статус: <select required name="status">
+                    @foreach($raceStatuses as $status)
+                        <option value="{{ $status->id }}">{{ $status->status }}</option>
+                    @endforeach
+                </select></label>
             <label>Дата: <input required type="date" name="date"></label>
             <label>Время: <input required type="time" name="time"></label>
             <label>Дистанция: <input required type="number" name="distance"></label>
