@@ -18,10 +18,13 @@ use Illuminate\Support\Facades\Route;
 
 // RACE //
 Route::resource('races', RaceController::class)
-    ->except(['edit', 'update', 'destroy']);
+    ->except(['edit', 'destroy', 'update']);
 
 Route::get('/', [RaceController::class, 'index'])
     ->name('index');
+
+Route::get('/races/{race}/participants',
+    [RaceController::class, 'listParticipants'])->name('listParticipants');
 
 // AUTH //
 Route::get('/logout', function () {
@@ -57,3 +60,9 @@ Route::get('/account/unsubscribe/{race_id}', [AccountController::class, 'unsubsc
 // SEARCH //
 Route::get('/search', [RaceController::class, 'search'])
     ->name('search');
+
+Route::get('/addResults/{id}', [RaceController::class, 'addResults'])
+    ->where('id', '\d+')
+    ->name('addResults');
+Route::put('/addResults/{race}', [RaceController::class, 'updateResult'])
+    ->name('updateResults');

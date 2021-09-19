@@ -7,7 +7,9 @@ use App\Models\City;
 use App\Models\Race;
 use App\Models\RaceStatus;
 use App\Models\RaceType;
+use App\Models\Registration;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,8 +17,13 @@ class RaceController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('hasRole:' . Role::ORGANIZER)
-            ->only(['create', 'store']);
+        $this->middleware('hasRole:' . Role::ORGANIZER)->only([
+            'create',
+            'store',
+            'updateResult',
+            'addResult',
+            'listParticipants',
+        ]);
     }
 
     public function index(Request $request)
@@ -145,6 +152,40 @@ class RaceController extends Controller
             'races' => $results,
             'cities' => City::all(),
             'types' => DB::table('types_of_race')->select(['id', 'type_of_race'])->get(),
+        ]);
+    }
+
+    public function addResults(Request $request, int $id)
+    {
+        $params = ['race' => Race::with('users')->find($id)];
+
+        if($request->has('user')) {
+            $params['user_id'] = $request->input('user');
+        }
+
+        return view('races.addResults', $params);
+    }
+
+    public function updateResult(Request $request, Race $race)
+    {
+        Registration::where('user_id', '=', $request->input('user_id'))
+            ->where('race_id', '=', $race->id)
+            ->update([
+                'finish_time' => $request->input('finish_time'),
+                'place' => $request->input('place')
+            ]);
+        return back();
+    }
+
+    public function listParticipants(Race $race) {
+        $participants = User::select(['users.*'])
+            ->join('registrations_for_race', 'user_id', '=', 'users.id')
+            ->where('race_id', $race->id)
+            ->get();
+
+        return view('races.listParticipants', [
+            'race' => $race,
+            'participants' => $participants,
         ]);
     }
 }
