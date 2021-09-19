@@ -94,17 +94,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="role">Роль</label>
-                        <select required name="role_id" id="role" class="form-control">
-                            @foreach($roles as $role)
-                            <option value="{{ $role->id }}" @if($role->id == $user->role_id) selected @endif
-                            @if($role->role == 'admin') hidden @endif>{{ $role->role }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="birthday">ДР</label>
+                        <label for="birthday">День рождение</label>
                         <input type="date" class="form-control" id="birthday" name="birthday" value="{{ $user->birthday }}">
                     </div>
 

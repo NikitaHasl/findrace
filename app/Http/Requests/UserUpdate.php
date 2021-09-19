@@ -24,12 +24,10 @@ class UserUpdate extends FormRequest
     public function rules()
     {
         return [
-            'firstaname' => ['sometimes', 'string', 'min:3', 'max:199'],
+            'firstname' => ['sometimes', 'string', 'min:3', 'max:199'],
             'lastname' => ['sometimes', 'string', 'min:3', 'max:199'],
-            'role_id' => ['sometimes', 'integer', 'min:1'],
             'birthday' => ['sometimes'],
             'email' => ['sometimes'],
-            'password' => ['sometimes'],
         ];
     }
     

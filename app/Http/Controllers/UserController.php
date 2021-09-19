@@ -26,38 +26,6 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -78,7 +46,7 @@ class UserController extends Controller
     {
         $status = User::where('id', '=', $id)->delete();
         if ($status) {
-            return redirect()->route('index')->with('success', 'Аккаунт успешноу дален!');
+            return redirect()->route('index')->with('success', 'Аккаунт успешно удален!');
         }
         return back()->with('error', 'Что-то пошло не так, попробуйте позже!');
     }
