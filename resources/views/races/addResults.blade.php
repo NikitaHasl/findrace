@@ -22,7 +22,9 @@
             <label>Название: {{ $race->title }} </label>
             <label>Участник: <select required name="user_id">
                     @foreach($race->users as $user)
-                        <option value="{{ $user->id }}">{{ $user->firstname }} {{ $user->lastname }}</option>
+                        <option value="{{ $user->id }}"
+                            @if(isset($user_id) && $user_id == $user->id) selected @endif
+                        >{{ $user->firstname }} {{ $user->lastname }}</option>
                     @endforeach
                 </select></label>
             <label>Время (в секундах): <input required type="number" name="finish_time"></label>

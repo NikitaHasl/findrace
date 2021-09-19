@@ -155,12 +155,15 @@ class RaceController extends Controller
         ]);
     }
 
-    public function addResults(int $id)
+    public function addResults(Request $request, int $id)
     {
-        $race = Race::with('users')->find($id);
-        return view('races.addResults', [
-            'race' => $race,
-        ]);
+        $params = ['race' => Race::with('users')->find($id)];
+
+        if($request->has('user')) {
+            $params['user_id'] = $request->input('user');
+        }
+
+        return view('races.addResults', $params);
     }
 
     public function updateResult(Request $request, Race $race)
