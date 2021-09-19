@@ -15,8 +15,7 @@ class Registration extends Model
 
     protected $fillable = [
         'user_id',
-        'role_id',
-        'status_id',
+        'race_id',
     ];
 
 

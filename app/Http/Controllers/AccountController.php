@@ -33,7 +33,7 @@ class AccountController extends Controller
 
     function subscribe(int $id)
     {
-        //простая логика подписки на забег 
+        //простая логика подписки на забег
         $user = Auth::user();
         if (!$user) {
             return back()->with('error', 'Пожалуйста, зарегестрируйтесь или залогиньтесь!');
@@ -41,7 +41,6 @@ class AccountController extends Controller
         $reg = new Registration();
         $reg->user_id = $user->id;
         $reg->race_id = $id;
-        $reg->status_of_race_id = 1;
         try {
             $reg->save();
             return back()->with('success', 'Запись прошла успешно!');
@@ -58,7 +57,7 @@ class AccountController extends Controller
     public function unsubscribe(int $race_id)
     {
         $user_id = Auth::user()->id;
-        //не совсем правильная логика так как удаляет 
+        //не совсем правильная логика так как удаляет
         $status = Registration::where('race_id', '=', $race_id, 'and', 'user_id', '=', $user_id)->delete();
 
         if ($status) {
