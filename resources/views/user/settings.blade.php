@@ -97,7 +97,8 @@
                         <label for="role">Роль</label>
                         <select required name="role_id" id="role" class="form-control">
                             @foreach($roles as $role)
-                            <option value="{{ $role->id }}" @if($role->id == $user->role_id) selected @endif>{{ $role->role }}</option>
+                            <option value="{{ $role->id }}" @if($role->id == $user->role_id) selected @endif
+                            @if($role->role == 'admin') hidden @endif>{{ $role->role }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -123,13 +124,40 @@
 
                 <br><br><br>
 
-                <a href="{{route('account.user.destroy', ['user' => $user ])}}">Удалить профиль</a>
 
+                <a href="{{ route('user.delete', ['id' => $user->id]) }}" class="delete" rel="{{ $user->id }}">Удалить профиль</a>
 
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
 
+            const datatablesSimple = document.getElementById('datatablesSimple');
+            if (datatablesSimple) {
+                new simpleDatatables.DataTable(datatablesSimple);
+            }
+
+            const el = document.querySelectorAll(".delete");
+            el.forEach(function(e, k) {
+                e.addEventListener('click', function() {
+                    const rel = e.getAttribute("rel");
+                    if (confirm("Вы уверены, что хотите удалить ваш аккаунт ?")) {
+                        submit("/account/user/delete/" + rel).then(() => {
+                            location.reload();
+                        })
+                    }
+                });
+            })
+        });
+        async function submit(url) {
+            let response = await fetch(url, {
+                method: 'DELETE',
+            });
+            let result = await response.json();
+            return result.ok;
+        }
+    </script>
 </body>
 
 </html>

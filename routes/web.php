@@ -77,3 +77,7 @@ Route::group([
 ], function () {
     Route::resource('user', UserController::class)->shallow();
 });
+
+Route::get('/account/user/delete/{id}', [UserController::class, 'delete'])
+    ->where('id', '\d+')
+    ->name('user.delete');
