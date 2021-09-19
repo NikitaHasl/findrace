@@ -13,14 +13,12 @@
                 @if(session()->has('error'))
                     <div class="alert alert-warning">{{ session()->get('error') }}</div>
                 @endif
-                @auth
-                    @if(Auth::user()->hasRole(\App\Models\Role::ORGANIZER))
-                        <button><a href="{{ route('addResults', ['id' => $race->id]) }}">Добавить результаты</a>
-                        </button>
-                    @elseif(Auth::user()->hasRole(\App\Models\Role::USER))
-                        <button><a href="{{ route('subscribe', ['id' => $race->id]) }}">Записаться</a></button>
-                    @endif
-                @endauth
+                @if(Auth::user() && Auth::user()->hasRole(\App\Models\Role::ORGANIZER))
+                    <button><a href="{{ route('addResults', ['id' => $race->id]) }}">Добавить результаты</a></button>
+                    <button><a href="{{ route('listParticipants', ['race' => $race]) }}">Список участников</a></button>
+                @else
+                    <button><a href="{{ route('subscribe', ['id' => $race->id]) }}">Записаться</a></button>
+                @endif
             <!-- <button>Отложить</button> -->
             </div>
         </div>

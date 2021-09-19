@@ -17,8 +17,13 @@ class RaceController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('hasRole:' . Role::ORGANIZER)
-            ->only(['create', 'store', 'updateResult', 'addResult']);
+        $this->middleware('hasRole:' . Role::ORGANIZER)->only([
+            'create',
+            'store',
+            'updateResult',
+            'addResult',
+            'listParticipants',
+        ]);
     }
 
     public function index(Request $request)
@@ -167,5 +172,9 @@ class RaceController extends Controller
                 'place' => $request->input('place')
             ]);
         return back();
+    }
+
+    public function listParticipants(Race $race) {
+        return view('races.listParticipants', ['race' => $race]);
     }
 }

@@ -21,8 +21,8 @@ Route::resource('races', RaceController::class)
 
 Route::get('/', [RaceController::class, 'index'])->name('index');
 
-Route::get('/', [RaceController::class, 'index'])
-    ->name('index');
+Route::get('/races/{race}/participants',
+    [RaceController::class, 'listParticipants'])->name('listParticipants');
 
 Route::get('/logout', function () {
     return view('auth.logout');
