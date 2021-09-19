@@ -16,14 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// RACE //
 Route::resource('races', RaceController::class)
     ->except(['edit', 'destroy', 'update']);
-
-Route::get('/', [RaceController::class, 'index'])->name('index');
 
 Route::get('/', [RaceController::class, 'index'])
     ->name('index');
 
+// AUTH //
 Route::get('/logout', function () {
     return view('auth.logout');
 })->name('logout');
@@ -36,11 +36,25 @@ Route::get('/register', function() {
     return view('auth.register');
 })->name('register');
 
-Route::get('/account', [AccountController::class, 'index'])->name('account');
+// ACCOUNT //
+Route::get('/account', [AccountController::class, 'index'])
+    ->name('account');
 
-Route::get('/subscribe/{id}', [AccountController::class, 'subscribe'])->where('id', '\d+')->name('subscribe');
-Route::get('/account/unsubscribe/{race_id}', [AccountController::class, 'unsubscribe'])->where('id', '\d+')->name('unsubscribe');
+Route::get('/account/active', [AccountController::class, 'showActiveRaces'])
+    ->name('account.active');
 
+Route::get('/account/finished', [AccountController::class, 'showFinishedRaces'])
+    ->name('account.finished');
+
+Route::get('/subscribe/{id}', [AccountController::class, 'subscribe'])
+    ->where('id', '\d+')
+    ->name('subscribe');
+
+Route::get('/account/unsubscribe/{race_id}', [AccountController::class, 'unsubscribe'])
+    ->where('id', '\d+')
+    ->name('unsubscribe');
+
+// SEARCH //
 Route::get('/search', [RaceController::class, 'search'])
     ->name('search');
 
