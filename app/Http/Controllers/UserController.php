@@ -57,18 +57,6 @@ class UserController extends Controller
         //
     }
 
-       /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    public function edit(User $user)
-    {
-
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -86,14 +74,12 @@ class UserController extends Controller
         return back()->with('error', 'Что-то пошло не так, попробуйте позже!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
+    public function delete($id)
     {
-        //
+        $status = User::where('id', '=', $id)->delete();
+        if ($status) {
+            return redirect()->route('index')->with('success', 'Аккаунт успешноу дален!');
+        }
+        return back()->with('error', 'Что-то пошло не так, попробуйте позже!');
     }
 }
