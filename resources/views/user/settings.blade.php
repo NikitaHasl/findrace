@@ -112,11 +112,6 @@
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
                     </div>
-
-                    <div class="form-group">
-                        <label for="password">Пароль</label>
-                        <input type="password" class="form-control" id="password" name="password" value="{{ $user->password }}">
-                    </div>
                     <br>
                     <input class="form-control" type="submit" value="Обновить данные">
 
