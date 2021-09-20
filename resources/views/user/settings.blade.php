@@ -57,7 +57,7 @@
                                 </div><span class="badge badge-secondary">3</span>
                             </div>
                         </a>
-                        <a class="list-group-item" href="{{route('account.user.index')}}">
+                        <a class="list-group-item" href="#">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div><i class="fe-icon-tag mr-1 text-muted"></i>
                                     <div class="d-inline-block font-weight-medium text-uppercase">Настройки профиля</div>
@@ -69,8 +69,8 @@
             </div>
             <div class="col-lg-8 pb-5">
                 <div>
-                    <h3 class="feed__title">МОИ ТЕКУЩИЕ ЗАБЕГИ</h3>
-                </div><br>
+                    <h3 class="feed__title">МОИ НАСТРОЙКИ</h3>
+                </div><br><br>
                 @if(session()->has('success'))
                 <div>{{ session()->get('success') }}</div><br>
                 @endif
@@ -79,21 +79,42 @@
                 <div>{{ session()->get('error') }}</div>
                 @endif
 
-                @forelse($races as $race)
-                <div>
-                    <div>
-                        <h4><i>{{ $race->title }}</i></h4>
+                <h4 class="feed__title">Настройки профиля</h4>
+
+                <form action="{{ route('account.user.update', ['user' => $user ]) }}" method="post">
+                    @csrf
+                    @method('put')
+                    <div class="form-group">
+                        <label for="firstname">Имя</label>
+                        <input type="text" class="form-control" id="firstname" name="firstname" value="{{ $user->firstname }}">
                     </div>
-                    <div>{{ $race->date }}</div>
-                    <div>{{ $race->distance }} км</div>
-                    <div><a href="{{ route('races.show', ['race' => $race]) }}">Подробнее...</a></div>
-                    <div><a href="{{ route( 'unsubscribe', ['race_id' => $race->id]) }}" class="delete" rel="">Отменить</a></div>
-                </div><br><br>
-                @empty
+                    <div class="form-group">
+                        <label for="lastname">Фамилия</label>
+                        <input type="text" class="form-control" id="lastname" name="lastname" value="{{ $user->lastname }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthday">День рождение</label>
+                        <input type="date" class="form-control" id="birthday" name="birthday" value="{{ $user->birthday }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
+                    </div>
+                    <br>
+                    <input class="form-control" type="submit" value="Обновить данные">
+
+                </form>
+
                 <br><br><br>
-                <div>У вас пока что нет ни одной регистрации на забег!</div>
-                <div><a href="{{ route('index')}}">Записаться на мой первый забег</a></div>
-                @endforelse
+
+                <form action="{{ route('account.user.destroy', ['user' => $user ]) }}" method="post" rel="{{ $user }}" class="delete">
+                    @csrf
+                    @method('DELETE')
+                    <input class="form-control" type="submit" value="Удалить профиль">
+                </form>
+
             </div>
         </div>
     </div>
@@ -109,8 +130,8 @@
             el.forEach(function(e, k) {
                 e.addEventListener('click', function() {
                     const rel = e.getAttribute("rel");
-                    if (confirm("Вы уверены, что хотите отменить регистрацию забега под номером " + rel + " ?")) {
-                        submit("/account/unsubscribe/" + rel).then(() => {
+                    if (confirm("Вы уверены, что хотите удалить ваш аккаунт ?")) {
+                        submit("/account/user/destroy" + rel).then(() => {
                             location.reload();
                         })
                     }
@@ -125,7 +146,6 @@
             return result.ok;
         }
     </script>
-
 </body>
 
 </html>

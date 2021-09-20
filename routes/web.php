@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\RaceController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,11 +32,11 @@ Route::get('/logout', function () {
     return view('auth.logout');
 })->name('logout');
 
-Route::get('/login', function() {
+Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('/register', function() {
+Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
@@ -66,3 +67,12 @@ Route::get('/addResults/{id}', [RaceController::class, 'addResults'])
     ->name('addResults');
 Route::put('/addResults/{race}', [RaceController::class, 'updateResult'])
     ->name('updateResults');
+
+
+Route::group([
+    'prefix' => 'account',
+    'as' => 'account.',
+    'middleware' => ['auth']
+], function () {
+    Route::resource('user', UserController::class)->shallow()->except(['create', 'store', 'show']);
+});

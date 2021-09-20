@@ -58,7 +58,7 @@
                                 </div><span class="badge badge-secondary">3</span>
                             </div>
                         </a>
-                        <a class="list-group-item" href="#">
+                        <a class="list-group-item" href="{{route('account.user.index')}}">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div><i class="fe-icon-tag mr-1 text-muted"></i>
                                     <div class="d-inline-block font-weight-medium text-uppercase">Настройки профиля</div>
