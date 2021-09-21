@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserUpdate;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Role;
+use App\Models\Gender;
 use App\Models\User;
 
 class UserController extends Controller
@@ -25,7 +25,7 @@ class UserController extends Controller
 
         return view('user.settings', [
             'user' => $user,
-            'roles' => Role::all(),
+            'genders' => Gender::all(),
         ]);
     }
 

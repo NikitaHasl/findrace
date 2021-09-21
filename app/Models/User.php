@@ -58,4 +58,9 @@ class User extends Authenticatable
     public function hasRole(string $role): bool {
         return $this->role->role === $role;
     }
+
+    public function gender() {
+        return $this->belongsTo(Gender::class);
+    }
+
 }

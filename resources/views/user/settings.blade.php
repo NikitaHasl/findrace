@@ -99,6 +99,17 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="gender">Пол</label>
+                        <select name="gender_id" id="gender" class="form-control">
+                            @foreach($genders as $gender)
+                            <option value="{{ $gender->id }}" @if($gender->id == $user->gender_id) selected @endif>
+                                {{$gender->gender}}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
                     </div>
@@ -106,9 +117,55 @@
                     <input class="form-control" type="submit" value="Обновить данные">
 
                 </form>
+                <br><br>
+                <h4 class="feed__title">Изменение пароля</h4>
 
-                <br><br><br>
+                <form method="POST" action="{{ route('user-password.update') }}">
+                    @csrf
+                    @method('PUT')
 
+                    @if (session('status') == "password-updated")
+                    <div class="alert alert-success">
+                        Изменение пароля прошло успешно!
+                    </div>
+                    @endif
+
+                    <div class="form-group">
+                        <label for="current_password">Текущий пароль</label>
+                        <input id="current_password" type="password" class="form-control @error('current_password', 'updatePassword') is-invalid @enderror" name="current_password" required autofocus>
+
+                        @error('current_password', 'updatePassword')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Новый пароль</label>
+                        <input id="password" type="password" class="form-control @error('password', 'updatePassword') is-invalid @enderror" name="password" required>
+
+                        @error('password', 'updatePassword')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password-confirm">Повтор пароля</label>
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                    </div>
+                    <br>
+                    <input class="form-control" type="submit" value="Обновить данные">
+                </form>
+
+
+                <br>
+                <br><br>
+                <h4 class="feed__title">Удалить профиль</h4>
                 <form action="{{ route('account.user.destroy', ['user' => $user ]) }}" method="post" rel="{{ $user }}" class="delete">
                     @csrf
                     @method('DELETE')
