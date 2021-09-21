@@ -11,25 +11,20 @@ use Exception;
 
 class AccountController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
 
-    function index()
+    public function index()
     {
-        $user = Auth::user();
-        if (!$user) {
-            return back()->with('error', 'Пожалуйста, зарегестрируйтесь или залогиньтесь!');
-        }
-
         return view('user.account', [
-            'user' => $user
+            'user' => Auth::user()
         ]);
     }
 
     public function showActiveRaces()
     {
         $user = Auth::user();
-        if (!$user) {
-            return back()->with('error', 'Пожалуйста, зарегестрируйтесь или залогиньтесь!');
-        }
         //почему-то не работает eloquent, разобраться
         // $races = User::find($user->id)->races();
         $activeRaces = Race::select(['races.*'])
@@ -47,9 +42,6 @@ class AccountController extends Controller
     public function showFinishedRaces()
     {
         $user = Auth::user();
-        if (!$user) {
-            return back()->with('error', 'Пожалуйста, зарегестрируйтесь или залогиньтесь!');
-        }
 
         $finishedRaces = Race::select(['races.*', 'registrations_for_race.*'])
             ->join('registrations_for_race', 'race_id', '=', 'races.id')
@@ -63,13 +55,11 @@ class AccountController extends Controller
         ]);
     }
 
-    function subscribe(int $id)
+    public function subscribe(int $id)
     {
         //простая логика подписки на забег
         $user = Auth::user();
-        if (!$user) {
-            return back()->with('error', 'Пожалуйста, зарегестрируйтесь или залогиньтесь!');
-        }
+
         $reg = new Registration();
         $reg->user_id = $user->id;
         $reg->race_id = $id;
