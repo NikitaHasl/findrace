@@ -24,7 +24,6 @@ class CreateUsersTable extends Migration
                 ->constrained('genders')
                 ->onUpdate('cascade');
             $table->foreignId('role_id')
-                ->default(Role::USER_ID)
                 ->constrained('roles')
                 ->onUpdate('cascade');
             $table->date('birthday')->nullable();
