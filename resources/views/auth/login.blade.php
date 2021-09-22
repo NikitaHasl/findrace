@@ -16,5 +16,9 @@
                 Запомнить меня</label>
             <input class="login__btn" type="submit" value="Войти">
         </form>
+        <br>
+        @if(Route::has('password.request'))
+        <a href="{{ route('password.request') }}">Забыли пароль?</a>
+        @endif
     </div>
 @endsection

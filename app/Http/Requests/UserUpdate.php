@@ -26,6 +26,7 @@ class UserUpdate extends FormRequest
         return [
             'firstname' => ['sometimes', 'string', 'min:3', 'max:199'],
             'lastname' => ['sometimes', 'string', 'min:3', 'max:199'],
+            'gender_id' => ['sometimes'],
             'birthday' => ['sometimes'],
             'email' => ['sometimes'],
         ];
