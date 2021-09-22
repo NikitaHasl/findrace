@@ -54,4 +54,27 @@ class UserController extends Controller
         }
         return back()->with('error', 'Что-то пошло не так, попробуйте позже!');
     }
+
+    public function searchForUser(Request $request)
+    {
+        $firstName = $request->input('firstname');
+        $lastName = $request->input('lastname');
+        $query = User::query();
+
+        if (!empty($firstName)) {
+            $query->where('firstname', $firstName);
+        }
+        if (!empty($lastName)) {
+            $query->where('lastname', $lastName);
+        }
+
+        $users = $query->get();
+        return view('userSearch.results', [
+            'users' => $users
+        ]);
+    }
+
+    public function userSearchView() {
+        return view('userSearch.search');
+    }
 }

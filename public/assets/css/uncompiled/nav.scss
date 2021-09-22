@@ -18,12 +18,10 @@
     border-radius: 4px;
     cursor: pointer;
     transition: all .3s;
+      margin-right: 1rem;
       a {
           text-decoration: none;
           color: #fff;
-      }
-      &:first-child {
-          margin-right: 1rem;
       }
     &:hover {
       background-color: darken($orange, 2);

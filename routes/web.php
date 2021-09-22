@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RaceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -62,12 +63,21 @@ Route::get('/account/unsubscribe/{race_id}', [AccountController::class, 'unsubsc
 Route::get('/search', [RaceController::class, 'search'])
     ->name('search');
 
+Route::get('/userSearch', [UserController::class, 'userSearchView'])
+    ->name('userSearch');
+
+Route::get('/searchForUser', [UserController::class, 'searchForUser'])
+    ->name('searchForUser');
+
 Route::get('/addResults/{id}', [RaceController::class, 'addResults'])
     ->where('id', '\d+')
     ->name('addResults');
 Route::put('/addResults/{race}', [RaceController::class, 'updateResult'])
     ->name('updateResults');
 
+// PROFILE //
+Route::get('showProfile/{id}', [ProfileController::class, 'showProfile'])
+    ->name('profile.show');
 
 Route::group([
     'prefix' => 'account',
