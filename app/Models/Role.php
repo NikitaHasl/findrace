@@ -17,6 +17,10 @@ class Role extends Model
     public const ADMIN = 'admin';
     public const ORGANIZER = 'organizer';
 
+    public static function findByName(string $name) {
+        return self::where('role', $name)->first();
+    }
+
     public function users() {
         return $this->hasMany(User::class);
     }
