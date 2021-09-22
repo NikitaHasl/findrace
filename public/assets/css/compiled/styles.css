@@ -304,4 +304,41 @@ main {
   display: block;
 }
 
+.chat {
+  width: 100%;
+  display: flex;
+}
+.chat__previousMessages {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.chat__messageSection {
+  width: 70%;
+}
+.chat__input {
+  width: 80%;
+}
+.chat__submit {
+  width: 19%;
+}
+.chat__profile {
+  width: 30%;
+  text-align: center;
+}
+
+.message {
+  display: inline-block;
+  border-radius: 5px;
+  padding: 5px;
+  width: fit-content;
+}
+.message--own {
+  background-color: blue;
+  align-self: flex-end;
+}
+.message--other {
+  background-color: grey;
+}
+
 /*# sourceMappingURL=styles.css.map */

@@ -17,7 +17,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
@@ -59,13 +59,15 @@ class UserController extends Controller
     {
         $firstName = $request->input('firstname');
         $lastName = $request->input('lastname');
+        $firstNameQuery = '%' . $firstName . '%';
+        $lastNameQuery = '%' . $lastName . '%';
         $query = User::query();
 
         if (!empty($firstName)) {
-            $query->where('firstname', $firstName);
+            $query->where('firstname', 'LIKE', $firstNameQuery);
         }
         if (!empty($lastName)) {
-            $query->where('lastname', $lastName);
+            $query->where('lastname', 'LIKE', $lastNameQuery);
         }
 
         $users = $query->get();

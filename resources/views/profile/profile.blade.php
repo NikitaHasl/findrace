@@ -8,6 +8,6 @@
         <p class="profile__name">{{$profile[0]->firstname}} {{$profile[0]->lastname}}</p>
         <p class="profile__email">{{$profile[0]->email}}</p>
         <p class="profile__birthday">{{$profile[0]->birthday}}</p>
-        <button>Написать сообщение</button>
+        <a href="{{route('chat.show', ['profile' => $profile[0]->id])}}"><button>Написать сообщение</button></a>
     </div>
 @endsection

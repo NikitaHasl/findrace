@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\RaceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -69,6 +70,7 @@ Route::get('/userSearch', [UserController::class, 'userSearchView'])
 Route::get('/searchForUser', [UserController::class, 'searchForUser'])
     ->name('searchForUser');
 
+// RESULTS //
 Route::get('/addResults/{id}', [RaceController::class, 'addResults'])
     ->where('id', '\d+')
     ->name('addResults');
@@ -78,6 +80,13 @@ Route::put('/addResults/{race}', [RaceController::class, 'updateResult'])
 // PROFILE //
 Route::get('showProfile/{id}', [ProfileController::class, 'showProfile'])
     ->name('profile.show');
+
+// CHAT //
+Route::get('chat/{profile}', [ChatController::class, 'index'])
+    ->name('chat.show');
+
+Route::post('chat/{recipient}', [ChatController::class, 'store'])
+    ->name('chat.store');
 
 Route::group([
     'prefix' => 'account',
