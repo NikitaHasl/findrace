@@ -18,7 +18,7 @@ class CreateCountriesTable extends Migration
             $table->foreignId('continent_id')
                 ->constrained('continents')
                 ->onUpdate('cascade');
-            $table->string('country', 45);
+            $table->string('country', 98);
             $table->timestamps();
         });
     }
