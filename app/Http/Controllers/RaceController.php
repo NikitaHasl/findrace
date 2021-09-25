@@ -159,9 +159,13 @@ class RaceController extends Controller
 
     public function addResults(Request $request, int $id)
     {
-        $params = ['race' => Race::with('users')->find($id)];
+        $race = Race::with('users')->find($id);
+        if (Auth::id() !== $race->organizer_id) {
+            abort(403);
+        }
 
-        if($request->has('user')) {
+        $params = ['race' => $race];
+        if ($request->has('user')) {
             $params['user_id'] = $request->input('user');
         }
 
@@ -170,6 +174,10 @@ class RaceController extends Controller
 
     public function updateResult(Request $request, Race $race)
     {
+        if (Auth::id() !== $race->organizer_id) {
+            abort(403);
+        }
+
         Registration::where('user_id', '=', $request->input('user_id'))
             ->where('race_id', '=', $race->id)
             ->update([
@@ -179,7 +187,12 @@ class RaceController extends Controller
         return back();
     }
 
-    public function listParticipants(Race $race) {
+    public function listParticipants(Race $race)
+    {
+        if (Auth::id() !== $race->organizer_id) {
+            abort(403);
+        }
+
         $participants = User::select(['users.*'])
             ->join('registrations_for_race', 'user_id', '=', 'users.id')
             ->where('race_id', $race->id)
