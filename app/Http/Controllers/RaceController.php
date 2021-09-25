@@ -11,6 +11,7 @@ use App\Models\Registration;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RaceController extends Controller
@@ -97,6 +98,7 @@ class RaceController extends Controller
             'description' => $request->post('description'),
             'start' => $request->post('start'),
             'finish' => $request->post('finish'),
+            'organizer_id' => Auth::id(),
         ]);
 
         return redirect()->route('index');
