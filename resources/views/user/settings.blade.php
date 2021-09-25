@@ -25,9 +25,13 @@
             <div class="col-lg-4 pb-5">
                 <!-- Account Sidebar-->
                 <div class="author-card pb-3">
-                    <div class="author-card-cover" style="background-image: url(https://demo.createx.studio/createx-html/img/widgets/author/cover.jpg);"><a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title="" data-original-title="You currently have 290 Reward points"><i class="fa fa-award text-md"></i>&nbsp;290 points</a></div>
                     <div class="author-card-profile">
-                        <div class="author-card-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Daniel Adams">
+                        <div class="author-card-avatar">
+                            @if($user->avatar)
+                                <img src="{{ asset('storage/' . $user->avatar) }}">
+                            @else
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                            @endif
                         </div>
                         <div class="author-card-details">
                             <h5 class="author-card-name text-lg">{{$user->firstname}} {{$user->lastname}}</h5><span class="author-card-position">присоединился {{$user->created_at->toDateString()}}</span>
@@ -72,18 +76,46 @@
                     <h3 class="feed__title">МОИ НАСТРОЙКИ</h3>
                 </div><br><br>
                 @if(session()->has('success'))
-                <div>{{ session()->get('success') }}</div><br>
+                    <div>{{ session()->get('success') }}</div><br>
                 @endif
 
                 @if(session()->has('error'))
-                <div>{{ session()->get('error') }}</div>
+                    <div>{{ session()->get('error') }}</div>
                 @endif
 
+                @foreach($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+
+                <h4 class="feed__title">Аватар</h4>
+
+                <form action="{{ route('account.avatar.update') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group">
+                        <label for="avatar">Новый аватар</label>
+                        <input type="file" class="form-control" id="avatar" name="avatar" required accept=".jpg,.jpeg,.png,.bmp,.gif,.svg,.webp,image/jpeg,image/png,image/bmp,image/x-bmp,image/gif,image/svg+xml,image/webp">
+                    </div>
+
+                    <br>
+                    <input class="form-control" type="submit" value="Обновить аватар">
+                </form>
+
+                @if($user->avatar)
+                    <br>
+                    <form action="{{ route('account.avatar.destroy') }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <input class="form-control" type="submit" value="Удалить аватар">
+                    </form>
+                @endif
+
+                <br><br>
                 <h4 class="feed__title">Настройки профиля</h4>
 
-                <form action="{{ route('account.user.update', ['user' => $user ]) }}" method="post">
+                <form action="{{ route('account.user.update', ['user' => $user]) }}" method="post">
                     @csrf
-                    @method('put')
+                    @method('PUT')
                     <div class="form-group">
                         <label for="firstname">Имя</label>
                         <input type="text" class="form-control" id="firstname" name="firstname" value="{{ $user->firstname }}">
@@ -94,7 +126,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="birthday">День рождение</label>
+                        <label for="birthday">День рождения</label>
                         <input type="date" class="form-control" id="birthday" name="birthday" value="{{ $user->birthday }}">
                     </div>
 
@@ -132,7 +164,7 @@
 
                     <div class="form-group">
                         <label for="current_password">Текущий пароль</label>
-                        <input id="current_password" type="password" class="form-control @error('current_password', 'updatePassword') is-invalid @enderror" name="current_password" required autofocus>
+                        <input id="current_password" type="password" class="form-control @error('current_password', 'updatePassword') is-invalid @enderror" name="current_password" required>
 
                         @error('current_password', 'updatePassword')
                         <span class="invalid-feedback" role="alert">

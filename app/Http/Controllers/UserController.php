@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\AvatarUpdateRequest;
 use App\Http\Requests\UserUpdate;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Gender;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -50,8 +53,51 @@ class UserController extends Controller
     {
         $status = $user->delete();
         if ($status) {
+            Storage::disk('public')->delete($user->avatar);
             return redirect()->route('index')->with('success', 'Аккаунт успешно удален!');
         }
         return back()->with('error', 'Что-то пошло не так, попробуйте позже!');
+    }
+
+    public function updateAvatar(AvatarUpdateRequest $request)
+    {
+        $newAvatar = $request->file('avatar')->store('avatars', 'public');
+        $oldAvatar = null;
+
+        try {
+            DB::transaction(function () use ($newAvatar, &$oldAvatar) {
+                $user = Auth::user();
+                if($user->avatar) {
+                    $oldAvatar = $user->avatar;
+                }
+                $user->avatar = $newAvatar;
+                $user->save();
+            });
+        } catch (\Exception $e) {
+            Storage::disk('public')->delete($newAvatar);
+            throw $e;
+        }
+
+        Storage::disk('public')->delete($oldAvatar);
+
+        return back();
+    }
+
+    public function destroyAvatar()
+    {
+        $oldAvatar = null;
+
+        DB::transaction(function () use (&$oldAvatar) {
+            $user = Auth::user();
+            if ($user->avatar) {
+                $oldAvatar = $user->avatar;
+            }
+            $user->avatar = null;
+            $user->save();
+        });
+
+        Storage::disk('public')->delete($oldAvatar);
+
+        return back();
     }
 }
