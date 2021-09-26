@@ -9,40 +9,62 @@
     <div class="registration-text">Присоединяйся к нам и бегай по всей России!</div>
 </div>
 
+<form class="registration-form" action="/register" method="post">
+    @csrf
 
-@foreach($errors->all() as $error)
-<p class="error">{{ $error }}</p>
-@endforeach
+    <div class="form-group">
+        <label for="firstname" class="registration-field">Имя</label>
+        <input type="text" name="firstname" id="firstname" placeholder="Введи свое имя">
+        @error('firstname')
+        <p class="error-message">{{ $message }}</p>
+        @enderror
+    </div>
 
-<div class=registration-form>
-    <form action="/register" method="post">
-        @csrf
+    <div class="form-group">
+        <label for="lastname" class="registration-field">Фамилия</label>
+        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Введи свою фамилию">
+        @error('lastname')
+        <p class="error-message">{{ $message }}</p>
+        @enderror
+    </div>
 
-        <div class="form-group">
-            <label class="registration-field">Имя <input name="firstname" placeholder="Введи свое имя"></label>
-        </div>
+    <div class="form-group">
+        <label for="email" class="registration-field">E-mail</label>
+        <input type="email" id="email" name="email" placeholder="Введи свою почту">
+        @error('email')
+        <p class="error-message">{{ $message }}</p>
+        @enderror
+    </div>
 
-        <!-- <label class="registration__field">Фамилия: <input name="lastname"></label> -->
-        <div class="form-group">
-            <label class="registration-field">E-mail: <input type="email" name="email" placeholder="Введи свою почту"></label>
-        </div>
-        <div class="form-group">
-            <label class="registration-field">Пароль: <input type="password" name="password" placeholder="Задай свой пароль"></label>
-        </div>
-        <div class="form-group">
-            <label class="registration-field"><input type="password" name="password_confirmation" value="Повтори пароль"></label>
-        </div>
-        <div class="form-group">
-            <fieldset>
-                <legend>Роль</legend>
-                <label class="registration-field"><input type="radio" name="role" value="user" checked> Участник</label>
-                <label class="registration-field"><input type="radio" name="role" value="organizer"> Организатор</label>
-            </fieldset>
-        </div>
-        <div class="form-group">
-            <input class="registration-btn" type="submit" value="Зарегистрироваться">
-        </div>
-    </form>
-</div>
+    <div class="form-group">
+        <label for="password" class="registration-field">Пароль</label>
+        <input type="password" id="password" name="password" placeholder="Задай свой пароль">
+        @error('password')
+        <p class="error-message">{{ $message }}</p>
+        @enderror
+    </div>
+
+    <div class="form-group">
+        <label for="password_confirmation" class="registration-field"></label>
+        <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Повтори пароль">
+        @error('password_confirmation')
+        <p class="error-message">{{ $message }}</p>
+        @enderror
+    </div>
+
+    <div class="form-group">
+        <fieldset>
+            <legend class="registration-field">Роль</legend>
+            <label class="registration-field">
+                <input type="radio" name="role" value="user" checked>Участник</label>
+            <label class="registration-field">
+                <input type="radio" name="role" value="organizer">Организатор</label>
+        </fieldset>
+    </div>
+
+    <div class="form-group">
+        <input class="registration-btn" type="submit" value="Зарегистрироваться">
+    </div>
+</form>
 
 @endsection

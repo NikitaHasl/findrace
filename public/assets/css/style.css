@@ -63,12 +63,17 @@ body {
 /* right side */
 
 .right-side {
-    height: 600px;
-    padding-left: 180px;
+    height: inherit;
+    padding-left: 200px;
+    padding-bottom: 200px;
+}
+
+.registration-header {
+    padding-bottom: 45px;
 }
 
 .registration-title {
-    font-family: Ubuntu;
+    font-family: Inter;
     font-style: normal;
     font-weight: bold;
     font-size: 28px;
@@ -81,4 +86,111 @@ body {
     font-weight: normal;
     font-size: 16px;
     line-height: 162.02%;
+}
+
+.registration-form {
+    height: 540px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.registration-field {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    color: #2A2921;
+
+}
+
+input[type=text],
+input[type=email],
+input[type=password] {
+    width: 438px;
+    height: 46px;
+    border: 1px solid #EDF2F7;
+    background: #EDF2F7;
+    border-radius: 8px;
+    padding-left: 16px;
+    font-family: Inter;
+    font-size: 13px;
+    color: #7A828A;
+}
+
+fieldset {
+    border-radius: 8px;
+}
+
+.registration-btn {
+    width: 189px;
+    height: 46px;
+    left: 776px;
+    top: 696.34px;
+    background: #4C6FFF;
+    border-radius: 8px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.registration-btn:hover {
+    border: 2px solid #4C6FFF;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 14px;
+    color: #4C6FFF;
+}
+
+.error-message {
+    font-family: Inter;
+    font-size: 11px;
+    color: #F16063;
+}
+
+.alert-success{
+    padding-bottom: 10px;
+    font-family: Inter;
+    font-size: 14px;
+    color: 	#3CB371;
+}
+
+.login-form {
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.forgot-password {
+    margin-left: 379px;
+}
+
+.forgot-password-text{
+    text-decoration: none;
+    font-family: Inter;
+    font-size: 11px;
+    color: #4C6FFF;
+}
+
+.recovery-form{
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.reset-form{
+    height: 290px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
