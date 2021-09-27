@@ -97,6 +97,8 @@
                         <input type="file" class="form-control" id="avatar" name="avatar" required accept=".jpg,.jpeg,.png,.bmp,.gif,.svg,.webp,image/jpeg,image/png,image/bmp,image/x-bmp,image/gif,image/svg+xml,image/webp">
                     </div>
 
+                    <p>Максимальный размер 315&nbsp;&times;&nbsp;315</p>
+
                     <br>
                     <input class="form-control" type="submit" value="Обновить аватар">
                 </form>
