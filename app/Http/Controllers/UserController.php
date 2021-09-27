@@ -6,6 +6,7 @@ use App\Http\Requests\AvatarUpdateRequest;
 use App\Http\Requests\UserUpdate;
 use App\Models\Gender;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -20,7 +21,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
@@ -107,5 +108,38 @@ class UserController extends Controller
         Storage::disk('public')->delete($oldAvatar);
 
         return back();
+    }
+
+    public function searchForUser(Request $request)
+    {
+        $firstName = $request->input('firstname');
+        $lastName = $request->input('lastname');
+        $firstNameQuery = '%' . $firstName . '%';
+        $lastNameQuery = '%' . $lastName . '%';
+        $query = User::query();
+
+        if (!empty($firstName)) {
+            $query->where('firstname', 'LIKE', $firstNameQuery);
+        }
+        if (!empty($lastName)) {
+            $query->where('lastname', 'LIKE', $lastNameQuery);
+        }
+
+        $users = $query->get();
+        return view('userSearch.results', [
+            'users' => $users
+        ]);
+    }
+
+    public function userSearchView() {
+        return view('userSearch.search');
+    }
+
+    public function showProfile(int $id)
+    {
+        $profile = User::find($id);
+        return view('profile.profile', [
+            'profile' => $profile
+        ]);
     }
 }
