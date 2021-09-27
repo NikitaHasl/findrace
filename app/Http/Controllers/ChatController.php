@@ -22,10 +22,6 @@ class ChatController extends Controller
     {
         $recipient = User::find($recipient_id);
         $author_id = Auth::id();
-//        $messages = Message::select()
-//            ->where('recipient_id', $recipient_id)
-//            ->orWhere('recipient_id', $author_id)
-//            ->get();
 
         $messages = Message::select()
             ->where([
@@ -39,7 +35,6 @@ class ChatController extends Controller
             ->orderBy('created_at')
             ->get();
 
-//        dd($messages);
 
         return view('chat.chat', [
             'recipient' => $recipient,
