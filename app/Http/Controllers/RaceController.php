@@ -89,11 +89,11 @@ class RaceController extends Controller
     {
         Race::create([
             'title' => $request->post('title'),
-            'city_id' => (int) $request->post('city'),
-            'type_of_race_id' => (int) $request->post('type'),
-            'status_of_race_id' => (int) $request->post('status'),
+            'city_id' => (int)$request->post('city'),
+            'type_of_race_id' => (int)$request->post('type'),
+            'status_of_race_id' => (int)$request->post('status'),
             'date' => $request->post('date') . ' ' . $request->post('time'),
-            'distance' => (int) $request->post('distance'),
+            'distance' => (int)$request->post('distance'),
             'description' => $request->post('description'),
             'start' => $request->post('start'),
             'finish' => $request->post('finish'),
@@ -140,14 +140,26 @@ class RaceController extends Controller
          * Исключаем все повторения и объединяем в строку. Получаем запрос для поиска подстрок.
          * */
         $words = array_unique($words); //Исключаем все повторения.
-        $query = implode(" ", $words); //
-        $results = Race::whereRaw(
-            // title, description, start, finish - поля, по которым нужно искать
-            "MATCH(title, description, start, finish) AGAINST(? IN BOOLEAN MODE)",
-            $query
-        )
+        $query = implode(" ", $words); //Соединяем всё в массив.
+        $results = Race::join('cities', 'races.city_id', '=', 'cities.id')
+            ->join('types_of_race', 'races.type_of_race_id', '=', 'types_of_race.id')
+            ->whereRaw(
+            // в таблице races ищем по полям title, description, start, finish...
+                "MATCH(title, description, start, finish) AGAINST(? IN BOOLEAN MODE)",
+                $query
+            )
+            // по полю city...
+            ->orWhereRaw(
+                "MATCH(city) AGAINST(? IN BOOLEAN MODE)",
+                $query
+            )
+            // и по полю type_of_race.
+            ->orWhereRaw(
+                "MATCH(type_of_race) AGAINST(? IN BOOLEAN MODE)",
+                $query
+            )
             ->get();
-
+        dd($results);
         return view('races.index', [
             'races' => $results,
             'cities' => City::all(),
@@ -159,7 +171,7 @@ class RaceController extends Controller
     {
         $params = ['race' => Race::with('users')->find($id)];
 
-        if($request->has('user')) {
+        if ($request->has('user')) {
             $params['user_id'] = $request->input('user');
         }
 
@@ -177,7 +189,8 @@ class RaceController extends Controller
         return back();
     }
 
-    public function listParticipants(Race $race) {
+    public function listParticipants(Race $race)
+    {
         $participants = User::select(['users.*'])
             ->join('registrations_for_race', 'user_id', '=', 'users.id')
             ->where('race_id', $race->id)
