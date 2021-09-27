@@ -3,6 +3,7 @@ body {
     width: 100vw;
     margin: 0 auto;
     font-family: "ubuntu", sans-serif;
+    overflow:  hidden; 
 }
 
 /* header */
@@ -38,7 +39,7 @@ body {
 /* left side */
 
 .left-side {
-    height: 95%;
+    height: 85%;
     position: relative;
     width: 633px;
     background: #EDF2F7;
@@ -46,7 +47,7 @@ body {
 
 .white-parallelogram {
     position: relative;
-    bottom: 320px;
+    bottom: 390px;
     width: 633px;
     height: 400px;
     transform: skew(-10deg) rotate(-10deg) translateY(40px);
@@ -55,7 +56,7 @@ body {
 
 .run-img {
     position: relative;
-    top: 150px;
+    top: 75px;
     left: 80px;
     z-index: 1;
 }
@@ -63,9 +64,11 @@ body {
 /* right side */
 
 .right-side {
-    height: inherit;
+    height: 80vh;
     padding-left: 200px;
-    padding-bottom: 200px;
+}
+.registration{
+    padding-bottom: 250px;
 }
 
 .registration-header {

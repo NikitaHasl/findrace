@@ -22,9 +22,9 @@
             <div class="white-parallelogram">
             </div>
         </div>
-        <div class="right-side">
+       
             @yield('content')
-        </div>
+      
     </main>
     <footer></footer>
 </body>
