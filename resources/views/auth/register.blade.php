@@ -5,7 +5,7 @@
 @section('content')
 
 <div class=registration-header>
-    <div class="registration-title">Регестрируйся и беги</div>
+    <div class="registration-title">Регистрируйся и беги</div>
     <div class="registration-text">Присоединяйся к нам и бегай по всей России!</div>
 </div>
 
