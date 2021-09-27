@@ -80,8 +80,9 @@ class AccountController extends Controller
     {
         $user_id = Auth::user()->id;
         //не совсем правильная логика так как удаляет
-        $status = Registration::where('race_id', '=', $race_id, 'and', 'user_id', '=', $user_id)->delete();
-
+        $status = Registration::where('race_id', '=', $race_id)
+            ->where('user_id', '=', $user_id)
+            ->delete();
         if ($status) {
             return back()->with('success', 'Вы успешно отписались от забега!');
         } else {
