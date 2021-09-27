@@ -141,7 +141,8 @@ class RaceController extends Controller
          * */
         $words = array_unique($words); //Исключаем все повторения.
         $query = implode(" ", $words); //Соединяем всё в массив.
-        $results = Race::join('cities', 'races.city_id', '=', 'cities.id')
+        $results = Race::select('races.*')
+            ->join('cities', 'races.city_id', '=', 'cities.id')
             ->join('types_of_race', 'races.type_of_race_id', '=', 'types_of_race.id')
             ->whereRaw(
             // в таблице races ищем по полям title, description, start, finish...
@@ -150,7 +151,7 @@ class RaceController extends Controller
             )
             // по полю city...
             ->orWhereRaw(
-                "MATCH(city) AGAINST(? IN BOOLEAN MODE)",
+                "MATCH(city_title) AGAINST(? IN BOOLEAN MODE)",
                 $query
             )
             // и по полю type_of_race.
@@ -159,7 +160,6 @@ class RaceController extends Controller
                 $query
             )
             ->get();
-        dd($results);
         return view('races.index', [
             'races' => $results,
             'cities' => City::all(),

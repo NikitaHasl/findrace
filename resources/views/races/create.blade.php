@@ -21,7 +21,7 @@
             <label>Название: <input required type="text" name="title"></label>
             <label>Город: <select required name="city">
                 @foreach($cities as $city)
-                    <option value="{{ $city->id }}">{{ $city->city }}</option>
+                    <option value="{{ $city->id }}">{{ $city->city_title }}</option>
                 @endforeach
             </select></label>
             <label>Тип: <select required name="type">

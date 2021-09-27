@@ -13,7 +13,7 @@
                 </div>
                 <div class="filter__block">
                     @foreach($cities as $city)
-                        <p>{{$city->city}}<input type="checkbox" name="{{$city->city}} city" value="{{$city->id}}"></p>
+                        <p>{{$city->city_title}}<input type="checkbox" name="{{$city->city_title}} city" value="{{$city->id}}"></p>
                     @endforeach
                 </div>
                 <div class="filter__option">
@@ -65,7 +65,7 @@
                 <div class="feed__item">
                     <p class="feed__title">{{ $race->title }}</p>
                     <div class="feed__block">
-                        <p class="feed__address">{{ $race->city->city }}</p>
+                        <p class="feed__address">{{ $race->city->city_title }}</p>
                         <div class="feed__expand">
                             <i class="fas fa-caret-right"></i>
                         </div>
