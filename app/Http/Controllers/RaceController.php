@@ -142,7 +142,7 @@ class RaceController extends Controller
         $words = array_unique($words); //Исключаем все повторения.
         $query = implode(" ", $words); //
         $results = Race::whereRaw(
-        // title, description, start, finish - поля, по которым нужно искать
+            // title, description, start, finish - поля, по которым нужно искать
             "MATCH(title, description, start, finish) AGAINST(? IN BOOLEAN MODE)",
             $query
         )
