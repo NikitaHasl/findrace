@@ -1,13 +1,13 @@
 @extends('layout.main')
 
-@section('title', 'Создать забег')
+@section('title', 'Профиль')
 
 
 @section('content')
     <div class="profile">
-        <p class="profile__name">{{$profile[0]->firstname}} {{$profile[0]->lastname}}</p>
-        <p class="profile__email">{{$profile[0]->email}}</p>
-        <p class="profile__birthday">{{$profile[0]->birthday}}</p>
-        <a href="{{route('chat.show', ['profile' => $profile[0]->id])}}"><button>Написать сообщение</button></a>
+        <p class="profile__name">{{$profile->firstname}} {{$profile->lastname}}</p>
+        <p class="profile__email">{{$profile->email}}</p>
+        <p class="profile__birthday">{{$profile->birthday}}</p>
+        <a href="{{route('chat.show', ['profile' => $profile->id])}}"><button>Написать сообщение</button></a>
     </div>
 @endsection

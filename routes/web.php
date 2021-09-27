@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AccountController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\RaceController;
 use App\Http\Controllers\UserController;
@@ -78,7 +77,7 @@ Route::put('/addResults/{race}', [RaceController::class, 'updateResult'])
     ->name('updateResults');
 
 // PROFILE //
-Route::get('showProfile/{id}', [ProfileController::class, 'showProfile'])
+Route::get('showProfile/{id}', [UserController::class, 'showProfile'])
     ->name('profile.show');
 
 // CHAT //

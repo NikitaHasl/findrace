@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chat;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class ChatController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,13 +20,26 @@ class ChatController extends Controller
      */
     public function index($recipient_id)
     {
-        $recipient = User::where('id', $recipient_id)->get();
+        $recipient = User::find($recipient_id);
         $author_id = Auth::id();
-        $messages = Chat::select(['chat.*', 'messages.*'])
-            ->join('messages', 'messages.id', '=', 'chat.message_id')
-            ->where('recipient_id', $recipient_id)
-            ->orWhere('recipient_id', $author_id)
+//        $messages = Message::select()
+//            ->where('recipient_id', $recipient_id)
+//            ->orWhere('recipient_id', $author_id)
+//            ->get();
+
+        $messages = Message::select()
+            ->where([
+                ['author_id', '=', $author_id],
+                ['recipient_id', '=', $recipient_id]
+            ])
+            ->orWhere([
+                ['author_id', '=', $recipient_id],
+                ['recipient_id', '=', $author_id]
+            ])
+            ->orderBy('created_at')
             ->get();
+
+//        dd($messages);
 
         return view('chat.chat', [
             'recipient' => $recipient,
@@ -51,20 +66,14 @@ class ChatController extends Controller
      */
     public function store(Request $request, $recipient_id)
     {
-        $user = Auth::user();
-        $author_id = $user->id;
+        $author_id = Auth::id();
 
         // create new message
         $message = new Message();
         $message->content = $request->message;
         $message->author_id = $author_id;
+        $message->recipient_id = $recipient_id;
         $message->save();
-
-        // create new entry in chat
-        $chat = new Chat();
-        $chat->recipient_id = $recipient_id;
-        $chat->message_id = $message->id;
-        $chat->save();
 
         return redirect()->route('chat.show', ['profile' => $recipient_id]);
     }

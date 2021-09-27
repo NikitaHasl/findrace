@@ -79,4 +79,12 @@ class UserController extends Controller
     public function userSearchView() {
         return view('userSearch.search');
     }
+
+    public function showProfile(int $id)
+    {
+        $profile = User::find($id);
+        return view('profile.profile', [
+            'profile' => $profile
+        ]);
+    }
 }

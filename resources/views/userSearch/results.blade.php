@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('title', 'Создать забег')
+@section('title', 'Результаты поиска')
 
 
 @section('content')
