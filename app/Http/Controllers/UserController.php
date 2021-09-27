@@ -38,6 +38,10 @@ class UserController extends Controller
      */
     public function update(UserUpdate $request, User $user)
     {
+        if ($user->id !== Auth::id()) {
+            abort(403);
+        }
+
         $data = $request->validated();
         $statusUser = $user->fill($data)->save();
         if ($statusUser) {
@@ -48,6 +52,10 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        if ($user->id !== Auth::id()) {
+            abort(403);
+        }
+
         $status = $user->delete();
         if ($status) {
             return redirect()->route('index')->with('success', 'Аккаунт успешно удален!');
