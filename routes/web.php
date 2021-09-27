@@ -44,6 +44,21 @@ Route::get('/register', function () {
 Route::get('/account', [AccountController::class, 'index'])
     ->name('account');
 
+Route::group([
+    'prefix' => 'account',
+    'as' => 'account.',
+    'middleware' => ['auth']
+], function () {
+    Route::resource('user', UserController::class)->shallow()
+        ->except(['create', 'store', 'show']);
+});
+
+Route::put('/account/avatar', [UserController::class, 'updateAvatar'])
+    ->name('account.avatar.update');
+
+Route::delete('/account/avatar', [UserController::class, 'destroyAvatar'])
+->name('account.avatar.destroy');
+
 Route::get('/account/active', [AccountController::class, 'showActiveRaces'])
     ->name('account.active');
 
@@ -67,12 +82,3 @@ Route::get('/addResults/{id}', [RaceController::class, 'addResults'])
     ->name('addResults');
 Route::put('/addResults/{race}', [RaceController::class, 'updateResult'])
     ->name('updateResults');
-
-
-Route::group([
-    'prefix' => 'account',
-    'as' => 'account.',
-    'middleware' => ['auth']
-], function () {
-    Route::resource('user', UserController::class)->shallow()->except(['create', 'store', 'show']);
-});

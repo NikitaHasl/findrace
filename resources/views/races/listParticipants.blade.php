@@ -11,8 +11,13 @@
         @else
             <ul>
                 @foreach($participants as $participant)
-                    <li>{{ $participant->firstname }} {{ $participant->lastname }} &bull;
-                        <a href="{{ route('addResults', ['id' => $race->id, 'user' => $participant->id]) }}">Добавить результаты</a></li>
+                    <li>
+                        @if($participant->avatar)
+                            <img src="{{ asset('storage/' . $participant->avatar) }}">
+                        @endif
+                        {{ $participant->firstname }} {{ $participant->lastname }} &bull;
+                        <a href="{{ route('addResults', ['id' => $race->id, 'user' => $participant->id]) }}">Добавить результаты</a>
+                    </li>
                 @endforeach
             </ul>
         @endif
