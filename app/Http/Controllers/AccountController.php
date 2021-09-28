@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Race;
 use App\Models\User;
+use App\Models\Gender;
 use App\Models\Registration;
 use Exception;
 
@@ -19,10 +20,6 @@ class AccountController extends Controller
     public function index()
     {
         $user = Auth::user();
-        // $activeRaces = Registration::select(['user_id'])
-        // ->where('user_id', '=', $user->id)
-        // ->count();
-
         $activeRaces = Registration::select(['registrations_for_race.user_id'])
             ->join('races', 'race_id', '=', 'races.id')
             ->where('user_id', '=', $user->id)
@@ -38,6 +35,31 @@ class AccountController extends Controller
             'activeRaces' => $activeRaces,
             'finishedRaces' => $finishedRaces,
         ]);
+    }
+
+    public function showChangePassword(){
+        $user = Auth::user();
+        return view('user.changePassword', [
+            'user' => $user,
+        ]);
+
+    }
+
+    public function showChangeUserData(){
+        $user = Auth::user();
+        return view('user.changeUserData', [
+            'user' => $user,
+            'genders' => Gender::all(),
+        ]);
+
+    }
+
+    public function showChangeUserAvatar(){
+        $user = Auth::user();
+        return view('user.changeUserAvatar', [
+            'user' => $user,
+        ]);
+
     }
 
     public function showActiveRaces()

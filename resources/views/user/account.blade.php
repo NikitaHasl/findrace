@@ -14,7 +14,7 @@
         @endif
 
         <div class="user-name">{{$user->firstname}}</div>
-        <div class="user-since">бегает с {{$user->created_at->toDateString()}}</div>
+        <div class="user-since">на сайте с {{$user->created_at->toDateString()}}</div>
         <div class="run-info">
             <div class="run-number">
                 @if($activeRaces)
@@ -30,9 +30,13 @@
                 @endif
             </div>
         </div>
-        <div class="run-info">
-            <div class="run-text">Активные забеги</div>
-            <div class="run-text">Прошедшие забеги</div>
+        <div class="run-link">
+            <div class="run-active">
+                <a class="run-text" href="{{route('account.active')}}">Активные забеги</a>
+            </div>
+            <div class="run-finished">
+                <a class="run-text" href="{{route('account.finished')}}">Прошедшие забеги</a>
+            </div>
         </div>
     </div>
 
@@ -40,11 +44,11 @@
         <div class="main-data">Основные данные</div>
         <div class="list-data">
 
-            <div><a class="list-data-option" href="">Настройка данных</a></div>
+            <div><a class="list-data-option" href="{{route('account.data')}}"><i class="fas fa-cog"></i> Настройка данных</a></div>
             <div class="line"></div>
-            <div><a class="list-data-option" href="{{route('account.user.index')}}">Изменить пароль</a></div>
+            <div><a class="list-data-option" href="{{route('account.password')}}"><i class="fas fa-lock"></i> Изменить пароль</a></div>
             <div class="line"></div>
-            <div><a class="list-data-option" href="">Изменить фото профиля</a></div>
+            <div><a class="list-data-option" href="{{route('account.avatar')}}"><i class="fas fa-user-circle"></i> Изменить фото профиля</a></div>
             <div class="line"></div>
         </div>
         <div class="expl-data">Ты можешь менять основные данные,
@@ -59,9 +63,5 @@
 
 
 </div>
-
-
-
-
 
 @endsection

@@ -25,8 +25,10 @@ Route::resource('races', RaceController::class)
 Route::get('/', [RaceController::class, 'index'])
     ->name('index');
 
-Route::get('/races/{race}/participants',
-    [RaceController::class, 'listParticipants'])->name('listParticipants');
+Route::get(
+    '/races/{race}/participants',
+    [RaceController::class, 'listParticipants']
+)->name('listParticipants');
 
 // AUTH //
 Route::get('/logout', function () {
@@ -58,10 +60,19 @@ Route::put('/account/avatar', [UserController::class, 'updateAvatar'])
     ->name('account.avatar.update');
 
 Route::delete('/account/avatar', [UserController::class, 'destroyAvatar'])
-->name('account.avatar.destroy');
+    ->name('account.avatar.destroy');
 
 Route::get('/account/active', [AccountController::class, 'showActiveRaces'])
     ->name('account.active');
+
+Route::get('/account/password', [AccountController::class, 'showChangePassword'])
+    ->name('account.password');
+
+Route::get('/account/data', [AccountController::class, 'showChangeUserData'])
+    ->name('account.data');
+
+Route::get('/account/avatar', [AccountController::class, 'showChangeUserAvatar'])
+    ->name('account.avatar');
 
 Route::get('/account/finished', [AccountController::class, 'showFinishedRaces'])
     ->name('account.finished');
