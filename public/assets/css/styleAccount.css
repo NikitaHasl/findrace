@@ -1,0 +1,113 @@
+/* account layout */
+
+html,
+body {
+    height: 100%;
+    font-family: "ubuntu", sans-serif;
+}
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1 1 auto;
+}
+
+.header {
+    height: 48px;
+    padding-top: 15px;
+    padding-left: 18px;
+    display: inline-block;
+}
+
+.footer {
+    height: 61px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 40px;
+}
+
+.footer-right {
+    min-width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.logo-text {
+    color: black;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+}
+
+.account-text {
+    color: #6C757D;
+    padding-left: 25px;
+    font-size: 16px;
+    line-height: 18px;
+    text-decoration: none;
+}
+
+.account-text:hover {
+    color: #2A2921;
+}
+
+/* main */
+
+.inside {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.left-side {
+    width: 468px;
+    height: 348px;
+    left: 275.76px;
+    top: 108px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 1px rgba(12, 26, 75, 0.24), 0px 3px 8px -1px rgba(50, 50, 71, 0.05);
+    border-radius: 10px;
+}
+
+.right-side {
+    width: 484px;
+    height: 315px;
+    left: 776px;
+    top: 108px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 0px 1px rgba(12, 26, 75, 0.24), 0px 3px 8px -1px rgba(50, 50, 71, 0.05);
+    border-radius: 10px;
+}
+
+.blue-block {
+    margin-left: 9px;
+    margin-top: 9px;
+    width: 452px;
+    height: 123px;
+    background: #E4ECF7;
+    border-radius: 10px;
+}
+
+img {
+    /* background: #4C6FFF; */
+    max-height: 100px;
+    border-radius: 100px;
+    border: 3px solid #FFFFFF;
+    box-sizing: border-box;
+    position: relative;
+    top: -49px;
+    left: 188px;
+    z-index: 1;
+}
+.user-info{
+    padding-left: ;
+}
