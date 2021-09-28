@@ -24,7 +24,7 @@
         </div>
         <div class="race__description">
             <p class="race__title">{{ $race->title }}</p>
-            <p class="race__address">{{ $race->city->city }}</p>
+            <p class="race__address">{{ $race->city->city_title }}</p>
             <span class="race__date">{{ $race->date->isoFormat('LL') }}</span>
             <span class="race__length">{{ $race->distance }}&nbsp;км</span>
             <p class="race__subTitle">Описание</p>

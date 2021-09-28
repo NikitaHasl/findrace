@@ -18,19 +18,19 @@ class CitySeeder extends Seeder
         DB::table('cities')->insert([
             [
                 'country_id' => 1,
-                'city' => 'Москва',
+                'city_title' => 'Москва',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'country_id' => 1,
-                'city' => 'Санкт-Петербург',
+                'city_title' => 'Санкт-Петербург',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'country_id' => 2,
-                'city' => 'Минск',
+                'city_title' => 'Минск',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
