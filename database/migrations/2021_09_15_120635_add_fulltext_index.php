@@ -14,7 +14,7 @@ class AddFulltextIndex extends Migration
     public function up()
     {
         DB::statement('ALTER TABLE races ADD FULLTEXT full(title, description, start, finish)');
-        DB::statement('ALTER TABLE cities ADD FULLTEXT full(city_title)');
+        DB::statement('ALTER TABLE cities ADD FULLTEXT full(city)');
         DB::statement('ALTER TABLE types_of_race ADD FULLTEXT full(type_of_race)');
     }
 
