@@ -11,14 +11,32 @@ use Exception;
 
 class AccountController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
     public function index()
     {
+        $user = Auth::user();
+        // $activeRaces = Registration::select(['user_id'])
+        // ->where('user_id', '=', $user->id)
+        // ->count();
+
+        $activeRaces = Registration::select(['registrations_for_race.user_id'])
+            ->join('races', 'race_id', '=', 'races.id')
+            ->where('user_id', '=', $user->id)
+            ->where('status_of_race_id', 1)
+            ->count();
+        $finishedRaces = Registration::select(['registrations_for_race.user_id'])
+            ->join('races', 'race_id', '=', 'races.id')
+            ->where('user_id', '=', $user->id)
+            ->where('status_of_race_id', 3)
+            ->count();
         return view('user.account', [
-            'user' => Auth::user()
+            'user' => $user,
+            'activeRaces' => $activeRaces,
+            'finishedRaces' => $finishedRaces,
         ]);
     }
 
