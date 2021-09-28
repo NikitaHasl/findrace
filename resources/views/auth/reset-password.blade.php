@@ -1,68 +1,49 @@
-@extends('layout.main')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+@extends('layout.reglog')
+
 @section('title', 'Вход')
 
 @section('content')
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Изменение пароля</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
-
-                        <input type="hidden" name="token" value="{{ request()->token }}">
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">Адрес электронной почты</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Новый пароль</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Подтверждение пароля</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Изменить пароль
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class=registration-header>
+    <div class="registration-title">Сброс пароля</div>
+    <div class="registration-text">Задай новый пароль для твоего аккаунта!</div>
 </div>
+
+<form class="reset-form" method="POST" action="{{ route('password.update') }}">
+    @csrf
+
+    <input type="hidden" name="token" value="{{ request()->token }}">
+
+    <div class="form-group">
+        <label for="email" class="registration-field">E-mail</label>
+        <input id="email" type="email" name="email" placeholder="Введи свою почту">
+
+        @error('email')
+        <p class="error-message">{{ $message }}</p>
+        @enderror
+    </div>
+
+    <div class="form-group">
+        <label for="password" class="registration-field">Новый пароль</label>
+        <input id="password" type="password" name="password" placeholder="Введи новый пароль">
+
+        @error('password')
+        <p class="error-message">{{ $message }}</p>
+        @enderror
+    </div>
+
+    <div class="form-group">
+        <label for="password-confirm"></label>
+        <input id="password-confirm" type="password" name="password_confirmation" placeholder="Повтори пароль">
+
+        @error('password-confirm')
+        <p class="error-message">{{ $message }}</p>
+        @enderror
+    </div>
+
+    <div class="form-group">
+        <input class="registration-btn" type="submit" value="Отправить">
+    </div>
+</form>
+
 @endsection

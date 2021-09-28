@@ -1,0 +1,13 @@
+.message{
+    display: inline-block;
+    border-radius: 5px;
+    padding: 5px;
+    width: fit-content;
+    &--own {
+        background-color: blue;
+        align-self: flex-end;
+    }
+    &--other {
+        background-color: grey;
+    }
+}

@@ -24,6 +24,7 @@
         </div>
         <div class="nav__auth">
             @auth
+            <button class="nav__button"><a href="{{ route('userSearch') }}">Пользователи</a></button>
             <button class="nav__button"><a href="{{ route('account') }}">Личный кабинет</a></button>
             <button class="nav__button"><a href="{{ route('logout') }}">Выйти</a></button>
             @else

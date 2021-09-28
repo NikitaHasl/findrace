@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\RaceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,21 @@ Route::get('/register', function () {
 Route::get('/account', [AccountController::class, 'index'])
     ->name('account');
 
+Route::group([
+    'prefix' => 'account',
+    'as' => 'account.',
+    'middleware' => ['auth']
+], function () {
+    Route::resource('user', UserController::class)->shallow()
+        ->except(['create', 'store', 'show']);
+});
+
+Route::put('/account/avatar', [UserController::class, 'updateAvatar'])
+    ->name('account.avatar.update');
+
+Route::delete('/account/avatar', [UserController::class, 'destroyAvatar'])
+->name('account.avatar.destroy');
+
 Route::get('/account/active', [AccountController::class, 'showActiveRaces'])
     ->name('account.active');
 
@@ -62,12 +78,29 @@ Route::get('/account/unsubscribe/{race_id}', [AccountController::class, 'unsubsc
 Route::get('/search', [RaceController::class, 'search'])
     ->name('search');
 
+Route::get('/userSearch', [UserController::class, 'userSearchView'])
+    ->name('userSearch');
+
+Route::get('/searchForUser', [UserController::class, 'searchForUser'])
+    ->name('searchForUser');
+
+// RESULTS //
 Route::get('/addResults/{id}', [RaceController::class, 'addResults'])
     ->where('id', '\d+')
     ->name('addResults');
 Route::put('/addResults/{race}', [RaceController::class, 'updateResult'])
     ->name('updateResults');
 
+// PROFILE //
+Route::get('showProfile/{id}', [UserController::class, 'showProfile'])
+    ->name('profile.show');
+
+// CHAT //
+Route::get('chat/{profile}', [ChatController::class, 'index'])
+    ->name('chat.show');
+
+Route::post('chat/{recipient}', [ChatController::class, 'store'])
+    ->name('chat.store');
 
 Route::group([
     'prefix' => 'account',

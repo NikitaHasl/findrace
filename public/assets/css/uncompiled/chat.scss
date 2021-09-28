@@ -1,0 +1,22 @@
+.chat {
+    width: 100%;
+    display: flex;
+    &__previousMessages {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+    }
+    &__messageSection {
+        width: 70%;
+    }
+    &__input {
+        width: 80%;
+    }
+    &__submit {
+        width: 19%;
+    }
+    &__profile {
+        width: 30%;
+        text-align: center;
+    }
+}

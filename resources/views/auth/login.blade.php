@@ -1,24 +1,37 @@
-@extends('layout.main')
+@extends('layout.reglog')
 
 @section('title', 'Вход')
 
 @section('content')
-    <div class="login">
-        <h1 class="login__header">Вход</h1>
-        @foreach($errors->all() as $error)
-            <p class="error">{{ $error }}</p>
-        @endforeach
-        <form action="/login" method="post">
-            @csrf
-            <label class="login__field">Почта: <input type="email" name="email"></label>
-            <label class="login__field">Пароль: <input type="password" name="password"></label>
-            <label class="login__field"><input type="checkbox" name="remember">
-                Запомнить меня</label>
-            <input class="login__btn" type="submit" value="Войти">
-        </form>
-        <br>
+
+<div class=registration-header>
+    <div class="registration-title">Вход в аккаунт</div>
+    <div class="registration-text">Мы рады твоему возвращению!</div>
+</div>
+
+<form class="login-form" action="/login" method="post">
+    @csrf
+    <div class="form-group">
+    <label for="email" class="registration-field">E-mail</label>
+        <input type="email" id="email" name="email" placeholder="Введи свою почту">
+        @error('email')
+        <p class="error-message">{{ $message }}</p>
+        @enderror
+    </div>
+
+    <div class="form-group">
+        <label for="password" class="registration-field">Пароль</label>
+        <input type="password" id="password" name="password" placeholder="Введи пароль">
+        @error('password')
+        <p class="error-message">{{ $message }}</p>
+        @enderror
+    </div>
+    <div class="forgot-password">
         @if(Route::has('password.request'))
-        <a href="{{ route('password.request') }}">Забыли пароль?</a>
+        <a class="forgot-password-text" href="{{ route('password.request') }}">Забыли пароль?</a>
         @endif
     </div>
+    <input class="registration-btn" type="submit" value="Вход">
+</form>
+
 @endsection

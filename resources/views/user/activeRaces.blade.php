@@ -25,9 +25,13 @@
             <div class="col-lg-4 pb-5">
                 <!-- Account Sidebar-->
                 <div class="author-card pb-3">
-                    <div class="author-card-cover" style="background-image: url(https://demo.createx.studio/createx-html/img/widgets/author/cover.jpg);"><a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title="" data-original-title="You currently have 290 Reward points"><i class="fa fa-award text-md"></i>&nbsp;290 points</a></div>
                     <div class="author-card-profile">
-                        <div class="author-card-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Daniel Adams">
+                        <div class="author-card-avatar">
+                            @if($user->avatar)
+                                <img src="{{ asset('storage/' . $user->avatar) }}">
+                            @else
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                            @endif
                         </div>
                         <div class="author-card-details">
                             <h5 class="author-card-name text-lg">{{$user->firstname}} {{$user->lastname}}</h5><span class="author-card-position">присоединился {{$user->created_at->toDateString()}}</span>
