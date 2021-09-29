@@ -77,6 +77,9 @@ Route::get('/account/avatar', [AccountController::class, 'showChangeUserAvatar']
 Route::get('/account/finished', [AccountController::class, 'showFinishedRaces'])
     ->name('account.finished');
 
+Route::get('/account/races', [AccountController::class, 'showOrganizerRaces'])
+    ->name('account.races');
+
 Route::get('/subscribe/{id}', [AccountController::class, 'subscribe'])
     ->where('id', '\d+')
     ->name('subscribe');

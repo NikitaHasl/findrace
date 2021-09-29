@@ -193,9 +193,9 @@ class RaceController extends Controller
             abort(403);
         }
 
-        $participants = User::select(['users.*'])
+        $participants = User::select(['*'])
             ->join('registrations_for_race', 'user_id', '=', 'users.id')
-            ->where('race_id', $race->id)
+            ->where('race_id', '=', $race->id)
             ->get();
 
         return view('races.listParticipants', [

@@ -62,6 +62,18 @@ class AccountController extends Controller
 
     }
 
+    public function showOrganizerRaces(){
+        $user = Auth::user();
+        $organizerRaces = Race::select(['races.*'])
+        ->join('cities', 'city_id', '=', 'cities.id')
+        ->where('organizer_id', '=', $user->id)
+        ->get();
+        return view('user.showOrganizerRaces', [
+            'user' => $user,
+            'races' => $organizerRaces,
+        ]);
+    }
+
     public function showActiveRaces()
     {
         $user = Auth::user();

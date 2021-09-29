@@ -30,6 +30,7 @@
                 @endif
             </div>
         </div>
+
         <div class="run-link">
             <div class="run-active">
                 <a class="run-text" href="{{route('account.active')}}">Активные забеги</a>
@@ -38,6 +39,19 @@
                 <a class="run-text" href="{{route('account.finished')}}">Прошедшие забеги</a>
             </div>
         </div>
+        @auth
+        @if(Auth::user()->hasRole(\App\Models\Role::ORGANIZER))
+        <div class="create-block">
+            <div class="create-title">Создать забег</div>
+            <div class="create-expl">Ты можещь создавать новые забеги</div>
+
+            <form action="{{ route('races.create') }}" method="get">
+                @csrf
+                <input class="logout-btn" type="submit" value="Создать">
+            </form>
+        </div>
+        @endif
+        @endauth
     </div>
 
     <div class="right-side">
@@ -59,6 +73,20 @@
             <input class="logout-btn" type="submit" value="Выход">
         </form>
 
+        @auth
+        @if(Auth::user()->hasRole(\App\Models\Role::ORGANIZER))
+        <div class="statistic-block">
+            <div class="create-title">Статистика по созданным забегам</div>
+            <div class="create-expl">Ты можешь посмотреть все данные, по твоим созданным
+                забегам и мероприятиям.</div>
+
+            <form action="{{ route('account.races') }}" method="get">
+                @csrf
+                <input class="logout-btn watch-btn" type="submit" value="Смотреть">
+            </form>
+        </div>
+        @endif
+        @endauth
     </div>
 
 
