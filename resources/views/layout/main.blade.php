@@ -14,22 +14,17 @@
 
 <body class="preload">
     <nav class="nav">
-        <a href="{{ route('index') }}"><i class="nav__logo fas fa-running"></i></a>
-        <div>
-            <form action="{{ route('search') }}" method="get">
-                @csrf
-                <input class="nav_form" type="search" name="string">
-                <button class="nav__button" type="submit"><i class="fas fa-search"></i></button>
-            </form>
-        </div>
+        <a class="nav__logo" href="{{ route('index') }}">FindRace</a>
         <div class="nav__auth">
             @auth
-            <button class="nav__button"><a href="{{ route('userSearch') }}">Пользователи</a></button>
-            <button class="nav__button"><a href="{{ route('account') }}">Личный кабинет</a></button>
-            <button class="nav__button"><a href="{{ route('logout') }}">Выйти</a></button>
+            <a class="nav__item nav__item--active" href="{{ route('index') }}">Главная</a>
+            <a class="nav__item" href="{{ route('userSearch') }}">Чат</a>
+            <a class="nav__item" href="{{ route('account') }}">Профиль</a>
+            <a class="nav__item" href="{{ route('logout') }}">Выйти</a>
             @else
-            <button class="nav__button"><a href="{{ route('login') }}">Войти</a></button>
-            <button class="nav__button"><a href="{{ route('register') }}">Регистрация</a></button>
+            <a class="nav__item nav__item--active" href="{{ route('index') }}">Главная</a>
+            <a class="nav__item" href="{{ route('login') }}">Войти</a>
+            <a class="nav__item" href="{{ route('register') }}">Регистрация</a>
             @endauth
         </div>
     </nav>

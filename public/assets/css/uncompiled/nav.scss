@@ -1,13 +1,15 @@
 .nav {
     align-items: center;
     display: flex;
-    justify-content: space-between;
     width: 100%;
     background-color: #fff;
     padding: 1rem;
+    border-bottom: 1px solid $navGrey;
     &__logo {
-        color: $orange;
-        font-size: 2rem;
+        color: $lightBlack;
+        font-size: 1.5rem;
+        text-decoration: none;
+        font-weight: bold;
     }
   &__button {
     background-color: $orange;
@@ -27,4 +29,17 @@
       background-color: darken($orange, 2);
     }
   }
+    &__item {
+        color: $navGrey;
+        text-decoration: none;
+        font-size: 1rem;
+        margin-left: 3rem;
+        transition: all .3s;
+        &--active {
+            color: $lightBlack;
+        }
+        &:hover {
+            color: $lightBlack;
+        }
+    }
 }

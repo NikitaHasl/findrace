@@ -8,7 +8,6 @@
 body {
   height: 100vh;
   width: 100vw;
-  background-color: #E5E5E5;
   font-family: "ubuntu", sans-serif;
 }
 
@@ -24,14 +23,16 @@ body {
 .nav {
   align-items: center;
   display: flex;
-  justify-content: space-between;
   width: 100%;
   background-color: #fff;
   padding: 1rem;
+  border-bottom: 1px solid #DEE2E6;
 }
 .nav__logo {
-  color: #FA9600;
-  font-size: 2rem;
+  color: #2A2921;
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-weight: bold;
 }
 .nav__button {
   background-color: #FA9600;
@@ -50,6 +51,19 @@ body {
 }
 .nav__button:hover {
   background-color: #f09000;
+}
+.nav__item {
+  color: #DEE2E6;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-left: 3rem;
+  transition: all 0.3s;
+}
+.nav__item--active {
+  color: #2A2921;
+}
+.nav__item:hover {
+  color: #2A2921;
 }
 
 .filter {
@@ -211,33 +225,31 @@ main {
 
 .race {
   display: flex;
-  flex-direction: column;
-}
-.race__signUp {
-  display: flex;
-  justify-content: space-between;
+  margin-bottom: 3rem;
 }
 .race__header {
-  width: 70%;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px 10px 0px 0px;
+  width: 700px;
+  border-radius: 10px;
 }
 .race__form {
   flex: 1;
-  margin-left: 2rem;
 }
 .race__form button {
-  background-color: #FA9600;
+  background-color: #4C6FFF;
   border: none;
-  font-weight: bold;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
+  font-weight: 500;
+  font-size: 12px;
+  padding: 12px 20px;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s;
   color: white;
   display: block;
-  width: 10rem;
+  margin-top: 1rem;
+}
+.race__form button a {
+  color: white;
+  text-decoration: none;
 }
 .race__form button:nth-child(2) {
   background-color: #C4C4C4;
@@ -247,22 +259,33 @@ main {
   background-color: #bfbfbf;
 }
 .race__form button:hover {
-  background-color: #f09000;
+  background-color: #4267ff;
 }
-.race__description {
+.race__infoBlock {
   margin-top: 2rem;
+  box-shadow: 0px 0px 1px rgba(12, 26, 75, 0.24), 0px 3px 8px -1px rgba(50, 50, 71, 0.05);
+  border-radius: 10px;
+  padding: 7px;
+}
+.race__signUpBlock {
+  background-color: #E4ECF7;
+  padding: 24px;
+  border-radius: 16px;
 }
 .race__title {
-  color: #FA9600;
-  font-weight: 500;
-  font-size: 2rem;
+  color: #2A2921;
+  font-weight: 700;
+  font-size: 20px;
   margin-bottom: 1rem;
+  margin-top: 1rem;
 }
-.race__address {
-  margin-bottom: 1rem;
+.race__info {
+  color: #425466;
+  margin-right: 1.5rem;
 }
-.race__length {
-  margin-left: 9rem;
+.race__time {
+  color: #4C6FFF;
+  margin-right: 1.5rem;
 }
 .race__subTitle {
   font-width: 500;
@@ -271,9 +294,10 @@ main {
   margin-bottom: 1rem;
 }
 .race__text {
-  width: 33rem;
-  line-height: 30px;
-  font-size: 1.1rem;
+  width: 650px;
+  font-weight: 400;
+  color: #425466;
+  margin-top: 1rem;
 }
 .race__distanceBlock {
   margin-top: 2rem;
@@ -298,6 +322,46 @@ main {
 .race__distance:last-child {
   border-bottom: none;
   margin-bottom: 5rem;
+}
+.race__btn {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  color: #505780;
+  font-size: 12px;
+  font-weight: 500;
+}
+.race__btn i {
+  margin-right: 6px;
+}
+.race__favBtn {
+  background-color: #E4ECF7;
+}
+.race__shareBtn {
+  border: 1px solid black;
+}
+.race__infoItem {
+  width: 49%;
+  display: inline-block;
+  margin-top: 1.5rem;
+}
+.race__infoTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2A2921;
+  margin-bottom: 0.5rem;
+}
+.race__infoContent {
+  font-size: 14px;
+  font-width: 400;
+  color: #425466;
+}
+.race__description {
+  margin-right: 4rem;
 }
 
 .user {

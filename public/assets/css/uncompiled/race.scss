@@ -1,30 +1,30 @@
 .race {
     display: flex;
-    flex-direction: column;
+    margin-bottom: 3rem;
     &__signUp {
-        display: flex;
-        justify-content: space-between;
     }
     &__header {
-        width: 70%;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 10px 10px 0px 0px;
+        width: 700px;
+        border-radius: 10px;
     }
     &__form {
         flex: 1;
-        margin-left: 2rem;
         button {
-            background-color: $orange;
+            background-color: $raceTime;
             border: none;
-            font-weight: bold;
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
+            font-weight: 500;
+            font-size: 12px;
+            padding: 12px 20px;
             border-radius: 4px;
             cursor: pointer;
             transition: all 0.3s;
             color: white;
             display: block;
-            width: 10rem;
+            margin-top: 1rem;
+            a {
+                color: white;
+                text-decoration: none;
+            }
             &:nth-child(2) {
                 background-color: $grey;
                 margin-top: 1rem;
@@ -33,25 +33,36 @@
                 }
             }
             &:hover {
-                background-color: darken($orange, 2)
+                background-color: darken($raceTime, 2)
             }
 
         }
     }
-    &__description {
+    &__infoBlock {
         margin-top: 2rem;
+        box-shadow: 0px 0px 1px rgba(12, 26, 75, 0.24), 0px 3px 8px -1px rgba(50, 50, 71, 0.05);
+        border-radius: 10px;
+        padding: 7px;
+    }
+    &__signUpBlock {
+        background-color: $favBtn;
+        padding: 24px;
+        border-radius: 16px;
     }
     &__title {
-        color: $orange;
-        font-weight: 500;
-        font-size: 2rem;
+        color: $lightBlack;
+        font-weight: 700;
+        font-size: 20px;
         margin-bottom: 1rem;
+        margin-top: 1rem;
     }
-    &__address {
-        margin-bottom: 1rem;
+    &__info {
+        color: $raceInfo;
+        margin-right: 1.5rem;
     }
-    &__length {
-        margin-left: 9rem;
+    &__time {
+        color: $raceTime;
+        margin-right: 1.5rem;
     }
     &__subTitle {
         font-width: 500;
@@ -60,9 +71,10 @@
         margin-bottom: 1rem;
     }
     &__text {
-        width: 33rem;
-        line-height: 30px;
-        font-size: 1.1rem;
+        width: 650px;
+        font-weight: 400;
+        color: $raceInfo;
+        margin-top: 1rem;
     }
     &__distanceBlock {
         margin-top: 2rem;
@@ -88,5 +100,45 @@
             margin-bottom: 5rem;
         }
 
+    }
+    &__btn {
+        display: inline-block;
+        padding: 8px 12px;
+        border-radius: 8px;
+        margin-right: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        color: $btnText;
+        font-size: 12px;
+        font-weight: 500;
+        i {
+            margin-right: 6px;
+        }
+    }
+    &__favBtn {
+        background-color: $favBtn;
+    }
+    &__shareBtn {
+        border: 1px solid black;
+    }
+    &__infoItem {
+        width: 49%;
+        display: inline-block;
+        margin-top: 1.5rem;
+    }
+    &__infoTitle {
+        font-size: 16px;
+        font-weight: 600;
+        color: $lightBlack;
+        margin-bottom: 0.5rem;
+    }
+    &__infoContent {
+        font-size: 14px;
+        font-width: 400;
+        color: $raceInfo;
+    }
+    &__description {
+        margin-right: 4rem;
     }
 }

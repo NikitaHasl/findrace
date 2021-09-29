@@ -54,6 +54,11 @@
         </form>
     </section>
     <section class="feed">
+        <form action="{{ route('search') }}" method="get">
+            @csrf
+            <input class="nav_form" type="search" name="string">
+            <button class="nav__button" type="submit"><i class="fas fa-search"></i></button>
+        </form>
         <p class="feed__header">Все забеги</p>
         @auth
             @if(Auth::user()->hasRole(\App\Models\Role::ORGANIZER))
