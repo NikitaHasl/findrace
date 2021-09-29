@@ -13,9 +13,11 @@
 @section('content')
     <div class="login">
         <h1>Добавить результаты забега</h1>
-        @foreach($errors->all() as $error)
-            <p class="error">{{ $error }}</p>
-        @endforeach
+        @if(session()->has('error'))
+            <p class="error">{{ session()->get('error') }}</p>
+        @else
+            <p class="error">{{ session()->get('success') }}</p>
+        @endif
         <form action=" {{ route('updateResults', ['race' => $race]) }} " method="post">
             @csrf
             @method('put')
@@ -23,7 +25,7 @@
             <label>Участник: <select required name="user_id">
                     @foreach($race->users as $user)
                         <option value="{{ $user->id }}"
-                            @if(isset($user_id) && $user_id == $user->id) selected @endif
+                                @if(isset($user_id) && $user_id == $user->id) selected @endif
                         >{{ $user->firstname }} {{ $user->lastname }}</option>
                     @endforeach
                 </select></label>
