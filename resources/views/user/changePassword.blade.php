@@ -71,7 +71,7 @@
         el.forEach(function(e, k) {
             e.addEventListener('click', function() {
                 const rel = e.getAttribute("rel");
-                if (confirm("Вы уверены, что хотите удалить ваш аккаунт ?")) {
+                if (confirm("Вы уверены, что хотите удалить ваш аккаунт?")) {
                     submit("/account/user/destroy" + rel).then(() => {
                         location.reload();
                     })
