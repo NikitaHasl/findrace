@@ -43,7 +43,7 @@
         @if(Auth::user()->hasRole(\App\Models\Role::ORGANIZER))
         <div class="create-block">
             <div class="create-title">Создать забег</div>
-            <div class="create-expl">Ты можещь создавать новые забеги</div>
+            <div class="create-expl">Ты можешь создавать новые забеги</div>
 
             <form action="{{ route('races.create') }}" method="get">
                 @csrf
