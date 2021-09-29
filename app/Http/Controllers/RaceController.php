@@ -186,17 +186,23 @@ class RaceController extends Controller
 
     public function updateResult(Request $request, Race $race)
     {
-        if (Auth::id() !== $race->organizer_id) {
-            abort(403);
-        }
+        try {
+            if (Auth::id() !== $race->organizer_id) {
+                abort(403);
+            }
 
-        Registration::where('user_id', '=', $request->input('user_id'))
-            ->where('race_id', '=', $race->id)
-            ->update([
-                'finish_time' => $request->input('finish_time'),
-                'place' => $request->input('place')
-            ]);
-        return back();
+            $result = Registration::where('user_id', '=', $request->input('user_id'))
+                ->where('race_id', '=', $race->id)
+                ->update([
+                    'finish_time' => $request->input('finish_time'),
+                    'place' => $request->input('place')
+                ]);
+        }catch (\PDOException $exception){
+            if ($exception->getCode() == 23000){
+                return back()->with('error', 'Такое место уже принадлежит другому участнику!');
+            }
+        }
+        return back()->with('success', 'Результаты сохранены успешно.');
     }
 
     public function listParticipants(Race $race)
