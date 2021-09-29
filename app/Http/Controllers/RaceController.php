@@ -10,6 +10,7 @@ use App\Models\RaceType;
 use App\Models\Registration;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -106,7 +107,14 @@ class RaceController extends Controller
 
     public function show(Race $race)
     {
-        return view('races.show', ['race' => $race]);
+        $subscribers = new Collection();
+        if (Auth::user() && Auth::user()->hasRole(Role::USER)){
+            $subscribers = Registration::where('race_id', '=', $race->id)->pluck('user_id');
+        }
+        return view('races.show', [
+            'race' => $race,
+            'subscribers' => $subscribers,
+        ]);
     }
 
     public function search(Request $request)
