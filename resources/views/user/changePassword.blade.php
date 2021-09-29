@@ -4,56 +4,61 @@
 
 @section('content')
 
-
-<h4 class="feed__title">Изменение пароля</h4>
-
-<form method="POST" action="{{ route('user-password.update') }}">
-    @csrf
-    @method('PUT')
-
-    @if (session('status') == "password-updated")
-    <div class="alert alert-success">
-        Изменение пароля прошло успешно!
+<div class="settings-password">
+    <div class="settings-text">
+        <div class="settings-title">
+            Задай новый пароль
+        </div>
+        <div class="settings-expl">
+            Задай новый пароль для твоего аккаунта
+        </div>
     </div>
-    @endif
+    <form class="change-password-form" method="POST" action="{{ route('user-password.update') }}">
+        @csrf
+        @method('PUT')
 
-    <div class="form-group">
-        <label for="current_password">Текущий пароль</label>
-        <input id="current_password" type="password" class="form-control @error('current_password', 'updatePassword') is-invalid @enderror" name="current_password" required>
+        @if (session('status') == "password-updated")
+        <div class="info-success">
+            Изменение пароля прошло успешно!
+        </div>
+        @endif
 
-        @error('current_password', 'updatePassword')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-        @enderror
+        <div class="form-group">
+            <label for="current_password" class="settings-field">Текущий пароль</label>
+            <input id="current_password" type="password" class="form-control @error('current_password', 'updatePassword') is-invalid @enderror" name="current_password" placeholder="Введи текущий пароль" required>
 
+            @error('current_password', 'updatePassword')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="password" class="settings-field">Новый пароль</label>
+            <input id="password" type="password" class="form-control @error('password', 'updatePassword') is-invalid @enderror" name="password" placeholder="Введи новый пароль" required>
+
+            @error('password', 'updatePassword')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+
+        </div>
+
+        <div class="form-group">
+            <label for="password-confirm"></label>
+            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Повтори пароль" required>
+        </div>
+        <input class="update-btn" type="submit" value="Обновить пароль">
+    </form>
+
+    <div>
+        <form action="{{ route('account.user.destroy', ['user' => $user ]) }}" method="post" rel="{{ $user }}" class="delete">
+            @csrf
+            @method('DELETE')
+            <input class="delete-btn" type="submit" value="Удалить аккаунт">
+        </form>
     </div>
-
-    <div class="form-group">
-        <label for="password">Новый пароль</label>
-        <input id="password" type="password" class="form-control @error('password', 'updatePassword') is-invalid @enderror" name="password" required>
-
-        @error('password', 'updatePassword')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-        @enderror
-
-    </div>
-
-    <div class="form-group">
-        <label for="password-confirm">Повтор пароля</label>
-        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-    </div>
-    <br>
-    <input class="form-control" type="submit" value="Обновить данные">
-</form>
-
-<h4 class="feed__title">Удалить профиль</h4>
-<form action="{{ route('account.user.destroy', ['user' => $user ]) }}" method="post" rel="{{ $user }}" class="delete">
-    @csrf
-    @method('DELETE')
-    <input class="form-control" type="submit" value="Удалить профиль">
-</form>
+</div>
 
 @endsection
