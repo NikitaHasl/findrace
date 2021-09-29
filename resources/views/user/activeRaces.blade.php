@@ -5,34 +5,48 @@
 @section('content')
 
 
-            <div class="col-lg-8 pb-5">
-                <div>
-                    <h3 class="feed__title">МОИ ТЕКУЩИЕ ЗАБЕГИ</h3>
-                </div><br>
-                @if(session()->has('success'))
-                <div>{{ session()->get('success') }}</div><br>
-                @endif
 
-                @if(session()->has('error'))
-                <div>{{ session()->get('error') }}</div>
-                @endif
+<div class="run-title">
+    Активные забеги
+</div>
+<div class="run-expl">
+Тут собраны забеги, в которых ты точно примешь участие.
+</div>
 
-                @forelse($races as $race)
-                <div>
-                    <div>
-                        <h4><i>{{ $race->title }}</i></h4>
-                    </div>
-                    <div>{{ $race->date }}</div>
-                    <div>{{ $race->distance }} км</div>
-                    <div><a href="{{ route('races.show', ['race' => $race]) }}">Подробнее...</a></div>
-                    <div><a href="{{ route( 'unsubscribe', ['race_id' => $race->id]) }}" class="delete" rel="">Отменить</a></div>
-                </div><br><br>
-                @empty
-                <br><br><br>
-                <div>У вас пока что нет ни одной регистрации на забег!</div>
-                <div><a href="{{ route('index')}}">Записаться на мой первый забег</a></div>
-                @endforelse
-            </div>
-  >
+@if(session()->has('success'))
+<div class="info-success">{{ session()->get('success') }}</div>
+@endif
 
-@endsection 
+@if(session()->has('error'))
+<div class="info-error">{{ session()->get('error') }}</div>
+@endif
+
+
+@if(count($races) >= 1)
+<table>
+    <tr class="table-top">
+        <th>Название забега</th>
+        <th>Дистанция, км</th>
+        <th>Дата забега</th>
+        <th>Город</th>
+        <th>Отменить запись</th>
+    </tr>
+    @foreach($races as $race)
+    <tr class="table-row">
+        <th>{{ $race->title }}</th>
+        <th>{{ $race->distance }}</th>
+        <th>{{ $race->date }}</th>
+        <th>{{ $race->city->city }}</th>
+        <th><a class="table-row-link" href="{{ route( 'unsubscribe', ['race_id' => $race->id]) }}" class="delete" rel="">Отменить</a></th>
+    </tr>
+    @endforeach
+</table>
+@endif
+@empty(count($races))
+<div class="no-run">У вас пока что нет ни одной регистрации на забег.</div>
+@endempty
+
+
+
+
+@endsection

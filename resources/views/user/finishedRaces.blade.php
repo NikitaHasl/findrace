@@ -4,34 +4,52 @@
 
 @section('content')
 
-<h3 class="feed__title">МОИ ПРОШЕДШИЕ ЗАБЕГИ</h3>
-</div><br>
-@if(session()->has('success'))
-<div>{{ session()->get('success') }}</div><br>
-@endif
 
-@if(session()->has('error'))
-<div>{{ session()->get('error') }}</div>
-@endif
-
-@forelse($races as $race)
-<div>
-    <div>
-        <h4><i>{{ $race->title }}</i></h4>
-    </div>
-    <div>{{ $race->date }}</div>
-    <div>{{ $race->distance }} км</div>
-    <div>Твое время: {{$race->finish_time}}</div>
-    <div>Твое место: {{$race->place}}</div>
-    <div><a href="{{ route('races.show', ['race' => $race]) }}">Подробне...</a></div>
-    <div><a href="{{ route( 'unsubscribe', ['race_id' => $race->id]) }}" class="delete" rel="">Отменить</a></div>
-</div><br><br>
-@empty
-<br><br><br>
-<div>У вас пока что нет ни одной регистрации на забег!</div>
-<div><a href="{{ route('index')}}">Записаться на мой первый забег</a></div>
-@endforelse
+<div class="run-title">
+    Прошедшие забеги
 </div>
+<div class="run-expl">
+    Тут собраны все забеги, в которых ты принял участие и данные по ним.
+</div>
+
+
+@if(count($races) >= 1)
+<table>
+    <tr class="table-top">
+        <th>Название забега</th>
+        <th>Дата забега</th>
+        <th>Город</th>
+        <th>Дистанция, км</th>
+        <th>Твое время</th>
+        <th>Место</th>
+    </tr>
+    @foreach($races as $race)
+    <tr class="table-row">
+        <th>{{ $race->title }}</th>
+        <th>{{ $race->date->format('Y-m-d') }}</th>
+        <th>{{ $race->city->city }}</th>
+        <th>{{ $race->distance }}</th>
+        <th>@if($race->finish_time)
+            {{ $race->finish_time }}
+            @else
+            нет инфо
+            @endif
+        </th>
+        <th>@if($race->place)
+            {{ $race->place }}
+            @else
+            нет инфо
+            @endif
+        </th>
+    </tr>
+    @endforeach
+</table>
+@endif
+@empty(count($races))
+<div class="no-run">Вы пока что не участвовали ни в одном забеге.</div>
+@endempty
+
+
 
 
 @endsection

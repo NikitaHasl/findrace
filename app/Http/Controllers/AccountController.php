@@ -65,10 +65,9 @@ class AccountController extends Controller
     public function showActiveRaces()
     {
         $user = Auth::user();
-        //почему-то не работает eloquent, разобраться
-        // $races = User::find($user->id)->races();
         $activeRaces = Race::select(['races.*'])
             ->join('registrations_for_race', 'race_id', '=', 'races.id')
+            ->join('cities', 'city_id', '=', 'cities.id')
             ->where('user_id', '=', $user->id)
             ->where('status_of_race_id', 1)
             ->get();
@@ -85,6 +84,7 @@ class AccountController extends Controller
 
         $finishedRaces = Race::select(['races.*', 'registrations_for_race.*'])
             ->join('registrations_for_race', 'race_id', '=', 'races.id')
+            ->join('cities', 'city_id', '=', 'cities.id')
             ->where('user_id', '=', $user->id)
             ->where('status_of_race_id', 3)
             ->get();
