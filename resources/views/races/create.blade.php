@@ -16,24 +16,20 @@
         @foreach($errors->all() as $error)
             <p class="error">{{ $error }}</p>
         @endforeach
-        <form action="{{ route('races.store') }}" method="post">
+        <form action="{{ route('races.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <label>Название: <input required type="text" name="title"></label>
             <label>Город: <select required name="city">
                 @foreach($cities as $city)
-                    <option value="{{ $city->id }}">{{ $city->city_title }}</option>
+                <option value="{{ $city->id }}">{{ $city->city_title }}</option>
                 @endforeach
             </select></label>
             <label>Тип: <select required name="type">
                 @foreach($raceTypes as $type)
-                    <option value="{{ $type->id }}">{{ $type->type_of_race }}</option>
+                <option value="{{ $type->id }}">{{ $type->type_of_race }}</option>
                 @endforeach
             </select></label>
-            <label>Статус: <select required name="status">
-                    @foreach($raceStatuses as $status)
-                        <option value="{{ $status->id }}">{{ $status->status }}</option>
-                    @endforeach
-                </select></label>
+            <label>Картинка: <input type="file" name="picture" required accept=".jpg,.jpeg,.png,.bmp,.gif,.svg,.webp,image/jpeg,image/png,image/bmp,image/x-bmp,image/gif,image/svg+xml,image/webp"></label>
             <label>Дата: <input required type="date" name="date"></label>
             <label>Время: <input required type="time" name="time"></label>
             <label>Дистанция: <input required type="number" name="distance"></label>
