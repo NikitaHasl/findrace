@@ -234,7 +234,7 @@ main {
 .race__form {
   flex: 1;
 }
-.race__form button {
+.race__form a {
   background-color: #4C6FFF;
   border: none;
   font-weight: 500;
@@ -246,19 +246,17 @@ main {
   color: white;
   display: block;
   margin-top: 1rem;
-}
-.race__form button a {
-  color: white;
+  width: fit-content;
   text-decoration: none;
 }
-.race__form button:nth-child(2) {
+.race__form a:nth-child(2) {
   background-color: #C4C4C4;
   margin-top: 1rem;
 }
-.race__form button:nth-child(2):hover {
+.race__form a:nth-child(2):hover {
   background-color: #bfbfbf;
 }
-.race__form button:hover {
+.race__form a:hover {
   background-color: #4267ff;
 }
 .race__infoBlock {

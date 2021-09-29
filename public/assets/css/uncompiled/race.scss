@@ -9,7 +9,7 @@
     }
     &__form {
         flex: 1;
-        button {
+        a {
             background-color: $raceTime;
             border: none;
             font-weight: 500;
@@ -21,10 +21,8 @@
             color: white;
             display: block;
             margin-top: 1rem;
-            a {
-                color: white;
-                text-decoration: none;
-            }
+            width: fit-content;
+            text-decoration: none;
             &:nth-child(2) {
                 background-color: $grey;
                 margin-top: 1rem;
