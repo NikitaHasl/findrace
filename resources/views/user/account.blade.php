@@ -15,6 +15,8 @@
 
         <div class="user-name">{{$user->firstname}}</div>
         <div class="user-since">на сайте с {{$user->created_at->toDateString()}}</div>
+        @auth
+        @if(Auth::user()->hasRole(\App\Models\Role::USER))
         <div class="run-info">
             <div class="run-number">
                 @if($activeRaces)
@@ -39,6 +41,9 @@
                 <a class="run-text" href="{{route('account.finished')}}">Прошедшие забеги</a>
             </div>
         </div>
+        @endif
+        @endauth
+        
         @auth
         @if(Auth::user()->hasRole(\App\Models\Role::ORGANIZER))
         <div class="create-block">
