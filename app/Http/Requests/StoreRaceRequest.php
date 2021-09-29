@@ -27,6 +27,7 @@ class StoreRaceRequest extends FormRequest
             'title' => ['required', 'max:128'],
             'city' => ['required', 'numeric'],
             'type' => ['required', 'numeric'],
+            'picture' => ['required', 'image'],
             'date' => ['required', 'date_format:Y-m-d'],
             'time' => ['required', 'date_format:H:i'],
             'distance' => ['required', 'numeric'],

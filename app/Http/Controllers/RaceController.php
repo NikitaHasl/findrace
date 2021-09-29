@@ -13,6 +13,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class RaceController extends Controller
 {
@@ -88,18 +89,26 @@ class RaceController extends Controller
 
     public function store(StoreRaceRequest $request)
     {
-        Race::create([
-            'title' => $request->post('title'),
-            'city_id' => (int)$request->post('city'),
-            'type_of_race_id' => (int)$request->post('type'),
-            'status_of_race_id' => (int)$request->post('status'),
-            'date' => $request->post('date') . ' ' . $request->post('time'),
-            'distance' => (int)$request->post('distance'),
-            'description' => $request->post('description'),
-            'start' => $request->post('start'),
-            'finish' => $request->post('finish'),
-            'organizer_id' => Auth::id(),
-        ]);
+        $picture = $request->file('picture')->store('race_pictures', 'public');
+
+        try {
+            Race::create([
+                'title' => $request->post('title'),
+                'city_id' => (int)$request->post('city'),
+                'type_of_race_id' => (int)$request->post('type'),
+                'status_of_race_id' => 1,
+                'picture' => $picture,
+                'date' => $request->post('date') . ' ' . $request->post('time'),
+                'distance' => (int)$request->post('distance'),
+                'description' => $request->post('description'),
+                'start' => $request->post('start'),
+                'finish' => $request->post('finish'),
+                'organizer_id' => Auth::id(),
+            ]);
+        } catch(\Exception $e) {
+            Storage::disk('public')->delete($picture);
+            throw $e;
+        }
 
         return redirect()->route('index');
     }

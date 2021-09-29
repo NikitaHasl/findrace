@@ -5,7 +5,7 @@
 @section('content')
     <div class="race">
         <div class="race__signUp">
-            <img class="race__header" src="{{ asset('assets/images/run_background.png') }}">
+            <img class="race__header" src="{{ $race->picture ? asset('storage/' . $race->picture) : asset('assets/images/run_background.png') }}">
             <div class="race__form">
                 @if(session()->has('success'))
                     <div class="alert alert-success">{{ session()->get('success') }}</div>
