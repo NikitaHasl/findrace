@@ -6,7 +6,7 @@
 <div class="race">
     <div class="race__description">
         <div class="race__infoBlock">
-            <img class="race__header" src="{{ asset('assets/images/run_background.png') }}">
+            <img class="race__header" src="{{ $race->picture ? asset('storage/' . $race->picture) : asset('assets/images/run_background.png') }}">
             <p class="race__title">{{ $race->title }}</p>
             <span class="race__info">{{ $race->date->isoFormat('LL') }}</span>
             <p class="race__text">{{ $race->description }}</p>
@@ -34,7 +34,7 @@
             </div>
             <div class="race__infoItem">
                 <div class="race__infoTitle">Дистанция</div>
-                <div class="race__infoContent">{{$race->distance}}</div>
+                <div class="race__infoContent">{{$race->distance}}&nbsp;км</div>
             </div>
         </div>
     </div>
