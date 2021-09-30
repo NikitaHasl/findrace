@@ -85,9 +85,9 @@ Route::get('/account/finished', [AccountController::class, 'showFinishedRaces'])
 Route::get('/account/races', [AccountController::class, 'showOrganizerRaces'])
     ->name('account.races');
 
-Route::get('/subscribe/{id}', [AccountController::class, 'subscribe'])
-    ->where('id', '\d+')
-    ->name('subscribe');
+Route::post('/subscribe/{id}', [AccountController::class, 'subscribe'])
+->where('id', '\d+')
+->name('subscribe');
 
 Route::get('/account/unsubscribe/{race_id}', [AccountController::class, 'unsubscribe'])
     ->where('id', '\d+')
