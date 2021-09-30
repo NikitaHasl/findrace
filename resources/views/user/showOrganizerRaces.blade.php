@@ -41,7 +41,16 @@
         <th>{{ $race->city->city_title }}</th>
         <th>{{ $race->distance }}</th>
         <th><a class="table-row-link" href="{{ route('listParticipants', ['race' => $race]) }}">Показать</a></th>
-        <th><a class="table-row-link" href="{{ route('addResults', ['id' => $race->id]) }}">Добавить</a></th>
+        <th>
+            @if($race->status_of_race_id == 1)
+                <form action="{{ route('markRaceAsDone', ['race' => $race]) }}" method="post">
+                    @csrf
+                    <input type="submit" value="Отметить как состоявшийся">
+                </form>
+            @else
+                <a class="table-row-link" href="{{ route('addResults', ['id' => $race->id]) }}">Добавить</a>
+            @endif
+        </th>
     </tr>
     @endforeach
 </table>
