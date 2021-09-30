@@ -46,14 +46,14 @@
             </select>
         </div>
 
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="status" class="settings-field">Статус</label>
             <select required name="status" id="status">
                 @foreach($raceStatuses as $status)
                 <option value="{{ $status->id }}">{{ $status->status }}</option>
                 @endforeach
             </select>
-        </div>
+        </div> --}}
 
         <div class="form-group">
             <label for="date" class="settings-field">Дата </label>
@@ -82,7 +82,7 @@
         <div class="form-group file-input">
             <label for="picture" class="settings-field">Картинка забега</label>
             <input type="file" name="picture" id="picture" required accept=".jpg,.jpeg,.png,.bmp,.gif,.svg,.webp,image/jpeg,image/png,image/bmp,image/x-bmp,image/gif,image/svg+xml,image/webp">
-        </div>  
+        </div>
         <input class="update-btn create-btn" type="submit" value="Создать забег">
     </form>
 </div>
