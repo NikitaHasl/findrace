@@ -42,14 +42,14 @@
         </div>
         <div class="race__signUp">
             <div class="race__infoBlock race__signUpBlock">
-                <p class="race__infoTitle">Запишись на дистанцию</p>
-                <p>Сейчас ты можешь записаться на дистанцию и сразу ее оплатить.</p>
+                <p class="race__infoTitle left">Запишись на дистанцию</p>
+                <p class="race__infoContent left">Ждем тебя на нашем забеге</p>
                 <div class="race__form">
                     @if(session()->has('success'))
-                        <div class="alert alert-success">{{ session()->get('success') }}</div>
+                        <div class="race__infoContent left">{{ session()->get('success') }}</div>
                     @endif
                     @if(session()->has('error'))
-                        <div class="alert alert-warning">{{ session()->get('error') }}</div>
+                        <div class="race__infoContent left">{{ session()->get('error') }}</div>
                     @endif
                     @if(Auth::id() === $race->organizer_id)
                         <a href="{{ route('addResults', ['id' => $race->id]) }}">Добавить результаты</a>

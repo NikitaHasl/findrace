@@ -260,10 +260,10 @@ main {
   background-color: #4267ff;
 }
 .race__infoBlock {
-  margin-top: 2rem;
+  margin-top: 1rem;
   box-shadow: 0px 0px 1px rgba(12, 26, 75, 0.24), 0px 3px 8px -1px rgba(50, 50, 71, 0.05);
   border-radius: 10px;
-  padding: 7px;
+  padding: 20px;
 }
 .race__signUpBlock {
   background-color: #E4ECF7;
@@ -345,18 +345,21 @@ main {
 .race__infoItem {
   width: 49%;
   display: inline-block;
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
 }
 .race__infoTitle {
   font-size: 16px;
   font-weight: 600;
   color: #2A2921;
   margin-bottom: 0.5rem;
+  margin-left: 20px;
 }
 .race__infoContent {
   font-size: 14px;
-  font-width: 400;
+  font-weight: 400;
   color: #425466;
+  margin-bottom: 20px;
+  margin-left: 20px;
 }
 .race__description {
   margin-right: 4rem;
@@ -404,3 +407,6 @@ main {
 }
 
 /*# sourceMappingURL=styles.css.map */
+.left{
+  margin-left: 0px;
+}
