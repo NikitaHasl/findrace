@@ -25,7 +25,7 @@
             </div>
             <div class="filter__block">
                 @foreach($types as $type)
-                <p class="filter_option">{{$type->type_of_race}}<input type="checkbox" name="{{$type->type_of_race}} type" value="{{$type->id}}"></p>
+                <p class="filter_option"><input type="checkbox" name="{{$type->type_of_race}} type" value="{{$type->id}}">{{$type->type_of_race}}</p>
                 @endforeach
             </div>
         </div>
