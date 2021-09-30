@@ -62,7 +62,6 @@
                         <a href="{{ route('subscribe', ['id' => $race->id]) }}">Записаться</a>
                     @endif
                 </div>
-            @endif
         </div>
     </div>
 @endsection
