@@ -41,24 +41,28 @@
             </div>
         </div>
         <div class="race__signUp">
-            <div class="race__infoBlock race__signUpBlock">
-                <p class="race__infoTitle left">Запишись на дистанцию</p>
-                <p class="race__infoContent left">Ждем тебя на нашем забеге</p>
-                <div class="race__form">
-                    @if(session()->has('success'))
-                        <div class="race__infoContent left">{{ session()->get('success') }}</div>
-                    @endif
-                    @if(session()->has('error'))
-                        <div class="race__infoContent left">{{ session()->get('error') }}</div>
-                    @endif
-                    @if(Auth::id() === $race->organizer_id)
+            @if(Auth::user() && Auth::user()->hasRole(\App\Models\Role::USER))
+                <div class="race__infoBlock race__signUpBlock">
+                    <p class="race__infoTitle left">Запишись на дистанцию</p>
+                    <p class="race__infoContent left">Ждем тебя на нашем забеге</p>
+                    <div class="race__form">
+                        @if(session()->has('success'))
+                            <div class="race__infoContent left">{{ session()->get('success') }}</div>
+                        @endif
+                        @if(session()->has('error'))
+                            <div class="race__infoContent left">{{ session()->get('error') }}</div>
+                        @endif
+                        <a href="{{ route('subscribe', ['id' => $race->id]) }}">Записаться</a>
+                    </div>
+                </div>
+            @elseif(Auth::id() === $race->organizer_id)
+                <div class="race__infoBlock race__signUpBlock">
+                    <div class="race__form">
                         <a href="{{ route('addResults', ['id' => $race->id]) }}">Добавить результаты</a>
                         <a href="{{ route('listParticipants', ['race' => $race]) }}">Список участников</a>
-                    @elseif(Auth::user() && Auth::user()->hasRole(\App\Models\Role::USER))
-                        <a href="{{ route('subscribe', ['id' => $race->id]) }}">Записаться</a>
-                    @endif
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 @endsection
