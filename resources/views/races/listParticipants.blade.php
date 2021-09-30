@@ -50,7 +50,7 @@
 @endempty
 
 <form class="back-form back-left" action="{{ route('account.races') }}" method="get">
-    <input class="update-btn" type="submit" value="Обратно">
+    <input class="update-btn" type="submit" value="К моим забегам">
 </form>
 
 @endsection

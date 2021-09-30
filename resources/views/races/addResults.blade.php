@@ -53,7 +53,7 @@
     </form>
     <form class="back-btn" action="{{ route('account.races') }}" method="get">
         @csrf
-        <input class="update-btn" type="submit" value="Обратно">
+        <input class="update-btn" type="submit" value="К моим забегам">
     </form>
 
     @endif
@@ -63,7 +63,7 @@
 
     <form class="back-form" action="{{ route('account.races') }}" method="get">
         @csrf
-        <input class="update-btn" type="submit" value="Обратно">
+        <input class="update-btn" type="submit" value="К моим забегам">
     </form>
     @endempty
 </div>
