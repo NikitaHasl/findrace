@@ -8,54 +8,54 @@
     <div class="left-side">
         <div class="blue-block"></div>
         @if($user->avatar)
-        <img src="{{ asset('storage/' . $user->avatar) }}">
+            <img src="{{ asset('storage/' . $user->avatar) }}">
         @else
-        <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
+            <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
         @endif
 
         <div class="user-name">{{$user->firstname}}</div>
         <div class="user-since">на сайте с {{$user->created_at->toDateString()}}</div>
         @auth
-        @if(Auth::user()->hasRole(\App\Models\Role::USER))
-        <div class="run-info">
-            <div class="run-number">
-                @if($activeRaces)
-                {{$activeRaces}}
-                @else
-                0
-                @endif
-            </div>
-            <div class="run-number"> @if($finishedRaces)
-                {{$finishedRaces}}
-                @else
-                0
-                @endif
-            </div>
-        </div>
+            @if(Auth::user()->hasRole(\App\Models\Role::USER))
+                <div class="run-info">
+                    <div class="run-number">
+                        @if($activeRaces)
+                            {{$activeRaces}}
+                        @else
+                            0
+                        @endif
+                    </div>
+                    <div class="run-number">
+                        @if($finishedRaces)
+                            {{$finishedRaces}}
+                        @else
+                            0
+                        @endif
+                    </div>
+                </div>
 
-        <div class="run-link">
-            <div class="run-active">
-                <a class="run-text" href="{{route('account.active')}}">Активные забеги</a>
-            </div>
-            <div class="run-finished">
-                <a class="run-text" href="{{route('account.finished')}}">Прошедшие забеги</a>
-            </div>
-        </div>
-        @endif
+                <div class="run-link">
+                    <div class="run-active">
+                        <a class="run-text" href="{{route('account.active')}}">Активные забеги</a>
+                    </div>
+                    <div class="run-finished">
+                        <a class="run-text" href="{{route('account.finished')}}">Прошедшие забеги</a>
+                    </div>
+                </div>
+            @endif
         @endauth
-        
-        @auth
-        @if(Auth::user()->hasRole(\App\Models\Role::ORGANIZER))
-        <div class="create-block">
-            <div class="create-title">Создать забег</div>
-            <div class="create-expl">Ты можешь создавать новые забеги</div>
 
-            <form action="{{ route('races.create') }}" method="get">
-                @csrf
-                <input class="logout-btn" type="submit" value="Создать">
-            </form>
-        </div>
-        @endif
+        @auth
+            @if(Auth::user()->hasRole(\App\Models\Role::ORGANIZER))
+                <div class="create-block">
+                    <div class="create-title">Создать забег</div>
+                    <div class="create-expl">Ты можешь создавать новые забеги</div>
+
+                    <form action="{{ route('races.create') }}" method="get">
+                        <input class="logout-btn" type="submit" value="Создать">
+                    </form>
+                </div>
+            @endif
         @endauth
     </div>
 
@@ -79,18 +79,17 @@
         </form>
 
         @auth
-        @if(Auth::user()->hasRole(\App\Models\Role::ORGANIZER))
-        <div class="statistic-block">
-            <div class="create-title">Статистика по созданным забегам</div>
-            <div class="create-expl">Ты можешь посмотреть все данные, по твоим созданным
-                забегам и мероприятиям.</div>
+            @if(Auth::user()->hasRole(\App\Models\Role::ORGANIZER))
+                <div class="statistic-block">
+                    <div class="create-title">Статистика по созданным забегам</div>
+                    <div class="create-expl">Ты можешь посмотреть все данные по твоим созданным
+                        забегам и мероприятиям.</div>
 
-            <form action="{{ route('account.races') }}" method="get">
-                @csrf
-                <input class="logout-btn watch-btn" type="submit" value="Смотреть">
-            </form>
-        </div>
-        @endif
+                    <form action="{{ route('account.races') }}" method="get">
+                        <input class="logout-btn watch-btn" type="submit" value="Смотреть">
+                    </form>
+                </div>
+            @endif
         @endauth
     </div>
 
