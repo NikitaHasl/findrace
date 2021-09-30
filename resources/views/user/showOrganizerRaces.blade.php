@@ -38,7 +38,7 @@
     <tr class="table-row">
         <th>{{ $race->title }}</th>
         <th>{{ $race->date->format('Y-m-d') }}</th>
-        <th>{{ $race->city->city }}</th>
+        <th>{{ $race->city->city_title }}</th>
         <th>{{ $race->distance }}</th>
         <th><a class="table-row-link" href="{{ route('listParticipants', ['race' => $race]) }}">Показать</a></th>
         <th><a class="table-row-link" href="{{ route('addResults', ['id' => $race->id]) }}">Добавить</a></th>

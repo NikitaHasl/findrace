@@ -32,7 +32,7 @@
             <label for="city" class="settings-field">Город</label>
             <select required name="city" id="city">
                 @foreach($cities as $city)
-                <option value="{{ $city->id }}">{{ $city->city }}</option>
+                <option value="{{ $city->id }}">{{ $city->city_title }}</option>
                 @endforeach
             </select>
         </div>

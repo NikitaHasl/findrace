@@ -27,7 +27,7 @@
     <tr class="table-row">
         <th>{{ $race->title }}</th>
         <th>{{ $race->date->format('Y-m-d') }}</th>
-        <th>{{ $race->city->city }}</th>
+        <th>{{ $race->city->city_title }}</th>
         <th>{{ $race->distance }}</th>
         <th>@if($race->finish_time)
             {{ $race->finish_time }}

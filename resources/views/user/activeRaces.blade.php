@@ -36,7 +36,7 @@
         <th>{{ $race->title }}</th>
         <th>{{ $race->distance }}</th>
         <th>{{ $race->date }}</th>
-        <th>{{ $race->city->city }}</th>
+        <th>{{ $race->city->city_title }}</th>
         <th><a class="table-row-link" href="{{ route( 'unsubscribe', ['race_id' => $race->id]) }}" class="delete" rel="">Отменить</a></th>
     </tr>
     @endforeach
