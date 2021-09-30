@@ -9,8 +9,6 @@
                 <img class="race__header" src="{{ asset('assets/images/run_background.png') }}">
                 <p class="race__title">{{ $race->title }}</p>
                 <span class="race__info">{{ $race->date->isoFormat('LL') }}</span>
-                <span class="race__info">{{ $race->distance }}&nbsp;км</span>
-                <span class="race__time">{{$race->date->format('H:i')}}</span>
                 <p class="race__text">{{ $race->description }}</p>
                 <div class="race__btn race__favBtn">
                     <i class="far fa-heart"></i>
