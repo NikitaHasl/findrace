@@ -46,7 +46,7 @@
     <a href="{{ route('races.show', ['race' => $race]) }}">
 
         <div class="feed__item">
-            <img class="feed__img" src="{{ asset('assets/images/run_background.png') }}">
+            <img class="feed__img" src="{{ $race->picture ? asset('storage/' . $race->picture) : asset('assets/images/run_background.png') }}">
             <div class="feed__block">
                 <p class="feed__title">{{ $race->title }}</p>
 
