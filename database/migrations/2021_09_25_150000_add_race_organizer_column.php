@@ -17,6 +17,7 @@ class AddRaceOrganizerColumn extends Migration
     public function down(): void
     {
         Schema::table('races', function (Blueprint $table): void {
+            $table->dropForeign(['organizer_id']);
             $table->dropColumn('organizer_id');
         });
     }
