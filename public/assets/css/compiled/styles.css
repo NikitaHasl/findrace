@@ -246,7 +246,7 @@ main {
   color: white;
   display: block;
   margin-top: 1rem;
-  width: fit-content;
+  width: 170px;
   text-decoration: none;
 }
 .race__form a:nth-child(2) {
