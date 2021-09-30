@@ -20,7 +20,6 @@
             <a class="nav__item nav__item--active" href="{{ route('index') }}">Главная</a>
             <a class="nav__item" href="{{ route('userSearch') }}">Чат</a>
             <a class="nav__item" href="{{ route('account') }}">Профиль</a>
-            <a class="nav__item" href="{{ route('logout') }}">Выйти</a>
             @else
             <a class="nav__item nav__item--active" href="{{ route('index') }}">Главная</a>
             <a class="nav__item" href="{{ route('login') }}">Войти</a>
