@@ -4,26 +4,6 @@
 
 @section('content')
     <div class="race">
-        <div class="race__signUp">
-            <img class="race__header" src="{{ asset('assets/images/run_background.png') }}">
-            <div class="race__form">
-                @if(session()->has('success'))
-                    <div class="alert alert-success">{{ session()->get('success') }}</div>
-                @endif
-                @if(session()->has('error'))
-                    <div class="alert alert-warning">{{ session()->get('error') }}</div>
-                @endif
-                @if(Auth::user()->hasRole(\App\Models\Role::ORGANIZER) && Auth::id() === $race->organizer_id && !is_null($race->organizer_id))
-                    <button><a href="{{ route('addResults', ['id' => $race->id]) }}">Добавить результаты</a></button>
-                    <button><a href="{{ route('listParticipants', ['race' => $race]) }}">Список участников</a></button>
-                @elseif($subscribers->contains(Auth::id()))
-                    <button disabled>Вы уже записаны.</button>
-                @elseif(Auth::user()->hasRole(\App\Models\Role::USER))
-                    <button><a href="{{ route('subscribe', ['id' => $race->id]) }}">Записаться</a></button>
-                @endif
-            <!-- <button>Отложить</button> -->
-            </div>
-        </div>
         <div class="race__description">
             <div class="race__infoBlock">
                 <img class="race__header" src="{{ asset('assets/images/run_background.png') }}">
@@ -62,7 +42,9 @@
         </div>
         <div class="race__signUp">
             <div class="race__infoBlock race__signUpBlock">
-                <p class="race__infoTitle left">Запишись на дистанцию</p>
+                @if(!$subscribers->contains(Auth::id()))
+                    <p class="race__infoTitle left">Запишись на дистанцию</p>
+                @endif
                 <p class="race__infoContent left">Ждем тебя на нашем забеге</p>
                 <div class="race__form">
                     @if(session()->has('success'))
@@ -71,10 +53,12 @@
                     @if(session()->has('error'))
                         <div class="race__infoContent left">{{ session()->get('error') }}</div>
                     @endif
-                    @if(Auth::id() === $race->organizer_id)
+                    @if(Auth::user() && Auth::user()->hasRole(\App\Models\Role::ORGANIZER) && Auth::id() === $race->organizer_id && !is_null($race->organizer_id))
                         <a href="{{ route('addResults', ['id' => $race->id]) }}">Добавить результаты</a>
                         <a href="{{ route('listParticipants', ['race' => $race]) }}">Список участников</a>
-                    @elseif(Auth::user() && Auth::user()->hasRole(\App\Models\Role::USER))
+                    @elseif($subscribers->contains(Auth::id()))
+                        <p class="race__infoTitle left">Вы уже записаны.</p>
+                    @elseif(is_null(Auth::user()) || Auth::user()->hasRole(\App\Models\Role::USER))
                         <a href="{{ route('subscribe', ['id' => $race->id]) }}">Записаться</a>
                     @endif
                 </div>
