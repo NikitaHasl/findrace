@@ -319,6 +319,10 @@ th {
     flex-direction: column;
 }
 
+.file-input{
+    margin-bottom: 20px;
+}
+
 .change-password-form {
     height: 290px;
     display: flex;
@@ -360,6 +364,10 @@ option {
     font-size: 13px;
     color: #7A828A;
     margin-bottom: 10px;
+}
+
+textarea{
+    padding: 10px;
 }
 
 select {

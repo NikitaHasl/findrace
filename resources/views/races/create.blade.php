@@ -21,7 +21,7 @@
     <div class="info-error">{{ $error }}</div>
     @endforeach
 
-    <form action="{{ route('races.store') }}" method="post">
+    <form action="{{ route('races.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="title" class="settings-field">Название</label>
@@ -79,6 +79,10 @@
             <label for="finish" class="settings-field">Место окончания</label>
             <input required type="text" name="finish" id="finish">
         </div>
+        <div class="form-group file-input">
+            <label for="picture" class="settings-field">Картинка забега</label>
+            <input type="file" name="picture" id="picture" required accept=".jpg,.jpeg,.png,.bmp,.gif,.svg,.webp,image/jpeg,image/png,image/bmp,image/x-bmp,image/gif,image/svg+xml,image/webp">
+        </div>  
         <input class="update-btn create-btn" type="submit" value="Создать забег">
     </form>
 </div>
