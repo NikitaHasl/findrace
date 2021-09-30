@@ -36,7 +36,6 @@
 <div class="feed">
     <div class="search">
         <form action="{{ route('search') }}" method="get">
-            @csrf
             <input class="nav_form" type="search" name="string">
             <button class="nav__button" type="submit"><i class="fas fa-search"></i></button>
         </form>
