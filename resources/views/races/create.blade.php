@@ -1,42 +1,90 @@
-@extends('layout.main')
+@extends('layout.account')
 
 @section('title', 'Создать забег')
 
-@section('head-extra')
-    <style>
-        label {
-            display: block;
-        }
-    </style>
-@endsection
-
 @section('content')
-    <div class="login">
-        <h1>Создать забег</h1>
-        @foreach($errors->all() as $error)
-            <p class="error">{{ $error }}</p>
-        @endforeach
-        <form action="{{ route('races.store') }}" method="post" enctype="multipart/form-data">
-            @csrf
-            <label>Название: <input required type="text" name="title"></label>
-            <label>Город: <select required name="city">
+<div class="settings-general">
+    <div class="settings-text">
+        <div class="settings-title">
+            Создать забег
+        </div>
+        <div class="settings-expl">
+            Тут ты можешь создать свой забег
+        </div>
+    </div>
+
+    @if(session()->has('success'))
+    <div class="success">{{ session()->get('success') }}</div>
+    @endif
+
+    @foreach($errors->all() as $error)
+    <div class="info-error">{{ $error }}</div>
+    @endforeach
+
+    <form action="{{ route('races.store') }}" method="post" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group">
+            <label for="title" class="settings-field">Название</label>
+            <input required type="text" name="title" id="title">
+        </div>
+
+        <div class="form-group">
+            <label for="city" class="settings-field">Город</label>
+            <select required name="city" id="city">
                 @foreach($cities as $city)
                 <option value="{{ $city->id }}">{{ $city->city_title }}</option>
                 @endforeach
-            </select></label>
-            <label>Тип: <select required name="type">
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="type" class="settings-field">Тип</label>
+            <select required name="type" id="type">
                 @foreach($raceTypes as $type)
                 <option value="{{ $type->id }}">{{ $type->type_of_race }}</option>
                 @endforeach
-            </select></label>
-            <label>Картинка: <input type="file" name="picture" required accept=".jpg,.jpeg,.png,.bmp,.gif,.svg,.webp,image/jpeg,image/png,image/bmp,image/x-bmp,image/gif,image/svg+xml,image/webp"></label>
-            <label>Дата: <input required type="date" name="date"></label>
-            <label>Время: <input required type="time" name="time"></label>
-            <label>Дистанция: <input required type="number" name="distance"></label>
-            <label>Описание: <textarea required name="description"></textarea></label>
-            <label>Место начала: <input required type="text" name="start"></label>
-            <label>Место окончания: <input required type="text" name="finish"></label>
-            <input type="submit" value="Создать забег">
-        </form>
-    </div>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="status" class="settings-field">Статус</label>
+            <select required name="status" id="status">
+                @foreach($raceStatuses as $status)
+                <option value="{{ $status->id }}">{{ $status->status }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="date" class="settings-field">Дата </label>
+            <input required type="date" name="date" id="date">
+        </div>
+        <div class="form-group">
+            <label for="time" class="settings-field">Время </label>
+            <input required type="time" name="time" id="time">
+        </div>
+        <div class="form-group">
+            <label for="distance" class="settings-field">Дистанция</label>
+            <input required type="number" name="distance" id="distance">
+        </div>
+        <div class="form-group">
+            <label for="description" class="settings-field">Описание</label>
+            <textarea required name="description" id="description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="start" class="settings-field">Место начала</label>
+            <input required type="text" name="start" id="start">
+        </div>
+        <div class="form-group">
+            <label for="finish" class="settings-field">Место окончания</label>
+            <input required type="text" name="finish" id="finish">
+        </div>
+        <div class="form-group file-input">
+            <label for="picture" class="settings-field">Картинка забега</label>
+            <input type="file" name="picture" id="picture" required accept=".jpg,.jpeg,.png,.bmp,.gif,.svg,.webp,image/jpeg,image/png,image/bmp,image/x-bmp,image/gif,image/svg+xml,image/webp">
+        </div>  
+        <input class="update-btn create-btn" type="submit" value="Создать забег">
+    </form>
+</div>
+
 @endsection

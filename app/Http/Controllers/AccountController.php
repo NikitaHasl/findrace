@@ -6,29 +6,80 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Race;
 use App\Models\User;
+use App\Models\Gender;
 use App\Models\Registration;
 use Exception;
 
 class AccountController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
     public function index()
     {
+        $user = Auth::user();
+        $activeRaces = Registration::select(['registrations_for_race.user_id'])
+            ->join('races', 'race_id', '=', 'races.id')
+            ->where('user_id', '=', $user->id)
+            ->where('status_of_race_id', 1)
+            ->count();
+        $finishedRaces = Registration::select(['registrations_for_race.user_id'])
+            ->join('races', 'race_id', '=', 'races.id')
+            ->where('user_id', '=', $user->id)
+            ->where('status_of_race_id', 3)
+            ->count();
         return view('user.account', [
-            'user' => Auth::user()
+            'user' => $user,
+            'activeRaces' => $activeRaces,
+            'finishedRaces' => $finishedRaces,
+        ]);
+    }
+
+    public function showChangePassword(){
+        $user = Auth::user();
+        return view('user.changePassword', [
+            'user' => $user,
+        ]);
+
+    }
+
+    public function showChangeUserData(){
+        $user = Auth::user();
+        return view('user.changeUserData', [
+            'user' => $user,
+            'genders' => Gender::all(),
+        ]);
+
+    }
+
+    public function showChangeUserAvatar(){
+        $user = Auth::user();
+        return view('user.changeUserAvatar', [
+            'user' => $user,
+        ]);
+
+    }
+
+    public function showOrganizerRaces(){
+        $user = Auth::user();
+        $organizerRaces = Race::select(['races.*'])
+        ->join('cities', 'city_id', '=', 'cities.id')
+        ->where('organizer_id', '=', $user->id)
+        ->get();
+        return view('user.showOrganizerRaces', [
+            'user' => $user,
+            'races' => $organizerRaces,
         ]);
     }
 
     public function showActiveRaces()
     {
         $user = Auth::user();
-        //почему-то не работает eloquent, разобраться
-        // $races = User::find($user->id)->races();
         $activeRaces = Race::select(['races.*'])
             ->join('registrations_for_race', 'race_id', '=', 'races.id')
+            ->join('cities', 'city_id', '=', 'cities.id')
             ->where('user_id', '=', $user->id)
             ->where('status_of_race_id', 1)
             ->get();
@@ -45,6 +96,7 @@ class AccountController extends Controller
 
         $finishedRaces = Race::select(['races.*', 'registrations_for_race.*'])
             ->join('registrations_for_race', 'race_id', '=', 'races.id')
+            ->join('cities', 'city_id', '=', 'cities.id')
             ->where('user_id', '=', $user->id)
             ->where('status_of_race_id', 3)
             ->get();

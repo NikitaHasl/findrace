@@ -1,0 +1,241 @@
+/* layout */
+
+html,
+body {
+    height: 100%;
+    font-family: "ubuntu", sans-serif;
+}
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1 1 auto;
+}
+
+.header {
+    height: 48px;
+    padding-top: 15px;
+    padding-left: 18px;
+    display: inline-block;
+}
+
+.footer {
+    height: 61px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 40px;
+}
+
+.footer-right {
+    min-width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.logo-text {
+    color: black;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+}
+
+.account-text {
+    color: #6C757D;
+    padding-left: 25px;
+    font-size: 16px;
+    line-height: 18px;
+    text-decoration: none;
+}
+
+.account-text:hover {
+    color: #2A2921;
+}
+
+.nav_form {
+    background: #FAFAFA;
+    backdrop-filter: blur(10px);
+    padding-left: 20px;
+    color: #7A828A;
+    font-size: 13px;
+    border: none;
+    border-radius: 10px;
+    width: 85%;
+    height: 46px;
+}
+
+
+.nav__button {
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 20px;
+    position: static;
+    width: 76px;
+    top: 0px;
+    background: #4C6FFF;
+    border-radius: 6px;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    color: #FAFAFA;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 8px;
+    border: none;
+    position: relative;
+    right: 95px;
+}
+
+.nav__button a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav__button:first-child {
+    margin-right: 1rem;
+}
+
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    margin-left: 150px;
+}
+
+.filter__header {
+    color: #2A2921;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.filter__option {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.filter__title {
+    color: #6C757D;
+    font-size: 18px;
+
+}
+
+.filter__titleBlock {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.filter__block {
+    font-weight: normal;
+    display: none;
+    margin-bottom: 1rem;
+}
+
+.filter_option{
+  color: #6C757D;
+}
+
+.filter__block label {
+    margin-left: 0.5rem;
+}
+
+.filter__block--active {
+    display: block;
+}
+
+.filter__btn {
+    border: none;
+    cursor: pointer;
+    background-color: #E4ECF7;
+    color: #505780;
+    padding: 0.5rem 2rem;
+    border-radius: 5px;
+    transition: all 0.4s;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.filter__btn:hover {
+    background-color: #FAFAFA;
+}
+
+.filter__expand {
+    cursor: pointer;
+    color: #6C757D;
+}
+
+main {
+    display: flex;
+    padding-top: 2rem;
+}
+
+.feed {
+    width: 60%;
+    margin-left: 70px;
+}
+
+.feed a {
+    text-decoration: none;
+}
+
+.feed__header {
+    font-weight: 700;
+    font-size: 30px;
+    color: #2A2921;
+
+}
+
+.feed__item {
+    width: 80%;
+    border: 2px solid rgba(50, 50, 71, 0.05);
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+}
+
+.feed__item:hover {
+    background-color: #E4ECF7;
+}
+
+.feed__title {
+    color: black;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.feed__img {
+    height: 200px;
+    width: 300px;
+    border-radius:10px;
+}
+
+.feed__block {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+}
+
+.feed__expand {
+    color: #2A2921;
+    font-size: 2.5rem;
+}
+
+.feed__distance {
+    margin-right: 22rem;
+}

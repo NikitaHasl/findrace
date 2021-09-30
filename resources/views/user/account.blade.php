@@ -1,108 +1,100 @@
-<!doctype html>
-<html lang="ru">
+@extends('layout.account')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{asset('assets/css/compiled/styles.css')}}">
-    <script defer src="{{asset('assets/js/app.js')}}"></script>
-    <script src="https://kit.fontawesome.com/e4abfd569e.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <title>Account</title>
-</head>
+@section('title', 'Аккаунт')
 
-<body>
+@section('content')
 
-    <div class="container mt-5">
-        <nav class="nav">
-            <a href="{{ route('index') }}"><i class="nav__logo fas fa-running"></i></a>
-            <div class="nav__auth">
-                <button class="nav__button"><a href="{{ route('index') }}">На главную</a></button>
-                <button class="nav__button"><a href="{{ route('logout') }}">Выйти</a></button>
+<div class="inside">
+    <div class="left-side">
+        <div class="blue-block"></div>
+        @if($user->avatar)
+        <img src="{{ asset('storage/' . $user->avatar) }}">
+        @else
+        <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
+        @endif
+
+        <div class="user-name">{{$user->firstname}}</div>
+        <div class="user-since">на сайте с {{$user->created_at->toDateString()}}</div>
+        @auth
+        @if(Auth::user()->hasRole(\App\Models\Role::USER))
+        <div class="run-info">
+            <div class="run-number">
+                @if($activeRaces)
+                {{$activeRaces}}
+                @else
+                0
+                @endif
             </div>
-        </nav>
-        <div class="row">
-            <div class="col-lg-4 pb-5">
-                <!-- Account Sidebar-->
-                <div class="author-card pb-3">
-                    <div class="author-card-profile">
-                        <div class="author-card-avatar">
-                            @if($user->avatar)
-                                <img src="{{ asset('storage/' . $user->avatar) }}">
-                            @else
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
-                            @endif
-                        </div>
-                        <div class="author-card-details">
-                            <h5 class="author-card-name text-lg">{{$user->firstname}} {{$user->lastname}}</h5><span class="author-card-position">присоединился {{$user->created_at->toDateString()}}</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="wizard">
-                    <nav class="list-group list-group-flush">
-                        <a class="list-group-item" href="{{route('account.active')}}">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
-                                    <div class="d-inline-block font-weight-medium text-uppercase">Мои текущие забеги</div>
-                                </div><span class="badge badge-secondary">6</span>
-                            </div>
-                        </a>
-                        <a class="list-group-item" href="{{route('account.finished')}}">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
-                                    <div class="d-inline-block font-weight-medium text-uppercase">Мои прошедшие забеги</div>
-                                </div><span class="badge badge-secondary">6</span>
-                            </div>
-                        </a>
-                        <a class="list-group-item" href="#">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div><i class="fe-icon-heart mr-1 text-muted"></i>
-                                    <div class="d-inline-block font-weight-medium text-uppercase">Мои награды</div>
-                                </div><span class="badge badge-secondary">3</span>
-                            </div>
-                        </a>
-                        <a class="list-group-item" href="{{route('account.user.index')}}">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div><i class="fe-icon-tag mr-1 text-muted"></i>
-                                    <div class="d-inline-block font-weight-medium text-uppercase">Настройки профиля</div>
-                                </div><span class="badge badge-secondary">4</span>
-                            </div>
-                        </a>
-                    </nav>
-                </div>
+            <div class="run-number"> @if($finishedRaces)
+                {{$finishedRaces}}
+                @else
+                0
+                @endif
             </div>
         </div>
+
+        <div class="run-link">
+            <div class="run-active">
+                <a class="run-text" href="{{route('account.active')}}">Активные забеги</a>
+            </div>
+            <div class="run-finished">
+                <a class="run-text" href="{{route('account.finished')}}">Прошедшие забеги</a>
+            </div>
+        </div>
+        @endif
+        @endauth
+        
+        @auth
+        @if(Auth::user()->hasRole(\App\Models\Role::ORGANIZER))
+        <div class="create-block">
+            <div class="create-title">Создать забег</div>
+            <div class="create-expl">Ты можешь создавать новые забеги</div>
+
+            <form action="{{ route('races.create') }}" method="get">
+                @csrf
+                <input class="logout-btn" type="submit" value="Создать">
+            </form>
+        </div>
+        @endif
+        @endauth
     </div>
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function() {
 
-            const datatablesSimple = document.getElementById('datatablesSimple');
-            if (datatablesSimple) {
-                new simpleDatatables.DataTable(datatablesSimple);
-            }
+    <div class="right-side">
+        <div class="main-data">Основные данные</div>
+        <div class="list-data">
 
-            const el = document.querySelectorAll(".delete");
-            el.forEach(function(e, k) {
-                e.addEventListener('click', function() {
-                    const rel = e.getAttribute("rel");
-                    if (confirm("Вы уверены, что хотите отменить регистрацию забега под номером " + rel + " ?")) {
-                        submit("/account/unsubscribe/" + rel).then(() => {
-                            location.reload();
-                        })
-                    }
-                });
-            })
-        });
-        async function submit(url) {
-            let response = await fetch(url, {
-                method: 'DELETE',
-            });
-            let result = await response.json();
-            return result.ok;
-        }
-    </script>
+            <div><a class="list-data-option" href="{{route('account.data')}}"><i class="fas fa-cog"></i> Настройка данных</a></div>
+            <div class="line"></div>
+            <div><a class="list-data-option" href="{{route('account.password')}}"><i class="fas fa-lock"></i> Изменить пароль</a></div>
+            <div class="line"></div>
+            <div><a class="list-data-option" href="{{route('account.avatar')}}"><i class="fas fa-user-circle"></i> Изменить фото профиля</a></div>
+            <div class="line"></div>
+        </div>
+        <div class="expl-data">Ты можешь менять основные данные,
+            изменить пароль и фото профиля</div>
 
-</body>
+        <form action="/logout" method="post">
+            @csrf
+            <input class="logout-btn" type="submit" value="Выход">
+        </form>
 
-</html>
+        @auth
+        @if(Auth::user()->hasRole(\App\Models\Role::ORGANIZER))
+        <div class="statistic-block">
+            <div class="create-title">Статистика по созданным забегам</div>
+            <div class="create-expl">Ты можешь посмотреть все данные, по твоим созданным
+                забегам и мероприятиям.</div>
+
+            <form action="{{ route('account.races') }}" method="get">
+                @csrf
+                <input class="logout-btn watch-btn" type="submit" value="Смотреть">
+            </form>
+        </div>
+        @endif
+        @endauth
+    </div>
+
+
+</div>
+
+@endsection
