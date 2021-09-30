@@ -25,6 +25,7 @@ class RaceController extends Controller
             'updateResult',
             'addResult',
             'listParticipants',
+            'markAsDone',
         ]);
     }
 
@@ -229,5 +230,16 @@ class RaceController extends Controller
             'race' => $race,
             'participants' => $participants,
         ]);
+    }
+
+    public function markAsDone(Race $race) {
+        if (Auth::id() !== $race->organizer_id) {
+            abort(403);
+        }
+
+        $race->status_of_race_id = 3;
+        $race->save();
+
+        return redirect()->route('account.races');
     }
 }

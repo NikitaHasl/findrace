@@ -30,6 +30,11 @@ Route::get(
     [RaceController::class, 'listParticipants']
 )->name('listParticipants');
 
+Route::post(
+    '/races/{race}/mark-as-done',
+    [RaceController::class, 'markAsDone']
+)->name('markRaceAsDone');
+
 // AUTH //
 Route::get('/logout', function () {
     return view('auth.logout');
